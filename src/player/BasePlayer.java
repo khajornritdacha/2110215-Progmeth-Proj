@@ -16,6 +16,12 @@ public abstract class BasePlayer {
 		this.setSwordStats(START_SWORDSTATS);
 	}
 	
+	public abstract void learnSword(int swordStats);
+	
+	public abstract void learnMagic(int magicStats);
+	
+	public abstract void earnMoney(int money);
+	
 	public int getMoney() {
 		return money;
 	}
