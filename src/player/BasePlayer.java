@@ -4,16 +4,18 @@ public abstract class BasePlayer {
 	private int money;
 	private int swordStats;
 	private int magicStats;
+	private String name;
 	
 //	TODO: change these starting number for game balance
 	private int START_MONEY = 100;
 	private int START_MAGICSTATS = 1;
 	private int START_SWORDSTATS = 1;
 	
-	public BasePlayer() {
+	public BasePlayer(String name) {
 		this.setMoney(START_MONEY);
 		this.setMagicStats(START_MAGICSTATS);
 		this.setSwordStats(START_SWORDSTATS);
+		this.setName(name);
 	}
 	
 	public abstract void learnSword(int swordStats);
@@ -21,6 +23,15 @@ public abstract class BasePlayer {
 	public abstract void learnMagic(int magicStats);
 	
 	public abstract void earnMoney(int money);
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		if (name.isEmpty()) name = "Untitled";
+		this.name = name;
+	}
 	
 	public int getMoney() {
 		return money;

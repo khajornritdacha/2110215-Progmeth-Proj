@@ -6,8 +6,8 @@ public class Mage extends BasePlayer{
 	private final int MAGIC_MULTIPLIER = 2;
 	private final int MONEY_MULTIPLIER = 1;
 	
-	public Mage() {
-		super();
+	public Mage(String name) {
+		super(name);
 	}
 	
 	public void learnSword(int swordStats) {

@@ -6,8 +6,8 @@ public class SwordMan extends BasePlayer{
 	private final int MAGIC_MULTIPLIER = 1;
 	private final int MONEY_MULTIPLIER = 1;
 	
-	public SwordMan() {
-		super();
+	public SwordMan(String name) {
+		super(name);
 	}
 	
 	public void learnSword(int swordStats) {
