@@ -1,28 +1,24 @@
 package application;
 
-import java.util.Scanner;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import scene.startGame.StartGameRootPane;
 
-//TODO: implement this class
-public class Main {
-	private static Scanner keyBoard;
-
-	public static void main(String[] args) {		
-		keyBoard = new Scanner(System.in);
-		
-
-	}
-
-	public static int getChoice() {
-		System.out.print(">> ");
-		String input = keyBoard.nextLine();
-		try{
-			return Integer.parseInt(input);
-		}catch(NumberFormatException e){
-            return -1;
-        }
-	}
+public class Main extends Application {
 	
-	public static void startGame() {
-		
-	}
+    @Override
+    public void start(Stage stage) {
+    	Pane root = new StartGameRootPane();
+    	Scene scene = new Scene(root, 800, 640);
+    	stage.setTitle("RPG Life");
+    	stage.setScene(scene);
+    	stage.setResizable(false);
+    	stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
 }
