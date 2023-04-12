@@ -6,8 +6,8 @@ public class TheRich extends BasePlayer{
 	private final int MAGIC_MULTIPLIER = 1;
 	private final int MONEY_MULTIPLIER = 2;
 	
-	public TheRich() {
-		super();
+	public TheRich(String name) {
+		super(name);
 	}
 	
 	public void learnSword(int swordStats) {
