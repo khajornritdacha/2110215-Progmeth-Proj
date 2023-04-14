@@ -1,21 +1,29 @@
 package player;
 
+import customExecption.InvalidValueExecption;
+
 public abstract class BasePlayer {
 	private int money;
 	private int swordStats;
 	private int magicStats;
 	private String name;
+	private boolean isAlive;
 	
-//	TODO: change these starting number for game balance
+	//	TODO: change these starting number for game balance
 	private int START_MONEY = 100;
 	private int START_MAGICSTATS = 1;
 	private int START_SWORDSTATS = 1;
 	
 	public BasePlayer(String name) {
-		this.setMoney(START_MONEY);
-		this.setMagicStats(START_MAGICSTATS);
-		this.setSwordStats(START_SWORDSTATS);
-		this.setName(name);
+		try {
+			this.setMoney(START_MONEY);
+			this.setMagicStats(START_MAGICSTATS);
+			this.setSwordStats(START_SWORDSTATS);
+			this.setName(name);
+			this.setAlive(true);			
+		} catch (InvalidValueExecption err) {
+			System.out.println(String.format("Error occured with player %s: %s", name, err.getMessage()));
+		}
 	}
 	
 	public abstract void learnSword(int swordStats);
@@ -38,7 +46,11 @@ public abstract class BasePlayer {
 	}
 
 	public void setMoney(int money) {
-		if (money < 0) money = 0;
+//		Player dies if money is less than or equal to 0 
+		if (money <= 0) {
+			this.setAlive(false);
+			money = 0;
+		}
 		this.money = money;
 	}
 
@@ -46,8 +58,10 @@ public abstract class BasePlayer {
 		return swordStats;
 	}
 
-	public void setSwordStats(int swordStats) {
-		if (swordStats < 0) swordStats = 0;
+	public void setSwordStats(int swordStats) throws InvalidValueExecption{
+		if (swordStats <= 0) {
+			throw new InvalidValueExecption("Invalid sword stats for player");
+		}
 		this.swordStats = swordStats;
 	}
 
@@ -55,8 +69,18 @@ public abstract class BasePlayer {
 		return magicStats;
 	}
 
-	public void setMagicStats(int magicStats) {
-		if (magicStats < 0) magicStats = 0;
+	public void setMagicStats(int magicStats) throws InvalidValueExecption{
+		if (magicStats <= 0) {
+			throw new InvalidValueExecption("Invalid magic stats for player");
+		}
 		this.magicStats = magicStats;
 	}	
+	
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
 }
