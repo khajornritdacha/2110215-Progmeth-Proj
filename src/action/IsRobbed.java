@@ -2,20 +2,22 @@ package action;
 
 import player.BasePlayer;
 
-public class WinLottery implements BaseAction {
+public class IsRobbed implements BaseAction {
 	private int randMoney;
 	private BasePlayer p1;
 	
-	public WinLottery(BasePlayer p1) {
+	public IsRobbed(BasePlayer p1) {
 //		TODO: change amount of money to random based on passed turn (the more turns passed the more money drop)
 		this.randMoney = 10;
 		this.p1 = p1;
+		
 	}
-
+	
 	public void executeAction() {
-		p1.earnMoney(randMoney);
+//		Don't use p1.earnMoney as the effect will be multiplied
+		p1.setMoney(p1.getMoney() - randMoney);
 	}
-
+	
 	public int getRandMoney() {
 		return randMoney;
 	}
@@ -31,5 +33,5 @@ public class WinLottery implements BaseAction {
 
 	public void setP1(BasePlayer p1) {
 		this.p1 = p1;
-	}	
+	}
 }
