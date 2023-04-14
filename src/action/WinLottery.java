@@ -1,5 +1,6 @@
 package action;
 
+import customExecption.InvalidValueExecption;
 import player.BasePlayer;
 
 public class WinLottery implements BaseAction {
@@ -12,7 +13,7 @@ public class WinLottery implements BaseAction {
 		this.p1 = p1;
 	}
 
-	public void executeAction() {
+	public void executeAction() throws InvalidValueExecption{
 		p1.earnMoney(randMoney);
 	}
 

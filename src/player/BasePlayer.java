@@ -14,23 +14,19 @@ public abstract class BasePlayer {
 	private int START_MAGICSTATS = 1;
 	private int START_SWORDSTATS = 1;
 	
-	public BasePlayer(String name) {
-		try {
-			this.setMoney(START_MONEY);
-			this.setMagicStats(START_MAGICSTATS);
-			this.setSwordStats(START_SWORDSTATS);
-			this.setName(name);
-			this.setAlive(true);			
-		} catch (InvalidValueExecption err) {
-			System.out.println(String.format("Error occured with player %s: %s", name, err.getMessage()));
-		}
+	public BasePlayer(String name) throws InvalidValueExecption{
+		this.setMoney(START_MONEY);
+		this.setMagicStats(START_MAGICSTATS);
+		this.setSwordStats(START_SWORDSTATS);
+		this.setName(name);
+		this.setAlive(true);			
 	}
 	
-	public abstract void learnSword(int swordStats);
+	public abstract void learnSword(int swordStats) throws InvalidValueExecption;
 	
-	public abstract void learnMagic(int magicStats);
+	public abstract void learnMagic(int magicStats) throws InvalidValueExecption;
 	
-	public abstract void earnMoney(int money);
+	public abstract void earnMoney(int money) throws InvalidValueExecption;
 	
 	public String getName() {
 		return name;

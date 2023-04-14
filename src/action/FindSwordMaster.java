@@ -1,5 +1,6 @@
 package action;
 
+import customExecption.InvalidValueExecption;
 import player.BasePlayer;
 
 public class FindSwordMaster implements BaseAction{
@@ -12,7 +13,7 @@ public class FindSwordMaster implements BaseAction{
 		this.randSwordStats = 10;
 	}
 	
-	public void executeAction() {
+	public void executeAction() throws InvalidValueExecption{
 		p1.learnSword(randSwordStats);
 	}
 
