@@ -2,7 +2,7 @@ package monster;
 
 import customExecption.InvalidValueExecption;
 
-public abstract class BaseMonster {
+public class BaseMonster {
 	private String name;
 	private int swordStats;
 	private int magicStats;
@@ -11,7 +11,7 @@ public abstract class BaseMonster {
 		try {
 			this.setName(name);
 			this.setSwordStats(swordStats);
-			this.setMagicStats(magicStats);			
+			this.setMagicStats(magicStats);
 		} catch (InvalidValueExecption err) {
 			System.out.println(String.format("Error occured with monster %s: %s", name, err.getMessage()));
 		}
@@ -22,7 +22,8 @@ public abstract class BaseMonster {
 	}
 
 	public void setName(String name) {
-		if (name.isEmpty()) name = "Untitled";
+		if (name.isEmpty())
+			name = "Untitled";
 		this.name = name;
 	}
 
@@ -30,7 +31,7 @@ public abstract class BaseMonster {
 		return swordStats;
 	}
 
-	public void setSwordStats(int swordStats) throws InvalidValueExecption{
+	public void setSwordStats(int swordStats) throws InvalidValueExecption {
 		if (swordStats <= 0) {
 			throw new InvalidValueExecption("Invalid sword stats for monster");
 		}
@@ -41,10 +42,10 @@ public abstract class BaseMonster {
 		return magicStats;
 	}
 
-	public void setMagicStats(int magicStats) throws InvalidValueExecption{
+	public void setMagicStats(int magicStats) throws InvalidValueExecption {
 		if (magicStats <= 0) {
 			throw new InvalidValueExecption("Invalid magic stats for monster");
 		}
 		this.magicStats = magicStats;
-	}	
+	}
 }
