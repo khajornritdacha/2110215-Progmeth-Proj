@@ -9,11 +9,10 @@ import scene.chooseRole.ChooseRolePane;
 import scene.startGame.StartGameRootPane;
 
 public class Main extends Application {
-	
     @Override
     public void start(Stage stage) throws InvalidValueExecption{
-//    	Pane root = new StartGameRootPane();
-    	Pane root = new ChooseRolePane();
+    	Pane root = new StartGameRootPane();
+//    	Pane root = new ChooseRolePane();
     	Scene scene = new Scene(root, 800, 640);
     	stage.setTitle("RPG Life");
     	stage.setScene(scene);
