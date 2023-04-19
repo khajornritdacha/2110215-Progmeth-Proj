@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import scene.chooseRole.ChooseRolePane;
 import scene.startGame.StartGameRootPane;
 
+// OPTIONAL: create ChooseRolePane
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws InvalidValueExecption{

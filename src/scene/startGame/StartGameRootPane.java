@@ -1,5 +1,7 @@
 package scene.startGame;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -10,9 +12,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import logic.GameLogic;
 import scene.components.AddedPlayer;
 import scene.components.InputPlayerFrame;
 
+// TODO: adjust the GUI to make it be more beautiful
 public class StartGameRootPane extends BorderPane{
 	private static DisplayPlayerPane displayPlayerPane;
 	private static InputPlayerFrame inputPlayerFrame;
@@ -26,32 +30,48 @@ public class StartGameRootPane extends BorderPane{
 		Text gameTitle = new Text("RPG Life");
 		gameTitle.setFont(new Font(50));
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
-//		
-//		Text numberPlayerText = new Text("Enter number of player (2-4) players");
-//		numberPlayerText.setFont(new Font(20));
-//		numberPlayerText.setTextAlignment(TextAlignment.CENTER);
-//		
-		startGameBtn = new Button("Start Game");
+		
+		TextField numberOfTurn = new TextField();
+		numberOfTurn.setMaxWidth(200);
+		numberOfTurn.textProperty().addListener((observable, oldValue, newValue) -> {
+		    if (newValue.isEmpty() || !isValidNumberOfTurn(newValue)) {
+		    	startGameBtn.setDisable(true);
+		    }
+		    else {
+		    	startGameBtn.setDisable(false);
+		    }
+		});
+
+		startGameBtn = new Button("Start Game!!");
 		startGameBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				// TODO: add player's name to the list in GameLogic
+				ArrayList<String> playerNames = new ArrayList<String>();
+				ArrayList<AddedPlayer> players = displayPlayerPane.getAddedPlayers();
+				for (AddedPlayer playerName : players) {
+					playerNames.add(playerName.getPlayerName());
+				}
+				GameLogic gameInstance = new GameLogic(playerNames, Integer.valueOf(numberOfTurn.getText()));
+				gameInstance.startGame();
 			}
 		});
-//		
-//		TextField numberOfPlayer = new TextField();
-//		numberOfPlayer.textProperty().addListener((observable, oldValue, newValue) -> {
-//		    if (isValidNumberOfPlayer(newValue)) {
-//		    	startGameBtn.setDisable(false);
-//		    } else {
-//		    	startGameBtn.setDisable(true);
-//		    }
-//		});
-//		numberOfPlayer.setMaxWidth(150);
-//		numberOfPlayer.setAlignment(Pos.CENTER);
-//		
-		container.getChildren().addAll(gameTitle, startGameBtn, displayPlayerPane, inputPlayerFrame);
+		startGameBtn.setDisable(true);
+		
+		container.getChildren().addAll(gameTitle, startGameBtn, displayPlayerPane, inputPlayerFrame, numberOfTurn);
 		container.setAlignment(Pos.CENTER);
 		this.setCenter(container);
+	}
+	
+	public boolean isValidNumberOfTurn(String textNumber) {
+		try {
+			int number = Integer.parseInt(textNumber.strip());
+			if (5 <= number && number <= 30) {
+				return true;
+			}
+			return false;
+		}
+		catch (NumberFormatException err) {
+			return false;
+		}
 	}
 	
 	public static DisplayPlayerPane getDisplayPlayerPane() {

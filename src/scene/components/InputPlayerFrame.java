@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import scene.startGame.StartGameRootPane;
 
+// TODO: adjust the GUI to make it be more beautiful
 public class InputPlayerFrame extends HBox {
 	private static Button addNewPlayerBtn;
 	

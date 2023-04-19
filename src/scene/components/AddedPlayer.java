@@ -9,11 +9,14 @@ import scene.startGame.StartGameRootPane;
 import javafx.scene.text.Font;
 
 public class AddedPlayer extends VBox {
+	private String playerName;
+
 	public AddedPlayer(String playerName) {
 		this.setSpacing(10);
 		
 		Text text = new Text("(1) " + playerName);
 		text.setFont(new Font(20));
+		this.setPlayerName(playerName);
 		
 		Button button = new Button("remove");
 		button.setOnAction(new EventHandler<ActionEvent>() {
@@ -23,5 +26,13 @@ public class AddedPlayer extends VBox {
 		});
 		
 		this.getChildren().addAll(text, button);
+	}
+	
+	public String getPlayerName() {
+		return this.playerName;
+	}
+
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 }
