@@ -30,6 +30,11 @@ public class StartGameRootPane extends BorderPane{
 		Text gameTitle = new Text("RPG Life");
 		gameTitle.setFont(new Font(50));
 		gameTitle.setTextAlignment(TextAlignment.CENTER);
+
+//		String path = new File(".").getCanonicalPath();
+//		System.out.println("Path in start game pane: " + path);
+//		BackgroundImage bg = new BackgroundImage(new Image("assets/testBg.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+//		container.setBackground(new Background(bg));
 		
 		TextField numberOfTurn = new TextField();
 		numberOfTurn.setMaxWidth(200);

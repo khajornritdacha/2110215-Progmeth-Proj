@@ -14,14 +14,12 @@ import player.BasePlayer;
 
 public class Utility {
 	/**
-	 * Return true if player win against monster, otherwise false
+	 * If player win then drop money, otherwise reduce player's money
 	 * @param p1 player
 	 * @param m1 monster
-	 * @return
 	 */
-	public static boolean fightAgainst(BasePlayer p1, BaseMonster m1) {
+	public static void fightAgainst(BasePlayer p1, BaseMonster m1) {
 //		TODO: implements this function
-		return true;
 	}
 	
 	/**
@@ -35,6 +33,10 @@ public class Utility {
 		return random.nextInt(max - min + 1) + min;
 	}
 	
+	/**
+	 * Explanation of this function
+	 * @return something stupid
+	 */
 	public static BaseAction genRandomAction(BasePlayer p1) {
 //		TODO: add action for monster and boss
 		int rand = randomInteger(0, 3);
@@ -57,5 +59,20 @@ public class Utility {
 			System.out.println(err.getMessage());
 		}
 		return randAction;
+	}
+	
+//	TODO: change return number
+	public static int genMagicStats(BasePlayer p, int numberTurn) {
+		return 1;
+	}
+	
+//	TODO: change return number
+	public static int genSwordStats(BasePlayer p, int numberTurn) {
+		return 1;
+	}
+	
+//	TODO: change return number
+	public static int genMoney(BasePlayer p, int numberTurn) {
+		return 1;
 	}
 }
