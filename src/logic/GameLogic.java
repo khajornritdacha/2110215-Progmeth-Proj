@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import action.BaseAction;
 import customExecption.InvalidValueExecption;
+import monster.BaseMonster;
 import player.*;
 import utility.Utility;
 
@@ -47,16 +48,18 @@ public class GameLogic {
 		this.startGame();
 	}
 	
-	public void startGame() {
+	private void startGame() {
 		while (true) {
 			handleEachTurn();
+			
+//			In case that more than 1 people die at the same time and game ends
+			if (getNumberAlivePlayers() <= 1) break;
 			
 			goToNextPlayer();
 			
 			if (getCurrentTurn() > numberTurn) break;
-			if (getNumberAlivePlayers() <= 1) break;
-			
 		}
+		endGame();
 	}
 	
 	private void handleEachTurn() {
@@ -80,8 +83,7 @@ public class GameLogic {
 //		let player choose 2 events
 //		TODO: add GUI handler
 		for (int i = 0; i < 2; i++) {
-			int num = getPlayerAction();
-			handleChooseAction(num);
+			handleChooseAction();
 			if (!getCurrentPlayer().isAlive()) {
 				return;
 			}
@@ -93,22 +95,54 @@ public class GameLogic {
 		return 0;
 	}
 	
-	private void handleChooseAction(int num) {
-//		TODO: change number
+
+	private void handleChooseAction() {
+//		TODO: Get num from GUI
+		int num = getPlayerAction();
 		try {
 			if (num == 0) {
-				getCurrentPlayer().learnMagic(1);
+				getCurrentPlayer().learnMagic(Utility.genMagicStats(getCurrentPlayer(), getCurrentTurn()));
 			} else if (num == 1) {
-				getCurrentPlayer().learnSword(1);
+				getCurrentPlayer().learnSword(Utility.genSwordStats(getCurrentPlayer(), getCurrentTurn()));
 			} else if (num == 2) {
 //			Be waiter for money
-				getCurrentPlayer().earnMoney(1);
+				getCurrentPlayer().earnMoney(Utility.genMoney(getCurrentPlayer(), getCurrentTurn()));
 			} else if (num == 3) {
 //			handle fight monster
+				handleFightMonster();
 			} 			
 		} catch (InvalidValueExecption err) {
 			System.out.println(String.format("Error in handle choose action: %s", err.getMessage()));
 		}
+	}
+	
+//	TODO: implements this function 
+	private int getMonsterChoice() {
+		return 0;
+	}
+	
+	private void handleFightMonster() {
+//	TODO: implements this function	
+//	TODO: change monsters' stats
+		int num = getMonsterChoice();
+		if (num == 0) {
+			Utility.fightAgainst(getCurrentPlayer(), new BaseMonster("Jomzilla", 10, 10, 5));
+		} else if (num == 1) {
+			
+		} else if (num == 2) {
+			
+		} else if (num == 3) {
+//			TODO: handle boss case
+		}
+	} 
+	
+	private void endGame() {
+//		TODO: implements this function and change game endings?
+		if (getNumberAlivePlayers() == 0) {
+			System.out.println("No one wins");
+		}
+
+		
 	}
 	
 	private int getNumberAlivePlayers() {

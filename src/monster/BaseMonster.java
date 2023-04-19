@@ -6,16 +6,31 @@ public class BaseMonster {
 	private String name;
 	private int swordStats;
 	private int magicStats;
+	private int dropMoney;
 
-	public BaseMonster(String name, int swordStats, int magicStats) {
+	public BaseMonster(String name, int swordStats, int magicStats, int dropMoney) {
 		try {
 			this.setName(name);
 			this.setSwordStats(swordStats);
 			this.setMagicStats(magicStats);
+			this.setDropMoney(dropMoney);
 		} catch (InvalidValueExecption err) {
 			System.out.println(String.format("Error occured with monster %s: %s", name, err.getMessage()));
 		}
 	}
+
+	
+	
+	public int getDropMoney() {
+		return dropMoney;
+	}
+
+	public void setDropMoney(int dropMoney) {
+		if (dropMoney < 0) dropMoney = 0;
+		this.dropMoney = dropMoney;
+	}
+
+
 
 	public String getName() {
 		return name;
