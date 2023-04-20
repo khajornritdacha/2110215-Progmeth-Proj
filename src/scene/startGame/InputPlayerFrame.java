@@ -1,4 +1,6 @@
-package scene.components;
+package scene.startGame;
+
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,7 +11,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import scene.startGame.StartGameRootPane;
+import logic.GameLogic;
 
 // TODO: adjust the GUI to make it be more beautiful
 public class InputPlayerFrame extends HBox {
@@ -30,6 +32,17 @@ public class InputPlayerFrame extends HBox {
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (!textField.getText().isEmpty()) {
+					// This function is created for debugging purpose;
+					if (textField.getText().equals("adminJomnoiZ")) {
+						final int NUMBER_TURN = 4; 
+						ArrayList<String> playerNames = new ArrayList<String>();
+						playerNames.add("JomnoiZ");
+						playerNames.add("JO");
+						playerNames.add("Puun");
+						playerNames.add("Bow");
+						GameLogic.getInstance(playerNames, NUMBER_TURN).startGame();
+					}
+					
 					AddedPlayer player = new AddedPlayer(textField.getText());
 					StartGameRootPane.getDisplayPlayerPane().addPlayer(player);
 					textField.clear();

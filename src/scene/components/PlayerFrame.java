@@ -1,11 +1,16 @@
 package scene.components;
 
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import logic.GameLogic;
 import player.BasePlayer;
 
 public class PlayerFrame extends VBox {
@@ -13,8 +18,15 @@ public class PlayerFrame extends VBox {
 
 	public PlayerFrame(BasePlayer p1) {
 		this.setAlignment(Pos.CENTER);
-	
-		this.p1 = p1;
+		if (GameLogic.getInstance().getCurrentPlayer() == p1) {
+			this.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+		}
+		else {
+			this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
+		}
+		this.setPadding(new Insets(20, 20, 20, 20));
+		
+		this.setP1(p1);
 //		TODO: get player name and role
 		Text title = new Text(String.format("%s (%s)", p1.getName(), p1.getClass().getSimpleName()));
 		
@@ -45,5 +57,13 @@ public class PlayerFrame extends VBox {
 		statsContainer.setHalignment(magicText, HPos.RIGHT);
 		
 		this.getChildren().addAll(title, pic, statsContainer);
+	}
+
+	public BasePlayer getP1() {
+		return p1;
+	}
+
+	public void setP1(BasePlayer p1) {
+		this.p1 = p1;
 	}
 }

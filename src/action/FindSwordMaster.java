@@ -13,8 +13,12 @@ public class FindSwordMaster implements BaseAction{
 		this.randSwordStats = 10;
 	}
 	
-	public void executeAction() throws InvalidValueExecption{
-		p1.learnSword(randSwordStats);
+	public String executeAction() throws InvalidValueExecption{
+		return p1.learnSword(randSwordStats);
+	}
+	
+	public String toString() {
+		return this.getP1().getName() + " has learnt sword for " + this.getRandSwordStats() + " units.";
 	}
 
 	public BasePlayer getP1() {

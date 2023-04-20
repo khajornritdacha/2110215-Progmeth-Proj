@@ -1,6 +1,5 @@
 package utility;
 
-import java.security.InvalidAlgorithmParameterException;
 import java.util.Random;
 
 import action.BaseAction;
@@ -44,17 +43,21 @@ public class Utility {
 		try {
 			if (rand == 0) {
 				randAction = new FindMageMaster(p1);
-			} else if (rand == 1) {
+			}
+			else if (rand == 1) {
 				randAction = new FindSwordMaster(p1);
-			} else if (rand == 2) {
+			}
+			else if (rand == 2) {
 				randAction = new IsRobbed(p1);
-			} else if (rand == 3) {
+			}
+			else if (rand == 3) {
 				randAction = new WinLottery(p1);
-			} else {
-				throw new InvalidValueExecption(
-						String.format("Invalid random Action number: %d", rand));
+			}
+			else {
+				throw new InvalidValueExecption(String.format("Invalid random Action number: %d", rand));
 			}			
-		} catch (InvalidValueExecption err) {
+		}
+		catch (InvalidValueExecption err) {
 			System.out.println(err);
 			System.out.println(err.getMessage());
 		}

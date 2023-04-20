@@ -13,8 +13,12 @@ public class FindMageMaster implements BaseAction{
 		this.randMagicStats = 10;
 	}
 	
-	public void executeAction() throws InvalidValueExecption{
-		p1.learnSword(randMagicStats);
+	public String executeAction() throws InvalidValueExecption{
+		return p1.learnSword(randMagicStats);
+	}
+	
+	public String toString() {
+		return this.getP1().getName() + " has learnt magic for " + this.getRandMagicStats() + " units.";
 	}
 
 	public BasePlayer getP1() {

@@ -22,11 +22,11 @@ public abstract class BasePlayer {
 		this.setAlive(true);			
 	}
 	
-	public abstract void learnSword(int swordStats) throws InvalidValueExecption;
+	public abstract String learnSword(int swordStats) throws InvalidValueExecption;
 	
-	public abstract void learnMagic(int magicStats) throws InvalidValueExecption;
+	public abstract String learnMagic(int magicStats) throws InvalidValueExecption;
 	
-	public abstract void earnMoney(int money) throws InvalidValueExecption;
+	public abstract String earnMoney(int money) throws InvalidValueExecption;
 	
 	public String getName() {
 		return name;

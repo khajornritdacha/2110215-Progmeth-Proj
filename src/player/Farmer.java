@@ -11,15 +11,18 @@ public class Farmer extends BasePlayer {
 		super(name);
 	}
 	
-	public void learnSword(int swordStats) throws InvalidValueExecption{
+	public String learnSword(int swordStats) throws InvalidValueExecption{
 		setSwordStats(getSwordStats() + swordStats * SWORD_MULTIPLIER);
+		return this.getName() + " has learnt sword for " + swordStats * swordStats * SWORD_MULTIPLIER + " units.";
 	}
 	
-	public void learnMagic(int magicStats) throws InvalidValueExecption{
+	public String learnMagic(int magicStats) throws InvalidValueExecption{
 		setMagicStats(getMagicStats() + magicStats * MAGIC_MULTIPLIER);
+		return this.getName() + " has learnt magic for " + magicStats * MAGIC_MULTIPLIER + " units.";
 	}
 	
-	public void earnMoney(int money) throws InvalidValueExecption{
+	public String earnMoney(int money) throws InvalidValueExecption{
 		setMoney(getMoney() + money * MONEY_MULTIPLIER);
+		return this.getName() + " has earned " + money * MONEY_MULTIPLIER + " bahts.";
 	}
 }

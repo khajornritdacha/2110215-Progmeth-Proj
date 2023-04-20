@@ -13,8 +13,12 @@ public class WinLottery implements BaseAction {
 		this.p1 = p1;
 	}
 
-	public void executeAction() throws InvalidValueExecption{
-		p1.earnMoney(randMoney);
+	public String executeAction() throws InvalidValueExecption{
+		return p1.earnMoney(randMoney);
+	}
+	
+	public String toString() {
+		return this.getP1().getName() + " has earned " + this.getRandMoney() + " bahts.";
 	}
 
 	public int getRandMoney() {

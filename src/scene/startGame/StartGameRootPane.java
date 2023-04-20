@@ -4,23 +4,24 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
-import scene.components.AddedPlayer;
-import scene.components.InputPlayerFrame;
 
 // TODO: adjust the GUI to make it be more beautiful
 public class StartGameRootPane extends BorderPane{
 	private static DisplayPlayerPane displayPlayerPane;
 	private static InputPlayerFrame inputPlayerFrame;
 	private static Button startGameBtn;
+	private static TextField numberOfTurn;
 	
 	public StartGameRootPane() {
 		displayPlayerPane = new DisplayPlayerPane();
@@ -36,15 +37,13 @@ public class StartGameRootPane extends BorderPane{
 //		BackgroundImage bg = new BackgroundImage(new Image("assets/testBg.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 //		container.setBackground(new Background(bg));
 		
-		TextField numberOfTurn = new TextField();
+		Text inputTurn = new Text("Number of Turn : ");
+		inputTurn.setFont(new Font(20));
+		
+		numberOfTurn = new TextField();
 		numberOfTurn.setMaxWidth(200);
 		numberOfTurn.textProperty().addListener((observable, oldValue, newValue) -> {
-		    if (newValue.isEmpty() || !isValidNumberOfTurn(newValue)) {
-		    	startGameBtn.setDisable(true);
-		    }
-		    else {
-		    	startGameBtn.setDisable(false);
-		    }
+			updateStartGameBtn();
 		});
 
 		startGameBtn = new Button("Start Game!!");
@@ -55,18 +54,24 @@ public class StartGameRootPane extends BorderPane{
 				for (AddedPlayer playerName : players) {
 					playerNames.add(playerName.getPlayerName());
 				}
-				GameLogic gameInstance = new GameLogic(playerNames, Integer.valueOf(numberOfTurn.getText()));
-				gameInstance.startGame();
+				
+				GameLogic.getInstance(playerNames, Integer.valueOf(numberOfTurn.getText())).startGame();
+				numberOfTurn.setText("");
 			}
 		});
 		startGameBtn.setDisable(true);
 		
-		container.getChildren().addAll(gameTitle, startGameBtn, displayPlayerPane, inputPlayerFrame, numberOfTurn);
+		HBox inputTurnField = new HBox();
+		inputTurnField.getChildren().addAll(inputTurn, numberOfTurn);
+		inputTurnField.setAlignment(Pos.CENTER);
+		inputTurnField.setPadding(new Insets(20, 20, 20, 20));
+		
+		container.getChildren().addAll(gameTitle, startGameBtn, displayPlayerPane, inputPlayerFrame, inputTurnField);
 		container.setAlignment(Pos.CENTER);
 		this.setCenter(container);
 	}
 	
-	public boolean isValidNumberOfTurn(String textNumber) {
+	public static boolean isValidNumberOfTurn(String textNumber) {
 		try {
 			int number = Integer.parseInt(textNumber.strip());
 			if (5 <= number && number <= 30) {
@@ -77,6 +82,22 @@ public class StartGameRootPane extends BorderPane{
 		catch (NumberFormatException err) {
 			return false;
 		}
+	}
+	
+	public static void updateStartGameBtn() {
+		if (numberOfTurn.getText().isEmpty() || !isValidNumberOfTurn(numberOfTurn.getText())) {
+	    	startGameBtn.setDisable(true);
+	    }
+	    else if (displayPlayerPane.getNumberOfPlayer() < 2 || displayPlayerPane.getNumberOfPlayer() > 4) {
+	    	startGameBtn.setDisable(true);
+	    }
+	    else {
+	    	startGameBtn.setDisable(false);
+	    }
+	}
+	
+	public static void reset() {
+		displayPlayerPane.reset();
 	}
 	
 	public static DisplayPlayerPane getDisplayPlayerPane() {
