@@ -13,22 +13,23 @@ import javafx.scene.text.Text;
 import logic.GameLogic;
 import player.BasePlayer;
 
+//TODO: adjust the GUI to make it be more beautiful
 public class PlayerFrame extends VBox {
-	private BasePlayer p1;
-
 	public PlayerFrame(BasePlayer p1) {
 		this.setAlignment(Pos.CENTER);
-		if (GameLogic.getInstance().getCurrentPlayer() == p1) {
+		if (!p1.isAlive()) {
+			this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
+		}
+		else if (GameLogic.getInstance().getCurrentPlayer() == p1) {
 			this.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
 		}
 		else {
 			this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
 		}
 		this.setPadding(new Insets(20, 20, 20, 20));
-		
-		this.setP1(p1);
+
 //		TODO: get player name and role
-		Text title = new Text(String.format("%s (%s)", p1.getName(), p1.getClass().getSimpleName()));
+		Text title = new Text(String.format("%s (%s) [%s]", p1.getName(), p1.getClass().getSimpleName(), (p1.isAlive() ? "Survive" : "Dead")));
 		
 		Circle pic = new Circle();
 		
@@ -57,13 +58,5 @@ public class PlayerFrame extends VBox {
 		statsContainer.setHalignment(magicText, HPos.RIGHT);
 		
 		this.getChildren().addAll(title, pic, statsContainer);
-	}
-
-	public BasePlayer getP1() {
-		return p1;
-	}
-
-	public void setP1(BasePlayer p1) {
-		this.p1 = p1;
 	}
 }

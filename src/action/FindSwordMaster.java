@@ -1,24 +1,21 @@
 package action;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 import player.BasePlayer;
+import utility.Utility;
 
 public class FindSwordMaster implements BaseAction{
 	private BasePlayer p1;
 	private int randSwordStats;
 	
 	public FindSwordMaster(BasePlayer p1) {
-//		TODO: change magic number
-		this.p1 = p1;
-		this.randSwordStats = 10;
+//		TODO: change sword number
+		this.setP1(p1);
+		this.setRandSwordStats(10);
 	}
 	
-	public String executeAction() throws InvalidValueExecption{
-		return p1.learnSword(randSwordStats);
-	}
-	
-	public String toString() {
-		return this.getP1().getName() + " has learnt sword for " + this.getRandSwordStats() + " units.";
+	public String executeAction() throws InvalidValueException{
+		return p1.learnSword(Utility.calculateExtraBuff(this.getRandSwordStats()));
 	}
 
 	public BasePlayer getP1() {

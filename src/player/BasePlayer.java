@@ -1,6 +1,6 @@
 package player;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 
 public abstract class BasePlayer {
 	private int money;
@@ -11,10 +11,10 @@ public abstract class BasePlayer {
 	
 	//	TODO: change these starting number for game balance
 	private int START_MONEY = 100;
-	private int START_MAGICSTATS = 1;
-	private int START_SWORDSTATS = 1;
+	private int START_MAGICSTATS = 10;
+	private int START_SWORDSTATS = 10;
 	
-	public BasePlayer(String name) throws InvalidValueExecption{
+	public BasePlayer(String name) throws InvalidValueException{
 		this.setMoney(START_MONEY);
 		this.setMagicStats(START_MAGICSTATS);
 		this.setSwordStats(START_SWORDSTATS);
@@ -22,11 +22,11 @@ public abstract class BasePlayer {
 		this.setAlive(true);			
 	}
 	
-	public abstract String learnSword(int swordStats) throws InvalidValueExecption;
+	public abstract String learnSword(int swordStats) throws InvalidValueException;
 	
-	public abstract String learnMagic(int magicStats) throws InvalidValueExecption;
+	public abstract String learnMagic(int magicStats) throws InvalidValueException;
 	
-	public abstract String earnMoney(int money) throws InvalidValueExecption;
+	public abstract String earnMoney(int money) throws InvalidValueException;
 	
 	public String getName() {
 		return name;
@@ -54,9 +54,9 @@ public abstract class BasePlayer {
 		return swordStats;
 	}
 
-	public void setSwordStats(int swordStats) throws InvalidValueExecption{
+	public void setSwordStats(int swordStats) throws InvalidValueException{
 		if (swordStats <= 0) {
-			throw new InvalidValueExecption("Invalid sword stats for player");
+			throw new InvalidValueException("Invalid sword stats for player");
 		}
 		this.swordStats = swordStats;
 	}
@@ -65,9 +65,9 @@ public abstract class BasePlayer {
 		return magicStats;
 	}
 
-	public void setMagicStats(int magicStats) throws InvalidValueExecption{
+	public void setMagicStats(int magicStats) throws InvalidValueException{
 		if (magicStats <= 0) {
-			throw new InvalidValueExecption("Invalid magic stats for player");
+			throw new InvalidValueException("Invalid magic stats for player");
 		}
 		this.magicStats = magicStats;
 	}	

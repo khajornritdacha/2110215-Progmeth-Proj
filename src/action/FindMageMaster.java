@@ -1,7 +1,8 @@
 package action;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 import player.BasePlayer;
+import utility.Utility;
 
 public class FindMageMaster implements BaseAction{
 	private BasePlayer p1;
@@ -9,16 +10,12 @@ public class FindMageMaster implements BaseAction{
 	
 	public FindMageMaster(BasePlayer p1) {
 //		TODO: change magic number
-		this.p1 = p1;
-		this.randMagicStats = 10;
+		this.setP1(p1);
+		this.setRandMagicStats(10);
 	}
 	
-	public String executeAction() throws InvalidValueExecption{
-		return p1.learnSword(randMagicStats);
-	}
-	
-	public String toString() {
-		return this.getP1().getName() + " has learnt magic for " + this.getRandMagicStats() + " units.";
+	public String executeAction() throws InvalidValueException{
+		return p1.learnMagic(Utility.calculateExtraBuff(this.getRandMagicStats()));
 	}
 
 	public BasePlayer getP1() {

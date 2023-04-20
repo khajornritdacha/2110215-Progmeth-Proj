@@ -2,7 +2,7 @@ package application;
 
 import java.io.IOException;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,7 +14,7 @@ public class Main extends Application {
 	public static Stage primaryStage;
 	
     @Override
-    public void start(Stage stage) throws InvalidValueExecption, IOException, SecurityException{
+    public void start(Stage stage) throws InvalidValueException, IOException, SecurityException{
 //    	TODO: remove these lines
 //    	String path = new File(".").getCanonicalPath();
 //		System.out.println("Path in start game pane: " + path);

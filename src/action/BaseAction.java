@@ -1,9 +1,7 @@
 package action;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 
 public interface BaseAction {
-	String executeAction() throws InvalidValueExecption;
-	
-	String toString();
+	String executeAction() throws InvalidValueException;
 }

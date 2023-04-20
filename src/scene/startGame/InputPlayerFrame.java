@@ -34,7 +34,7 @@ public class InputPlayerFrame extends HBox {
 				if (!textField.getText().isEmpty()) {
 					// This function is created for debugging purpose;
 					if (textField.getText().equals("adminJomnoiZ")) {
-						final int NUMBER_TURN = 4; 
+						final int NUMBER_TURN = 10; 
 						ArrayList<String> playerNames = new ArrayList<String>();
 						playerNames.add("JomnoiZ");
 						playerNames.add("JO");

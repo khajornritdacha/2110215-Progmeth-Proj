@@ -2,7 +2,7 @@ package scene.chooseRole;
 
 import java.util.ArrayList;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -13,7 +13,7 @@ import player.SwordMan;
 import scene.components.PlayerFrame;
 
 public class ChooseRolePane extends BorderPane{
-	public ChooseRolePane() throws InvalidValueExecption{
+	public ChooseRolePane() throws InvalidValueException{
 		GridPane playerContainer = new GridPane();
 		
 //		TODO: get players data

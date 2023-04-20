@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import scene.playingGame.PlayingGameRootPane;
 
+//TODO: adjust the GUI to make it be more beautiful
 public class FightingMonsterFrame extends VBox {
 	public FightingMonsterFrame() {
 		this.setAlignment(Pos.CENTER);

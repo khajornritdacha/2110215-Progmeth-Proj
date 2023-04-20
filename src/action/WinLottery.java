@@ -1,7 +1,8 @@
 package action;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 import player.BasePlayer;
+import utility.Utility;
 
 public class WinLottery implements BaseAction {
 	private int randMoney;
@@ -9,16 +10,12 @@ public class WinLottery implements BaseAction {
 	
 	public WinLottery(BasePlayer p1) {
 //		TODO: change amount of money to random based on passed turn (the more turns passed the more money drop)
-		this.randMoney = 10;
-		this.p1 = p1;
+		this.setP1(p1);
+		this.setRandMoney(10);
 	}
 
-	public String executeAction() throws InvalidValueExecption{
-		return p1.earnMoney(randMoney);
-	}
-	
-	public String toString() {
-		return this.getP1().getName() + " has earned " + this.getRandMoney() + " bahts.";
+	public String executeAction() throws InvalidValueException{
+		return p1.earnMoney(Utility.calculateExtraBuff(this.getRandMoney()));
 	}
 
 	public int getRandMoney() {

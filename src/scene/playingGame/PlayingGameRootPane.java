@@ -23,6 +23,7 @@ import scene.components.LearningSwordFrame;
 import scene.components.MonsterFrame;
 import scene.components.PlayerFrame;
 
+//TODO: adjust the GUI to make it be more beautiful
 public class PlayingGameRootPane extends BorderPane {
 	private static GridPane playerContainer;
 	private static VBox container;
@@ -31,8 +32,8 @@ public class PlayingGameRootPane extends BorderPane {
 	private static Button getActionBtn = new Button("start");
 	private static HBox selectableAction = new HBox();
 	
+	// TODO: How about throwing exception?
 	public PlayingGameRootPane() /*throws InvalidValueExecption*/{		
-//		TODO: get players data
 		container = new VBox();
 		playerContainer = new GridPane();
 		
@@ -56,21 +57,30 @@ public class PlayingGameRootPane extends BorderPane {
 		getActionBtn.setAlignment(Pos.CENTER);
 		getActionBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				if (getActionBtn.getText().equals("Random Action")) {
-					GameLogic.getInstance().handleRandomAction();
+				if (getActionBtn.getText().equals("(R.I.P.) Go to Next Player")) {
+					getActionBtn.setText("Random Action");
+					GameLogic.getInstance().goToNextPlayer();
+				}
+				else if (!GameLogic.getInstance().getCurrentPlayer().isAlive()) {
+					System.out.println(GameLogic.getInstance().getCurrentPlayer().getName() + " has died...");
+					setExplanation(GameLogic.getInstance().getCurrentPlayer().getName() + " has died...");
+					setActionBtn("(R.I.P.) Go to Next Player");
+				}
+				else if (getActionBtn.getText().equals("Random Action")) {
 					getActionBtn.setText("Choose 1st Action");
+					GameLogic.getInstance().handleRandomAction();
 				}
 				else if (getActionBtn.getText().equals("Choose 1st Action")) {
-					showSelectableAction(false);
 					getActionBtn.setText("Choose 2nd Action");
+					showSelectableAction(false);
 				}
 				else if (getActionBtn.getText().equals("Choose 2nd Action")) {
-					showSelectableAction(false);
 					getActionBtn.setText("Go to Next Player");
+					showSelectableAction(false);
 				}
 				else if (getActionBtn.getText().equals("Go to Next Player")) {
-					GameLogic.getInstance().goToNextPlayer();
 					getActionBtn.setText("Random Action");
+					GameLogic.getInstance().goToNextPlayer();
 				}
 				else if (getActionBtn.getText().equals("Play Again")) {
 					GameLogic.getInstance().terminateGame();
@@ -98,7 +108,10 @@ public class PlayingGameRootPane extends BorderPane {
 		}
 		else {
 			// TODO: design for random monster system for each types of monster
-			selectableAction.getChildren().add(new MonsterFrame());
+			selectableAction.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonGoblin()));
+			selectableAction.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonSkeleton()));
+			selectableAction.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonWizzard()));
+			selectableAction.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonDragon()));
 		}
 	}
 	
@@ -115,6 +128,7 @@ public class PlayingGameRootPane extends BorderPane {
 		explanation.setText(text);
 	}
 	
+	// TODO: change this function by using thread
 	public static void updatePlayer() {
 		container.getChildren().remove(playerContainer);
 		

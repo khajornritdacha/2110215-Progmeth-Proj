@@ -1,8 +1,8 @@
 package monster;
 
-import customExecption.InvalidValueExecption;
+import customException.InvalidValueException;
 
-public class BaseMonster {
+public abstract class BaseMonster {
 	private String name;
 	private int swordStats;
 	private int magicStats;
@@ -14,13 +14,14 @@ public class BaseMonster {
 			this.setSwordStats(swordStats);
 			this.setMagicStats(magicStats);
 			this.setDropMoney(dropMoney);
-		} catch (InvalidValueExecption err) {
+		}
+		catch (InvalidValueException err) {
 			System.out.println(String.format("Error occured with monster %s: %s", name, err.getMessage()));
 		}
 	}
+	
+	public abstract void evolution(int swordStats, int magicStats);
 
-	
-	
 	public int getDropMoney() {
 		return dropMoney;
 	}
@@ -29,8 +30,6 @@ public class BaseMonster {
 		if (dropMoney < 0) dropMoney = 0;
 		this.dropMoney = dropMoney;
 	}
-
-
 
 	public String getName() {
 		return name;
@@ -46,9 +45,9 @@ public class BaseMonster {
 		return swordStats;
 	}
 
-	public void setSwordStats(int swordStats) throws InvalidValueExecption {
+	public void setSwordStats(int swordStats) throws InvalidValueException {
 		if (swordStats <= 0) {
-			throw new InvalidValueExecption("Invalid sword stats for monster");
+			throw new InvalidValueException("Invalid sword stats for monster");
 		}
 		this.swordStats = swordStats;
 	}
@@ -57,9 +56,9 @@ public class BaseMonster {
 		return magicStats;
 	}
 
-	public void setMagicStats(int magicStats) throws InvalidValueExecption {
+	public void setMagicStats(int magicStats) throws InvalidValueException {
 		if (magicStats <= 0) {
-			throw new InvalidValueExecption("Invalid magic stats for monster");
+			throw new InvalidValueException("Invalid magic stats for monster");
 		}
 		this.magicStats = magicStats;
 	}

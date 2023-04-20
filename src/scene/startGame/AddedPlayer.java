@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 
+//TODO: adjust the GUI to make it be more beautiful
 public class AddedPlayer extends VBox {
 	private String playerName;
 

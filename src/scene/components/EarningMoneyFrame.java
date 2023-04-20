@@ -13,6 +13,7 @@ import javafx.scene.shape.Circle;
 import logic.GameLogic;
 import scene.playingGame.PlayingGameRootPane;
 
+//TODO: adjust the GUI to make it be more beautiful
 public class EarningMoneyFrame extends VBox {
 	public EarningMoneyFrame() {
 		this.setAlignment(Pos.CENTER);
