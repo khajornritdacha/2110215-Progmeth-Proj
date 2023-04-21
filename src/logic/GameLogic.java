@@ -85,7 +85,7 @@ public class GameLogic {
 			}
 			
 			double maxPotential = -1;
-			int maxMoney = -1;
+			int maxMoney = -1, maxMagic = -1;
 			String winner = "";
 			for (BasePlayer player : playersList) {
 				if (!player.isAlive()) {
@@ -100,8 +100,12 @@ public class GameLogic {
 					maxMoney = player.getMoney();
 					winner = player.getName();
 				}
-				else if (maxPotential == potential && player.getMoney() <= maxMoney) {
+				else if (maxPotential == potential && maxMoney < player.getMoney()) {
 					maxMoney = player.getMoney();
+					winner = player.getName();
+				}
+				else if (maxPotential == potential && maxMoney == player.getMoney() && maxMagic < player.getMagicStats()) {
+					maxMagic = player.getMagicStats();
 					winner = player.getName();
 				}
 				
