@@ -218,7 +218,7 @@ public class GameLogic {
 	}
 	
 	public void goToNextPlayer() {
-		if (this.getNumberAlivePlayers() == 0) {
+		if (this.getNumberAlivePlayers() <= 1) {
 			endGame();
 			return;
 		}
