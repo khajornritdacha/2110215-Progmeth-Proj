@@ -67,6 +67,7 @@ public class GameLogic {
 			PlayingGameRootPane.setExplanation("No one wins");
 		}
 		else {
+			// TODO: (optional) change the condition who will win to make game balance
 			int maxPossibleMoney = 0, maxPossibleMagicStats = 0, maxPossibleSwordStats = 0;
 			for (BasePlayer player : playersList) {
 				if (!player.isAlive()) {
@@ -145,7 +146,6 @@ public class GameLogic {
 				action = getCurrentPlayer().learnSword(Utility.genSwordStats(getCurrentPlayer()));
 			}
 			else if (num == 2) {
-//			Be waiter for money
 				action = getCurrentPlayer().earnMoney(Utility.genMoney(getCurrentPlayer()));
 			}	
 		}
@@ -157,6 +157,7 @@ public class GameLogic {
 		PlayingGameRootPane.updatePlayer();
 	}
 	
+	// TODO: change the formula of this function to make game balance
 	private int extraBuff(int value) {
 		return Utility.calculateExtraBuff(10 * value) - 10 * value;
 	}

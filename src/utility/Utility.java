@@ -39,6 +39,7 @@ public class Utility {
 		return value + value * GameLogic.getInstance().getCurrentTurn() / GameLogic.getInstance().getNumberOfTurn();
 	}
 	
+	// TODO: (optional) change the fomula to make game balance
 	public static double calculateXForWinRate(double stat) {
 		return Math.pow(20.0, 1.0 / stat);
 	}
@@ -99,6 +100,7 @@ public class Utility {
 		return monster;
 	}
 	
+	// TODO: (optional) change the percent late to random the actions to make game balance
 	public static BaseAction genRandomAction(BasePlayer p1) {
 		int rand = randomInteger(1, 100);
 		BaseAction randAction = new WinLottery(p1);
