@@ -29,7 +29,7 @@ public class PlayerFrame extends VBox {
 		this.setPadding(new Insets(20, 20, 20, 20));
 
 //		TODO: get player name and role
-		Text title = new Text(String.format("%s (%s) [%s]", p1.getName(), p1.getClass().getSimpleName(), (p1.isAlive() ? "Survive" : "Dead")));
+		Text title = new Text(String.format("%s (%s) %s", p1.getName(), p1.getClass().getSimpleName(), (p1.isAlive() ? "" : "[Dead]")));
 		
 		Circle pic = new Circle();
 		
