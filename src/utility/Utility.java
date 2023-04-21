@@ -64,7 +64,7 @@ public class Utility {
 				player = new TheRich(name);
 			}
 			else {
-				throw new InvalidValueException(String.format("Invalid random Monster number: %d", rand));
+				throw new InvalidValueException(String.format("Invalid random Role number: %d", rand));
 			}
 			return player;
 		}
@@ -100,7 +100,6 @@ public class Utility {
 	}
 	
 	public static BaseAction genRandomAction(BasePlayer p1) {
-//		TODO: add action for monster and boss
 		int rand = randomInteger(1, 100);
 		BaseAction randAction = new WinLottery(p1);
 		try {
@@ -140,7 +139,6 @@ public class Utility {
 	 * @return string that refer to the result of that fight
 	 */
 	public static String fightAgainst(BasePlayer p1, BaseMonster m1) {
-//		TODO: implements fightAgainst function
 		try {
 			double xForMagic = calculateXForWinRate(m1.getMagicStats() / 2);
 			double xForSword = calculateXForWinRate(m1.getSwordStats() / 2);
@@ -157,12 +155,12 @@ public class Utility {
 			if (magicDiff < 0 && swordDiff < 0) {
 				m1.evolution(m1.getSwordStats() - p1.getSwordStats(), m1.getMagicStats() - p1.getMagicStats());
 				p1.earnMoney(-m1.getDropMoney());
-				return p1.getName() + " has extremely lost " + m1.getName() + " (lost " + m1.getDropMoney() + " bahts) ";
+				return p1.getName() + " has been completely defeated by " + m1.getName() + " (lost " + m1.getDropMoney() + " bahts) ";
 			}
 			else if (!isWon ) {
 				m1.evolution((m1.getSwordStats() - p1.getSwordStats()) / 2, (m1.getMagicStats() - p1.getMagicStats()) / 2);
 				p1.earnMoney(-m1.getDropMoney() / 2);
-				return p1.getName() + " has lost " + m1.getName() + " (lost " + m1.getDropMoney() / 2 + " bahts) ";
+				return p1.getName() + " has been defeated by " + m1.getName() + " (lost " + m1.getDropMoney() / 2 + " bahts) ";
 			}
 			
 			GameLogic.getInstance().killMonster(m1);
