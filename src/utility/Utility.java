@@ -44,7 +44,7 @@ public class Utility {
 		return Math.pow(20.0, 1.0 / stat);
 	}
 	
-	public static double calculateWinRate(double x, int value) {
+	public static double calculateWinRate(double x, double value) {
 		return Math.pow(x, value);
 	}
 	
@@ -145,11 +145,10 @@ public class Utility {
 			double xForMagic = calculateXForWinRate(m1.getMagicStats() / 2);
 			double xForSword = calculateXForWinRate(m1.getSwordStats() / 2);
 			int magicDiff = Math.min(p1.getMagicStats() - m1.getMagicStats() / 2, m1.getMagicStats() / 2);
-			int swordDiff = Math.min(p1.getSwordStats() - m1.getMagicStats() / 2, m1.getSwordStats() / 2);
+			int swordDiff = Math.min(p1.getSwordStats() - m1.getSwordStats() / 2, m1.getSwordStats() / 2);
 			double winRateMagic = calculateWinRate(xForMagic, magicDiff);
 			double winRateSword = calculateWinRate(xForSword, swordDiff);
-			// TODO: add more ability for SwordMan and Mage to increase their win rate
-			boolean isWon = (randomInteger(1, 20) <= (winRateMagic + winRateSword) / 2);
+			boolean isWon = (randomInteger(1, 20) <= p1.calculateWinRate(winRateSword, winRateMagic));
 			
 			System.out.println(String.format("%s(%d, %d) vs %s(%d, %d) with win rate sword(%.2f) and magic(%.2f)", p1.getName(), p1.getSwordStats(), p1.getMagicStats(), m1.getName(), m1.getSwordStats(), m1.getMagicStats(), winRateSword, winRateMagic));
 			System.out.println(String.format("x1=%.2f x2=%.2f", xForMagic, xForSword));

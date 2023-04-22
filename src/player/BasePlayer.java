@@ -28,6 +28,8 @@ public abstract class BasePlayer {
 	
 	public abstract String earnMoney(int money) throws InvalidValueException;
 	
+	public abstract double calculateWinRate(double winRateSword, double winRateMagic);
+	
 	public String getName() {
 		return name;
 	}

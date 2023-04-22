@@ -40,20 +40,20 @@ public class MonsterFrame extends VBox {
 			}
 		});
 		
-		TextStats moneyText = new TextStats("Money:");
-		TextStats money = new TextStats(Integer.toString(monster.getDropMoney()));
 		TextStats swordText = new TextStats("Sword Stats:");
 		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()));
 		TextStats magicText = new TextStats("Magic Stats:");
 		TextStats magicStats = new TextStats(Integer.toString(monster.getMagicStats()));
+		TextStats moneyText = new TextStats("Drop Money:");
+		TextStats money = new TextStats(Integer.toString(monster.getDropMoney()));
 		
 		GridPane statsContainer = new GridPane();
-		statsContainer.add(moneyText, 0, 0);
-		statsContainer.add(money, 1, 0);
-		statsContainer.add(swordText, 0, 1);
-		statsContainer.add(swordStats, 1, 1);
-		statsContainer.add(magicText, 0, 2);
-		statsContainer.add(magicStats, 1, 2);
+		statsContainer.add(swordText, 0, 0);
+		statsContainer.add(swordStats, 1, 0);
+		statsContainer.add(magicText, 0, 1);
+		statsContainer.add(magicStats, 1, 1);
+		statsContainer.add(moneyText, 0, 2);
+		statsContainer.add(money, 1, 2);
 		
 		statsContainer.setHgap(10);
 		

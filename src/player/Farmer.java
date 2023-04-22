@@ -25,4 +25,9 @@ public class Farmer extends BasePlayer {
 		setMoney(getMoney() + money * MONEY_MULTIPLIER);
 		return this.getName() + " has earned " + money * MONEY_MULTIPLIER + " bahts.";
 	}
+	
+	// TODO: (optional) fix the formula to make game balance
+	public double calculateWinRate(double winRateSword, double winRateMagic) {
+		return (winRateSword + winRateMagic) / 2;
+	}
 }

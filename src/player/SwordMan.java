@@ -26,4 +26,8 @@ public class SwordMan extends BasePlayer{
 		setMoney(getMoney() + money * MONEY_MULTIPLIER);
 		return this.getName() + " has earned " + money * MONEY_MULTIPLIER + " bahts.";
 	}
+	
+	public double calculateWinRate(double winRateSword, double winRateMagic) {
+		return (2 * winRateSword + winRateMagic) / 3;
+	}
 }
