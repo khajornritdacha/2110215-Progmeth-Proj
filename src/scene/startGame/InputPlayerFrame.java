@@ -26,6 +26,14 @@ public class InputPlayerFrame extends HBox {
 		
 		TextField textField = new TextField();
 		textField.setPrefWidth(200);
+		textField.textProperty().addListener((observable, oldValue, newValue) -> {
+			if (textField.getText().equals("adminJomnoiZ")) {
+				addNewPlayerBtn.setText("Force Start Game!!");
+			}
+			else {
+				addNewPlayerBtn.setText("Add New Player");
+			}
+		});;
 		
 		Button button = new Button("Add New Player");
 		addNewPlayerBtn = button;

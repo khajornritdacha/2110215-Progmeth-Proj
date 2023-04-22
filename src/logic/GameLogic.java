@@ -3,6 +3,8 @@ package logic;
 import java.util.ArrayList;
 
 import action.BaseAction;
+import action.FightBoss;
+import action.FightMonster;
 import application.Main;
 import customException.InvalidValueException;
 import monster.BaseMonster;
@@ -11,13 +13,14 @@ import monster.Goblin;
 import monster.Skeleton;
 import monster.Wizzard;
 import player.*;
+import scene.components.ActionFrame;
+import scene.components.MonsterFrame;
 import scene.playingGame.PlayingGameRootPane;
 import utility.Utility;
 
 // TODO: implement game logic class
 public class GameLogic {
 	private static GameLogic instance = null;
-	
 	private ArrayList<BasePlayer> playersList;
 	private int numberOfPlayer;
 	private int numberOfTurn;
@@ -34,6 +37,10 @@ public class GameLogic {
 			playersList.add(Utility.genRandomRole(name));
 		}
 		
+		goblin = new Goblin("Goblin", 10, 10, 5);
+		skeleton = new Skeleton("Skeleton", 30, 15, 11);
+		wizzard = new Wizzard("Wizzard", 15, 31, 12);
+		dragon = new Dragon("Dragon", 60, 61, 27);
 		this.setPlayersList(playersList);
 		this.setNumberOfTurn(numberTurn);
 		this.setCurrentPlayer(0);
@@ -68,23 +75,6 @@ public class GameLogic {
 		}
 		else {
 			// TODO: (optional) change the condition who will win to make game balance
-			int maxPossibleMoney = 0, maxPossibleMagicStats = 0, maxPossibleSwordStats = 0;
-			for (BasePlayer player : playersList) {
-				if (!player.isAlive()) {
-					continue;
-				}
-				
-				if (maxPossibleMoney < player.getMoney()) {
-					maxPossibleMoney = player.getMoney();
-				}
-				if (maxPossibleMagicStats < player.getMagicStats()) {
-					maxPossibleMagicStats = player.getMagicStats();
-				}
-				if (maxPossibleSwordStats < player.getSwordStats()) {
-					maxPossibleSwordStats = player.getSwordStats(); 
-				}
-			}
-			
 			double maxPotential = -1;
 			int maxMoney = -1, maxMagic = -1;
 			String winner = "";
@@ -93,9 +83,8 @@ public class GameLogic {
 					continue;
 				}
 				
-				double potential = player.getMoney() * 50.0 / maxPossibleMoney + 
-						           player.getSwordStats() * 25.0 / maxPossibleSwordStats + 
-						           player.getMagicStats() * 25.0 / maxPossibleMagicStats;
+				
+				double potential = player.getMoney() * 50.0 + player.getSwordStats() * 24.0 + player.getMagicStats() * 26.0;
 				if (maxPotential < potential) {
 					maxPotential = potential;
 					maxMoney = player.getMoney();
@@ -110,9 +99,9 @@ public class GameLogic {
 					winner = player.getName();
 				}
 				
-				System.out.println(String.format("%s : %.2f/100.00", player.getName(), potential));
+				System.out.println(String.format("%s : %.2f", player.getName(), potential));
 			}
-			PlayingGameRootPane.setExplanation(String.format("%s wins!!! (score = %.2f/100.00)", winner, maxPotential));
+			PlayingGameRootPane.setExplanation(String.format("%s wins!!!", winner));
 		}
 		PlayingGameRootPane.setActionBtn("Play Again");
 	}
@@ -123,94 +112,64 @@ public class GameLogic {
 	}
 	
 	public void handleRandomAction() {
+		PlayingGameRootPane.getActionBtn().setDisable(true);
 		BaseAction randomAction = Utility.genRandomAction(getCurrentPlayer());
-		String action = "";
-		try {
-			action = randomAction.executeAction();
+		if (randomAction instanceof FightMonster) {
+			PlayingGameRootPane.showExecutingAction(new MonsterFrame(((FightMonster)randomAction).getM1()));
 		}
-		catch (InvalidValueException err) {
-			System.out.println(String.format("Error in game logic, randomAction: %s", err.getMessage()));
+		else if (randomAction instanceof FightBoss) {
+			PlayingGameRootPane.showExecutingAction(new MonsterFrame(((FightBoss)randomAction).getB1()));
 		}
-		
-		PlayingGameRootPane.setExplanation(action);
-		PlayingGameRootPane.updatePlayer();
+		else {
+			PlayingGameRootPane.showExecutingAction(new ActionFrame(randomAction));
+		}
 	}
 
-	public void handleChooseAction(int num) {
+	public void handleAction(BaseAction chooseAction) {
 		String action = "";
 		try {
-			if (num == 0) {
-				action = getCurrentPlayer().learnMagic(Utility.genMagicStats(getCurrentPlayer()));
-			}
-			else if (num == 1) {
-				action = getCurrentPlayer().learnSword(Utility.genSwordStats(getCurrentPlayer()));
-			}
-			else if (num == 2) {
-				action = getCurrentPlayer().earnMoney(Utility.genMoney(getCurrentPlayer()));
-			}	
+			action = chooseAction.executeAction();	
 		}
 		catch (InvalidValueException err) {
 			System.out.println(String.format("Error in handle choose action: %s", err.getMessage()));
 		}
 		
 		PlayingGameRootPane.setExplanation(action);
+		PlayingGameRootPane.setIsWaiting(false);
 		PlayingGameRootPane.updatePlayer();
 	}
 	
-	// TODO: change the formula of this function to make game balance
-	private int extraBuff(int value) {
-		return Utility.calculateExtraBuff(10 * value) - 10 * value;
-	}
-	
-	// TODO: change monsters'stats
 	public Goblin summonGoblin() {
-		if (goblin == null) {
-			goblin = new Goblin("Goblin", extraBuff(10), extraBuff(10), extraBuff(5));
-		}
 		return goblin;
 	}
 	
 	public Skeleton summonSkeleton() {
-		if (skeleton == null) {
-			skeleton = new Skeleton("Skeleton", extraBuff(30), extraBuff(15), extraBuff(10));
-		}
 		return skeleton;
 	}
 	
 	public Wizzard summonWizzard() {
-		if (wizzard == null) {
-			wizzard = new Wizzard("Wizzard", extraBuff(15), extraBuff(32), extraBuff(11));
-		}
 		return wizzard;
 	}
 	
 	public Dragon summonDragon() {
-		if (dragon == null) {
-			dragon = new Dragon("Dragon", extraBuff(60), extraBuff(61), extraBuff(25));
-		}
 		return dragon;
-	}
-	
-	public void killMonster(BaseMonster monster) {
-		if (monster instanceof Goblin) {
-			goblin = null;
-		}
-		else if (monster instanceof Skeleton) {
-			skeleton = null;
-		}
-		else if (monster instanceof Wizzard) {
-			wizzard = null;
-		}
-		else {
-			dragon = null;
-		}
 	}
 	
 	public void handleFightMonster(BaseMonster monster) {
 		String action = Utility.fightAgainst(getCurrentPlayer(), monster);
 		PlayingGameRootPane.setExplanation(action);
+		PlayingGameRootPane.setIsWaiting(false);
 		PlayingGameRootPane.updatePlayer();
-	} 
+	}
+	
+	public void handleFightBoss(ArrayList<BasePlayer> players) {
+		String action = Utility.fightBoss(players, summonDragon());
+		PlayingGameRootPane.clearTempPlayers();
+		PlayingGameRootPane.setIsFightBoss(false);
+		PlayingGameRootPane.setIsWaiting(false);
+		PlayingGameRootPane.setExplanation(action);
+		PlayingGameRootPane.updatePlayer();
+	}
 	
 	private int getNumberAlivePlayers() {
 		int num = 0;

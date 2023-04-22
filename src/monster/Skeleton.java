@@ -1,16 +1,18 @@
 package monster;
 
 import customException.InvalidValueException;
+import javafx.scene.paint.Color;
 
-public class Skeleton extends BaseMonster {
+public class Skeleton extends BaseMonster implements Evolutionary {
 	// TODO: change sword multiplier to make game balance (in percent)
-	private final int MULTIPLIER = 5;
+	private final int MULTIPLIER = 35;
+	private static int level = 1;
 	
 	public Skeleton(String name, int swordStats, int magicStats, int dropMoney) {
 		super(name, swordStats, magicStats, dropMoney);
 	}
 	
-	public void evolution(int swordStats, int magicStats) {
+	public void evolve(int swordStats, int magicStats) {
 		try {
 			this.setSwordStats(this.getSwordStats() + swordStats * MULTIPLIER / 100);
 			this.setDropMoney(this.getDropMoney() + swordStats * MULTIPLIER / 100);
@@ -18,5 +20,25 @@ public class Skeleton extends BaseMonster {
 		catch (InvalidValueException e) {
 			System.out.println("Skeleton evolved failed by " + e);
 		}
+	}
+	
+	public void respawn() {
+		try {
+			this.setSwordStats(this.getSwordStats() + MULTIPLIER * level / 7);
+			this.setMagicStats(this.getMagicStats() + 15 * level / 7);
+			this.setDropMoney(this.getDropMoney() + MULTIPLIER * level / 7);
+			level++;
+		}
+		catch (InvalidValueException e) {
+			System.out.println(e);
+		}
+	}
+	
+	public Color getColor() {
+		return Color.LIGHTGRAY;
+	}
+	
+	public int getLevel() {
+		return level;
 	}
 }

@@ -3,42 +3,42 @@ package scene.components;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import logic.GameLogic;
 import monster.BaseMonster;
+import monster.Dragon;
 import scene.playingGame.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
-public class MonsterFrame extends VBox {
-	
-	
+public class MonsterFrame extends Frame {
 	public MonsterFrame(BaseMonster monster) {
-		this.setAlignment(Pos.CENTER);
-		this.setPrefHeight(300);
-		this.setPrefWidth(200);
-		this.setBackground(new Background(new BackgroundFill(Color.DARKRED, null, null)));
-		this.setPadding(new Insets(20, 20, 20, 20));
+		super(monster.getColor());
 	
-		TextStats title = new TextStats(monster.getName());
+		TextStats title = new TextStats(monster.getName() + " #" + monster.getLevel());
 		
 		Circle pic = new Circle();
 		
-		Button selectBtn = new Button("Fight");
+		Button selectBtn = new Button("Fight with");
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				GameLogic.getInstance().handleFightMonster(monster);
-				PlayingGameRootPane.hideSelectableAction();
+				if (monster instanceof Dragon) {
+					if (PlayingGameRootPane.isFightingBoss()) {
+						GameLogic.getInstance().handleFightBoss(PlayingGameRootPane.getTempPlayers());
+						PlayingGameRootPane.hideActions(PlayingGameRootPane.getSelectableActions());
+					}
+					else {
+						PlayingGameRootPane.sendHelpFightingBoss();
+					}
+				}
+				else {
+					GameLogic.getInstance().handleFightMonster(monster);
+					PlayingGameRootPane.hideActions(PlayingGameRootPane.getSelectableActions());
+				}
 			}
 		});
+		selectBtn.setDisable(PlayingGameRootPane.isShown());
 		
 		TextStats swordText = new TextStats("Sword Stats:");
 		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()));

@@ -2,37 +2,29 @@ package scene.components;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import scene.playingGame.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
-public class FightingMonsterFrame extends VBox {
+public class FightingMonsterFrame extends Frame {
 	public FightingMonsterFrame() {
-		this.setAlignment(Pos.CENTER);
-		this.setPrefHeight(300);
-		this.setPrefWidth(200);
-		this.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
-		this.setPadding(new Insets(20, 20, 20, 20));
+		super(Color.RED);
 	
-		TextStats title = new TextStats("Fight with Monster");
+		TextStats title = new TextStats("Fight with Monsters");
+		TextStats description = new TextStats("Fight with monsters (or boss)", 12);
 		
 		Circle pic = new Circle();
 		
-		Button selectBtn = new Button("OK");
+		Button selectBtn = new Button("Select");
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				PlayingGameRootPane.hideSelectableAction();
-				PlayingGameRootPane.showSelectableAction(true);
+				PlayingGameRootPane.showMonsters(PlayingGameRootPane.getSelectableActions());
 			}
 		});
+		selectBtn.setDisable(PlayingGameRootPane.isShown());
 		
-		this.getChildren().addAll(title, pic, selectBtn);
+		this.getChildren().addAll(title, pic, description, selectBtn);
 	}
 }

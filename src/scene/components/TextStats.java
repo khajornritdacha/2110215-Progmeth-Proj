@@ -8,4 +8,9 @@ public class TextStats extends Text{
 		this.setText(text);
 		this.setFont(new Font(20));
 	}
+	
+	public TextStats(String text, int fontSize) {
+		this.setText(text);
+		this.setFont(new Font(fontSize));
+	}
 }

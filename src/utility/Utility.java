@@ -1,5 +1,6 @@
 package utility;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import action.BaseAction;
@@ -12,13 +13,25 @@ import action.WinLottery;
 import customException.InvalidValueException;
 import logic.GameLogic;
 import monster.BaseMonster;
+import monster.Dragon;
+import monster.Evolutionary;
 import player.BasePlayer;
 import player.Farmer;
 import player.Mage;
 import player.SwordMan;
 import player.TheRich;
 
-public class Utility {		
+public class Utility {
+	// TODO: change these numbers to make game balance
+	private static final int MIN_STATS = 5, MAX_STATS = 7;
+	
+	public static void sleep(int value) {
+		value *= 1000;
+		while (value >= 0) {
+			value--;
+		}
+	}
+	
 	/**
 	 * Random number in range [min, max] (both inclusive)
 	 * @param min
@@ -39,12 +52,11 @@ public class Utility {
 		return value + value * GameLogic.getInstance().getCurrentTurn() / GameLogic.getInstance().getNumberOfTurn();
 	}
 	
-	// TODO: (optional) change the fomula to make game balance
-	public static double calculateXForWinRate(double stat) {
-		return Math.pow(20.0, 1.0 / stat);
-	}
-	
-	public static double calculateWinRate(double x, double value) {
+	// TODO: change the formula to make game balance
+	public static double calculateWinRateStats(double playerStats, double monsterStats) {
+		double x = Math.pow(100.0, 2.0 / monsterStats);
+		double value = Math.min(playerStats - monsterStats / 2.0, monsterStats / 2.0);
+		System.out.println(x + " " + value);
 		return Math.pow(x, value);
 	}
 	
@@ -104,24 +116,26 @@ public class Utility {
 	public static BaseAction genRandomAction(BasePlayer p1) {
 		int rand = randomInteger(1, 100);
 		BaseAction randAction = new WinLottery(p1);
+		int probDragon = calculateExtraBuff(40) - 40;
+		int range = (100 - 2 * probDragon) / 4;
 		try {
 			if (rand < 1 || rand > 100) {
 				throw new InvalidValueException(String.format("Invalid random Action number: %d", rand));
 			}
-			else if (rand <= 19) {
+			else if (rand <= range) {
 				randAction = new FindMageMaster(p1);
 			}
-			else if (rand <= 38) {
-				randAction = new FindSwordMaster(p1);
-			}
-			else if (rand <= 57) {
+			else if (rand <= range * 3) {
 				randAction = new IsRobbed(p1);
 			}
-			else if (rand <= 76) {
+			else if (rand <= range * 3) {
 				randAction = new WinLottery(p1);
 			}
-			else if (rand <= 95) {
-				randAction = new FightMonster(p1, genRandomMonster());
+			else if (rand <= range * 4) {
+				randAction = new FightMonster(p1, genRandomMonster(), true);
+			}
+			else if (rand <= range * 4 + probDragon) {
+				randAction = new FindSwordMaster(p1);
 			}
 			else {
 				randAction = new FightBoss(p1, GameLogic.getInstance().summonDragon());
@@ -142,31 +156,32 @@ public class Utility {
 	 */
 	public static String fightAgainst(BasePlayer p1, BaseMonster m1) {
 		try {
-			double xForMagic = calculateXForWinRate(m1.getMagicStats() / 2);
-			double xForSword = calculateXForWinRate(m1.getSwordStats() / 2);
-			int magicDiff = Math.min(p1.getMagicStats() - m1.getMagicStats() / 2, m1.getMagicStats() / 2);
-			int swordDiff = Math.min(p1.getSwordStats() - m1.getSwordStats() / 2, m1.getSwordStats() / 2);
-			double winRateMagic = calculateWinRate(xForMagic, magicDiff);
-			double winRateSword = calculateWinRate(xForSword, swordDiff);
-			boolean isWon = (randomInteger(1, 20) <= p1.calculateWinRate(winRateSword, winRateMagic));
+			int evolveSwordStats = Math.max(0, m1.getSwordStats() - p1.getSwordStats());
+			int evolveMagicStats = Math.max(0, m1.getMagicStats() - p1.getMagicStats());
+			double winRateSword = calculateWinRateStats(p1.getSwordStats(), m1.getSwordStats());
+			double winRateMagic = calculateWinRateStats(p1.getMagicStats(), m1.getMagicStats());
+			boolean isWon = (randomInteger(1, 100) <= p1.calculateWinRate(winRateSword, winRateMagic));
 			
 			System.out.println(String.format("%s(%d, %d) vs %s(%d, %d) with win rate sword(%.2f) and magic(%.2f)", p1.getName(), p1.getSwordStats(), p1.getMagicStats(), m1.getName(), m1.getSwordStats(), m1.getMagicStats(), winRateSword, winRateMagic));
-			System.out.println(String.format("x1=%.2f x2=%.2f", xForMagic, xForSword));
 			
-			if (magicDiff < 0 && swordDiff < 0) {
-				m1.evolution(m1.getSwordStats() - p1.getSwordStats(), m1.getMagicStats() - p1.getMagicStats());
+			if (p1.getSwordStats() - m1.getSwordStats() / 2 < 0 && p1.getMagicStats() - m1.getMagicStats() / 2 < 0) {
+				if (m1 instanceof Evolutionary) {
+					((Evolutionary)m1).evolve(evolveSwordStats, evolveMagicStats);
+				}
 				p1.earnMoney(-m1.getDropMoney());
 				return p1.getName() + " has been completely defeated by " + m1.getName() + " (lost " + m1.getDropMoney() + " bahts) ";
 			}
-			else if (!isWon ) {
-				m1.evolution((m1.getSwordStats() - p1.getSwordStats()) / 2, (m1.getMagicStats() - p1.getMagicStats()) / 2);
+			else if (!isWon) {
+				if (m1 instanceof Evolutionary) {
+					((Evolutionary)m1).evolve(evolveSwordStats / 2, evolveMagicStats / 2);
+				}
 				p1.earnMoney(-m1.getDropMoney() / 2);
 				return p1.getName() + " has been defeated by " + m1.getName() + " (lost " + m1.getDropMoney() / 2 + " bahts) ";
 			}
 			
-			GameLogic.getInstance().killMonster(m1);
+			m1.respawn();
 			p1.earnMoney(m1.getDropMoney());
-			return p1.getName() + " has defeated " + m1.getName() + " (recieve " + m1.getDropMoney() + " bahts) ";			
+			return p1.getName() + " has defeated " + m1.getName() + " (recieved " + m1.getDropMoney() + " bahts) ";			
 		}
 		catch (InvalidValueException err) {
 			System.out.println(err);
@@ -175,18 +190,65 @@ public class Utility {
 		return null;
 	}
 	
-//	TODO: change magic number to make game balance
-	public static int genMagicStats(BasePlayer p) {
-		return calculateExtraBuff(randomInteger(5, 7));
+	public static String fightBoss(ArrayList<BasePlayer> players, Dragon boss) {
+		try {
+			int n = players.size(), playerSwordStats = 0, playerMagicStats = 0;
+			ArrayList<String> playersName = new ArrayList<String>();
+			for (BasePlayer player : players) {
+				playerSwordStats += player.getSwordStats();
+				playerMagicStats += player.getMagicStats();
+				playersName.add(player.getName());
+			}
+			
+			int evolveSwordStats = Math.max(0, boss.getSwordStats() - playerSwordStats);
+			int evolveMagicStats = Math.max(0, boss.getMagicStats() - playerMagicStats);
+			double winRateSword = calculateWinRateStats(playerSwordStats, boss.getSwordStats());
+			double winRateMagic = calculateWinRateStats(playerMagicStats, boss.getMagicStats());
+			boolean isWon = (randomInteger(1, 100) <= (winRateSword + winRateMagic) / 2);
+			
+			System.out.println(String.format("(%d, %d) vs %s(%d, %d) with win rate sword(%.2f) and magic(%.2f)", playerSwordStats, playerMagicStats, boss.getName(), boss.getSwordStats(), boss.getMagicStats(), winRateSword, winRateMagic));
+			
+			String action = "";
+			int dropMoney = boss.getDropMoney() / n;
+			if (!isWon) {	
+				boss.evolve(evolveSwordStats, evolveMagicStats);
+				action = String.join(", ", playersName) + " have been defeated by " + boss.getName() + " (lost (raw) " + dropMoney + " bahts/player) ";
+				dropMoney *= -1;
+			}
+			else {
+				boss.respawn();
+				action = String.join(", ", playersName) + " have defeated " + boss.getName() + " (recieved (raw) " + dropMoney + " bahts/player) ";
+			}
+			
+			for (BasePlayer player : players) {
+				player.earnMoney(dropMoney);
+			}
+			return action;
+		}
+		catch (InvalidValueException err) {
+			System.out.println(err);
+			System.out.println(err.getMessage());
+		}
+		return null;
 	}
 	
-//	TODO: change sword number to make game balance
-	public static int genSwordStats(BasePlayer p) {
-		return calculateExtraBuff(randomInteger(5, 7));
+	public static int genMagicStats() {
+		return calculateExtraBuff(randomInteger(MIN_STATS, MAX_STATS));
 	}
 	
-//	TODO: change money number to make game balance
-	public static int genMoney(BasePlayer p) {
-		return calculateExtraBuff(randomInteger(5, 7));
+	public static int genSwordStats() {
+		return calculateExtraBuff(randomInteger(MIN_STATS, MAX_STATS));
+	}
+	
+	public static int genMoney() {
+		return calculateExtraBuff(randomInteger(MIN_STATS, MAX_STATS));
+	}
+	
+	public static int getMinStats() {
+		return MIN_STATS;
+	}
+	
+	public static int getMaxStats() {
+		return MAX_STATS;
 	}
 }

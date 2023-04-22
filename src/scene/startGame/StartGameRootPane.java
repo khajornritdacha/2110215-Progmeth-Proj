@@ -70,7 +70,7 @@ public class StartGameRootPane extends BorderPane{
 		inputTurnField.setAlignment(Pos.CENTER);
 		inputTurnField.setPadding(new Insets(20, 20, 20, 20));
 		
-		container.getChildren().addAll(gameTitle, numberPlayerText, startGameBtn, displayPlayerPane, inputPlayerFrame, inputTurnField);
+		container.getChildren().addAll(gameTitle, numberPlayerText, displayPlayerPane, inputPlayerFrame, inputTurnField, startGameBtn);
 		container.setAlignment(Pos.CENTER);
 		this.setCenter(container);
 	}

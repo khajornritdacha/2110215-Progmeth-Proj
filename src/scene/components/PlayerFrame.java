@@ -1,8 +1,11 @@
 package scene.components;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
@@ -12,6 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 import player.BasePlayer;
+import scene.playingGame.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
 public class PlayerFrame extends VBox {
@@ -57,6 +61,28 @@ public class PlayerFrame extends VBox {
 		statsContainer.setHalignment(swordText, HPos.RIGHT);
 		statsContainer.setHalignment(magicText, HPos.RIGHT);
 		
+		Button sendHelpBtn = new Button("Send Help");
+		sendHelpBtn.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				if (sendHelpBtn.getText().equals("Send Help")) {
+					PlayingGameRootPane.addTempPlayer(p1);
+					sendHelpBtn.setText("Cancel");
+				}
+				else if (sendHelpBtn.getText().equals("Cancel")) {
+					PlayingGameRootPane.removeTempPlayer(p1);
+					sendHelpBtn.setText("Send Help");
+				}
+			}
+		});
+		
 		this.getChildren().addAll(title, pic, statsContainer);
+		if (PlayingGameRootPane.isFightingBoss() && p1.isAlive()) {
+			if (GameLogic.getInstance().getCurrentPlayer() == p1 && sendHelpBtn.getText().equals("Send Help")) {
+				PlayingGameRootPane.addTempPlayer(p1);
+				sendHelpBtn.setDisable(true);
+				sendHelpBtn.setText("Sent");
+			}
+			this.getChildren().add(sendHelpBtn);
+		}
 	}
 }

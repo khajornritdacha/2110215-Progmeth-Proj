@@ -1,6 +1,7 @@
 package monster;
 
 import customException.InvalidValueException;
+import javafx.scene.paint.Color;
 
 public abstract class BaseMonster {
 	private String name;
@@ -20,7 +21,11 @@ public abstract class BaseMonster {
 		}
 	}
 	
-	public abstract void evolution(int swordStats, int magicStats);
+	public abstract Color getColor();
+	
+	public abstract int getLevel();
+	
+	public abstract void respawn();
 
 	public int getDropMoney() {
 		return dropMoney;
@@ -36,8 +41,9 @@ public abstract class BaseMonster {
 	}
 
 	public void setName(String name) {
-		if (name.isEmpty())
-			name = "Untitled";
+		if (name.isEmpty()) {
+			name = this.getClass().getSimpleName();
+		}
 		this.name = name;
 	}
 

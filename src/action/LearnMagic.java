@@ -1,36 +1,31 @@
 package action;
 
-import java.util.ArrayList;
-
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
-import monster.Dragon;
 import player.BasePlayer;
 import utility.Utility;
 
-public class FightBoss implements BaseAction {
-	private BasePlayer p1;
-	private Dragon b1;
+public class LearnMagic implements BaseAction {
+private BasePlayer p1;
 	
-	public FightBoss(BasePlayer p1, Dragon b1) {
+	public LearnMagic(BasePlayer p1) {
 		this.setP1(p1);
-		this.setB1(b1);
 	}
 	
 	public String executeAction() throws InvalidValueException{
-		return Utility.fightBoss(new ArrayList<BasePlayer>() {{add(p1);}}, b1);
+		return p1.learnMagic(Utility.calculateExtraBuff(Utility.genMagicStats()));
 	}
 	
 	public Color getColor() {
-		return Color.DARKRED;
+		return Color.PURPLE;
 	}
 	
 	public String toString() {
-		return "Fight with the Boss";
+		return "Learn Magic";
 	}
 	
 	public String getDescription() {
-		return "";
+		return String.format("Increase Magic Stats for %d-%d Units", Utility.calculateExtraBuff(Utility.getMinStats()), Utility.calculateExtraBuff(Utility.getMaxStats()));
 	}
 
 	public BasePlayer getP1() {
@@ -39,13 +34,5 @@ public class FightBoss implements BaseAction {
 
 	public void setP1(BasePlayer p1) {
 		this.p1 = p1;
-	}
-
-	public Dragon getB1() {
-		return b1;
-	}
-
-	public void setB1(Dragon b1) {
-		this.b1 = b1;
 	}
 }

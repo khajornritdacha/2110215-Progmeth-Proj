@@ -1,32 +1,33 @@
 package action;
 
 import customException.InvalidValueException;
+import javafx.scene.paint.Color;
 import player.BasePlayer;
 import utility.Utility;
 
 public class WinLottery implements BaseAction {
-	private int randMoney;
-	private BasePlayer p1;
+private BasePlayer p1;
 	
 	public WinLottery(BasePlayer p1) {
-//		TODO: change amount of money to random based on passed turn (the more turns passed the more money drop)
 		this.setP1(p1);
-		this.setRandMoney(10);
 	}
 
-	public String executeAction() throws InvalidValueException{
-		return p1.earnMoney(Utility.calculateExtraBuff(this.getRandMoney()));
+	public String executeAction() throws InvalidValueException {
+		return p1.earnMoney(Utility.calculateExtraBuff(2 * Utility.genMoney()));
 	}
-
-	public int getRandMoney() {
-		return randMoney;
+	
+	public Color getColor() {
+		return Color.GREEN;
 	}
-
-	public void setRandMoney(int randMoney) {
-		if (randMoney < 1) randMoney = 1;
-		this.randMoney = randMoney;
+	
+	public String toString() {
+		return "Win Lottery";
 	}
-
+	
+	public String getDescription() {
+		return String.format("Earn Money for %d-%d bahts", Utility.calculateExtraBuff(2 * Utility.getMinStats()), Utility.calculateExtraBuff(2 * Utility.getMaxStats()));
+	}
+	
 	public BasePlayer getP1() {
 		return p1;
 	}
