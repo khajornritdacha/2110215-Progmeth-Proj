@@ -3,6 +3,7 @@ package action;
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
+import player.GoodAtMagic;
 import utility.Utility;
 
 public class LearnMagic implements BaseAction {
@@ -25,7 +26,13 @@ private BasePlayer p1;
 	}
 	
 	public String getDescription() {
-		return String.format("Increase Magic Stats for %d-%d Units", Utility.calculateExtraBuff(Utility.getMinStats()), Utility.calculateExtraBuff(Utility.getMaxStats()));
+		int minStats = Utility.calculateExtraBuff(Utility.getMinStats());
+		int maxStats = Utility.calculateExtraBuff(Utility.getMaxStats());
+		if (this.getP1() instanceof GoodAtMagic) {
+			minStats *= GoodAtMagic.magicMultiplier;
+			maxStats *= GoodAtMagic.magicMultiplier;
+		}
+		return String.format("Increase Magic Stats for %d-%d Units", minStats, maxStats);
 	}
 
 	public BasePlayer getP1() {

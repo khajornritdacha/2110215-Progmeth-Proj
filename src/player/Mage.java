@@ -2,32 +2,13 @@ package player;
 
 import customException.InvalidValueException;
 
-public class Mage extends BasePlayer{
-//	TODO: adjust the MAGIC_MULTIPLIER to balance players
-	private final int SWORD_MULTIPLIER = 1;
-	private final int MAGIC_MULTIPLIER = 2;
-	private final int MONEY_MULTIPLIER = 1;
-	
+public class Mage extends BasePlayer implements GoodAtMagic {	
 	public Mage(String name) throws InvalidValueException{
 		super(name);
 	}
 	
-	public String learnSword(int swordStats) throws InvalidValueException{
-		setSwordStats(getSwordStats() + swordStats * SWORD_MULTIPLIER);
-		return this.getName() + " has learnt sword for " + swordStats * SWORD_MULTIPLIER + " units.";
-	}
-	
-	public String learnMagic(int magicStats) throws InvalidValueException{
-		setMagicStats(getMagicStats() + magicStats * MAGIC_MULTIPLIER);
-		return this.getName() + " has learnt magic for " + magicStats * MAGIC_MULTIPLIER + " units.";
-	}
-	
-	public String earnMoney(int money) throws InvalidValueException{
-		setMoney(getMoney() + money * MONEY_MULTIPLIER);
-		return this.getName() + " has earned " + money * MONEY_MULTIPLIER + " bahts.";
-	}
-	
+	// TODO: (optional) fix the formula to make game balance
 	public double calculateWinRate(double winRateSword, double winRateMagic) {
-		return (winRateSword + 2 * winRateMagic) / 3;
+		return (winRateSword + 3 * winRateMagic) / 4;
 	}
 }

@@ -9,16 +9,22 @@ import player.BasePlayer;
 import utility.Utility;
 
 public class FightBoss implements BaseAction {
-	private BasePlayer p1;
+	private ArrayList<BasePlayer> players;
 	private Dragon b1;
 	
 	public FightBoss(BasePlayer p1, Dragon b1) {
-		this.setP1(p1);
+		this.setPlayers(new ArrayList<BasePlayer>());
+		this.players.add(p1);
+		this.setB1(b1);
+	}
+	
+	public FightBoss(ArrayList<BasePlayer> players, Dragon b1) {
+		this.setPlayers(players);
 		this.setB1(b1);
 	}
 	
 	public String executeAction() throws InvalidValueException{
-		return Utility.fightBoss(new ArrayList<BasePlayer>() {{add(p1);}}, b1);
+		return Utility.fightBoss(players, b1);
 	}
 	
 	public Color getColor() {
@@ -33,12 +39,12 @@ public class FightBoss implements BaseAction {
 		return "";
 	}
 
-	public BasePlayer getP1() {
-		return p1;
+	public ArrayList<BasePlayer> getPlayers() {
+		return players;
 	}
 
-	public void setP1(BasePlayer p1) {
-		this.p1 = p1;
+	public void setPlayers(ArrayList<BasePlayer> players) {
+		this.players = players;
 	}
 
 	public Dragon getB1() {

@@ -3,6 +3,7 @@ package action;
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
+import player.Rich;
 import utility.Utility;
 
 public class ScrubFloor implements BaseAction {
@@ -25,7 +26,13 @@ public class ScrubFloor implements BaseAction {
 	}
 	
 	public String getDescription() {
-		return String.format("Earn Money for %d-%d bahts", Utility.calculateExtraBuff(Utility.getMinStats()), Utility.calculateExtraBuff(Utility.getMaxStats()));
+		int minStats = Utility.calculateExtraBuff(Utility.getMinStats());
+		int maxStats = Utility.calculateExtraBuff(Utility.getMaxStats());
+		if (this.getP1() instanceof Rich) {
+			minStats *= Rich.moneyMultiplier;
+			maxStats *= Rich.moneyMultiplier;
+		}
+		return String.format("Increase Magic Stats for %d-%d Units", minStats, maxStats);
 	}
 	
 	public BasePlayer getP1() {

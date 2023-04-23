@@ -3,6 +3,7 @@ package action;
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
+import player.GoodAtSword;
 import utility.Utility;
 
 public class FindSwordMaster implements BaseAction{
@@ -25,7 +26,13 @@ public class FindSwordMaster implements BaseAction{
 	}
 	
 	public String getDescription() {
-		return String.format("Increase Sword Stats for %d-%d Units", Utility.calculateExtraBuff(2 * Utility.getMinStats()), Utility.calculateExtraBuff(2 * Utility.getMaxStats()));
+		int minStats = Utility.calculateExtraBuff(2 * Utility.getMinStats());
+		int maxStats = Utility.calculateExtraBuff(2 * Utility.getMaxStats());
+		if (this.getP1() instanceof GoodAtSword) {
+			minStats *= GoodAtSword.swordMultiplier;
+			maxStats *= GoodAtSword.swordMultiplier;
+		}
+		return String.format("Increase Sword Stats for %d-%d Units", minStats, maxStats);
 	}
 	
 	public BasePlayer getP1() {

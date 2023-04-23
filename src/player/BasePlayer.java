@@ -22,11 +22,29 @@ public abstract class BasePlayer {
 		this.setAlive(true);			
 	}
 	
-	public abstract String learnSword(int swordStats) throws InvalidValueException;
+	public String learnMagic(int magicStats) throws InvalidValueException {
+		if (this instanceof GoodAtMagic) {
+			magicStats *= GoodAtMagic.magicMultiplier;
+		}
+		this.setMagicStats(this.getMagicStats() + magicStats);
+		return this.getName() + " has learnt Magic for " + magicStats + " Units";
+	}
 	
-	public abstract String learnMagic(int magicStats) throws InvalidValueException;
+	public String learnSword(int swordStats) throws InvalidValueException {
+		if (this instanceof GoodAtSword) {
+			swordStats *= GoodAtSword.swordMultiplier;
+		}
+		this.setSwordStats(this.getSwordStats() + swordStats);
+		return this.getName() + " has learnt Sword for " + swordStats + " Units";
+	}
 	
-	public abstract String earnMoney(int money) throws InvalidValueException;
+	public String earnMoney(int money) throws InvalidValueException {
+		if (this instanceof Rich) {
+			money *= Rich.moneyMultiplier;
+		}
+		this.setMoney(this.getMoney() + money);
+		return this.getName() + " has earned Money for " + money + " Bahts";
+	}
 	
 	public abstract double calculateWinRate(double winRateSword, double winRateMagic);
 	
