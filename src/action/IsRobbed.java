@@ -57,7 +57,7 @@ public class IsRobbed implements BaseAction {
 	}
 	
 	public String getDescription() {
-		return String.format("Decrease One of the Stats for %d-%d%% Units", Utility.calculateExtraBuff(14), Utility.calculateExtraBuff(49));
+		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(14), Utility.calculateExtraBuff(49));
 	}
 	
 	public BasePlayer getP1() {

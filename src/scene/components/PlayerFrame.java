@@ -40,10 +40,10 @@ public class PlayerFrame extends VBox {
 		TextStats moneyText = new TextStats("Money:");
 		TextStats money = new TextStats(Integer.toString(p1.getMoney()));
 		
-		TextStats swordText = new TextStats("Sword Stats:");
+		TextStats swordText = new TextStats("Sword stats:");
 		TextStats swordStats = new TextStats(Integer.toString(p1.getSwordStats()));
 		
-		TextStats magicText = new TextStats("Magic Stats:");
+		TextStats magicText = new TextStats("Magic stats:");
 		TextStats magicStats = new TextStats(Integer.toString(p1.getMagicStats()));
 		
 		GridPane statsContainer = new GridPane();
@@ -61,23 +61,23 @@ public class PlayerFrame extends VBox {
 		statsContainer.setHalignment(swordText, HPos.RIGHT);
 		statsContainer.setHalignment(magicText, HPos.RIGHT);
 		
-		Button sendHelpBtn = new Button("Send Help");
+		Button sendHelpBtn = new Button("Send help");
 		sendHelpBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				if (sendHelpBtn.getText().equals("Send Help")) {
+				if (sendHelpBtn.getText().equals("Send help")) {
 					PlayingGameRootPane.addTempPlayer(p1);
 					sendHelpBtn.setText("Cancel");
 				}
 				else if (sendHelpBtn.getText().equals("Cancel")) {
 					PlayingGameRootPane.removeTempPlayer(p1);
-					sendHelpBtn.setText("Send Help");
+					sendHelpBtn.setText("Send help");
 				}
 			}
 		});
 		
 		this.getChildren().addAll(title, pic, statsContainer);
 		if (PlayingGameRootPane.isFightingBoss() && p1.isAlive()) {
-			if (GameLogic.getInstance().getCurrentPlayer() == p1 && sendHelpBtn.getText().equals("Send Help")) {
+			if (GameLogic.getInstance().getCurrentPlayer() == p1 && sendHelpBtn.getText().equals("Send help")) {
 				PlayingGameRootPane.addTempPlayer(p1);
 				sendHelpBtn.setDisable(true);
 				sendHelpBtn.setText("Sent");

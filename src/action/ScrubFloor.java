@@ -32,7 +32,7 @@ public class ScrubFloor implements BaseAction {
 			minStats *= Rich.moneyMultiplier;
 			maxStats *= Rich.moneyMultiplier;
 		}
-		return String.format("Increase Money for %d-%d Bahts", minStats, maxStats);
+		return String.format("Increase money for %d-%d bahts", minStats, maxStats);
 	}
 	
 	public BasePlayer getP1() {

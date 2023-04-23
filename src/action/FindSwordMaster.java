@@ -32,7 +32,7 @@ public class FindSwordMaster implements BaseAction{
 			minStats *= GoodAtSword.swordMultiplier;
 			maxStats *= GoodAtSword.swordMultiplier;
 		}
-		return String.format("Increase Sword Stats for %d-%d Units", minStats, maxStats);
+		return String.format("Increase sword stats for %d-%d units", minStats, maxStats);
 	}
 	
 	public BasePlayer getP1() {

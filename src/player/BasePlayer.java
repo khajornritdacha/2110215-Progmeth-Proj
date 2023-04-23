@@ -27,7 +27,7 @@ public abstract class BasePlayer {
 			magicStats *= GoodAtMagic.magicMultiplier;
 		}
 		this.setMagicStats(this.getMagicStats() + magicStats);
-		return this.getName() + " has learnt Magic for " + magicStats + " Units";
+		return this.getName() + " has learnt magic for " + magicStats + " units";
 	}
 	
 	public String learnSword(int swordStats) throws InvalidValueException {
@@ -35,7 +35,7 @@ public abstract class BasePlayer {
 			swordStats *= GoodAtSword.swordMultiplier;
 		}
 		this.setSwordStats(this.getSwordStats() + swordStats);
-		return this.getName() + " has learnt Sword for " + swordStats + " Units";
+		return this.getName() + " has learnt sword for " + swordStats + " units";
 	}
 	
 	public String earnMoney(int money) throws InvalidValueException {
@@ -43,7 +43,7 @@ public abstract class BasePlayer {
 			money *= Rich.moneyMultiplier;
 		}
 		this.setMoney(this.getMoney() + money);
-		return this.getName() + " has earned Money for " + money + " Bahts";
+		return this.getName() + " has earned money for " + money + " bahts";
 	}
 	
 	public abstract double calculateWinRate(double winRateSword, double winRateMagic);

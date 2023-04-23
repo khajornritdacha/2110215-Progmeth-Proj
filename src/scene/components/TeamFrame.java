@@ -24,10 +24,10 @@ public class TeamFrame extends Frame {
 		
 		Circle pic = new Circle();
 		
-		TextStats swordText = new TextStats("Sword Stats:");
+		TextStats swordText = new TextStats("Sword stats:");
 		TextStats swordStats = new TextStats(Integer.toString(playersSwordStats));
 		
-		TextStats magicText = new TextStats("Magic Stats:");
+		TextStats magicText = new TextStats("Magic stats:");
 		TextStats magicStats = new TextStats(Integer.toString(playersMagicStats));
 		
 		GridPane statsContainer = new GridPane();

@@ -37,11 +37,11 @@ public class StartGameRootPane extends BorderPane{
 //		BackgroundImage bg = new BackgroundImage(new Image("assets/testBg.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 //		container.setBackground(new Background(bg));
 		
-		Text numberPlayerText = new Text("Enter number of player (2-4) players");
+		Text numberPlayerText = new Text("Enter number of player (2-4 players) : ");
 		numberPlayerText.setFont(new Font(20));
 		numberPlayerText.setTextAlignment(TextAlignment.CENTER);
 		
-		Text inputTurn = new Text("Number of Turn (5-30 turns) : ");
+		Text inputTurn = new Text("Enter number of turn (5-30 turns) : ");
 		inputTurn.setFont(new Font(20));
 		
 		numberOfTurn = new TextField();
@@ -50,7 +50,7 @@ public class StartGameRootPane extends BorderPane{
 			updateStartGameBtn();
 		});
 
-		startGameBtn = new Button("Start Game!!");
+		startGameBtn = new Button("Start game!!");
 		startGameBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				ArrayList<String> playerNames = new ArrayList<String>();

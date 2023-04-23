@@ -37,7 +37,7 @@ public class PlayingGameRootPane extends BorderPane {
 	private static VBox container;
 	private static Text currentTurn = new Text("0");
 	private static Text explanation = new Text("Welcome to the game!!! ^_^");
-	private static Button getActionBtn = new Button("start");
+	private static Button getActionBtn = new Button("Start");
 	private static Deck selectableActions = new Deck(), showableActions = new Deck();
 	private static ArrayList<BasePlayer> tempPlayers = new ArrayList<BasePlayer>();
 	private static boolean isFightBoss = false, isWaiting = false, isShown = false;
@@ -51,11 +51,11 @@ public class PlayingGameRootPane extends BorderPane {
 		currentTurn.setFont(new Font(50));
 		currentTurn.setTextAlignment(TextAlignment.CENTER);
 		
-		explanation = new Text("Welcome to the Game!!! ^_^");
+		explanation = new Text("Welcome to the game!!! ^_^");
 		explanation.setFont(new Font(25));
 		explanation.setTextAlignment(TextAlignment.CENTER);
 		
-		Button endGameBtn = new Button("Exit Game");
+		Button endGameBtn = new Button("Exit game");
 		endGameBtn.setAlignment(Pos.TOP_RIGHT);
 		endGameBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -63,45 +63,45 @@ public class PlayingGameRootPane extends BorderPane {
 			}
 		});
 		
-		getActionBtn = new Button("Random Action");
+		getActionBtn = new Button("Random action");
 		getActionBtn.setAlignment(Pos.CENTER);
 		getActionBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				if (getActionBtn.getText().equals("Play Again")) {
+				if (getActionBtn.getText().equals("Play again")) {
 					GameLogic.getInstance().terminateGame();
 				}
-				else if (getActionBtn.getText().equals("(R.I.P.) Go to Next Player")) {
-					getActionBtn.setText("Random Action");
+				else if (getActionBtn.getText().equals("(R.I.P.) Go to next player")) {
+					getActionBtn.setText("Random action");
 					GameLogic.getInstance().goToNextPlayer();
 				}
 				else if (!GameLogic.getInstance().getCurrentPlayer().isAlive()) {
 					System.out.println(GameLogic.getInstance().getCurrentPlayer().getName() + " has died...");
 					setExplanation(GameLogic.getInstance().getCurrentPlayer().getName() + " has died...");
-					setActionBtn("(R.I.P.) Go to Next Player");
+					setActionBtn("(R.I.P.) Go to next player");
 				}
-				else if (getActionBtn.getText().equals("Random Action")) {
-					getActionBtn.setText("Choose 1st Action");
+				else if (getActionBtn.getText().equals("Random action")) {
+					getActionBtn.setText("Choose 1st action");
 					setIsWaiting(true);
 					GameLogic.getInstance().handleRandomAction();
 				}
-				else if (getActionBtn.getText().equals("Choose 1st Action")) {
-					getActionBtn.setText("Choose 2nd Action");
+				else if (getActionBtn.getText().equals("Choose 1st action")) {
+					getActionBtn.setText("Choose 2nd action");
 					setIsWaiting(true);
 					showChooseActions(selectableActions);
 				}
-				else if (getActionBtn.getText().equals("Choose 2nd Action")) {
-					getActionBtn.setText("Go to Next Player");
+				else if (getActionBtn.getText().equals("Choose 2nd action")) {
+					getActionBtn.setText("Go to next player");
 					setIsWaiting(true);
 					showChooseActions(selectableActions);
 				}
-				else if (getActionBtn.getText().equals("Go to Next Player")) {
-					getActionBtn.setText("Random Action");
+				else if (getActionBtn.getText().equals("Go to next player")) {
+					getActionBtn.setText("Random action");
 					GameLogic.getInstance().goToNextPlayer();
 				}
 			}
 		});
 		
-		Button showRandomActionsBtn = new Button("Show Random Actions");
+		Button showRandomActionsBtn = new Button("Show random actions");
 		showRandomActionsBtn.setAlignment(Pos.CENTER);
 		showRandomActionsBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -111,21 +111,21 @@ public class PlayingGameRootPane extends BorderPane {
 					}
 					
 					setIsShown(true);
-					showRandomActionsBtn.setText("Hide Random Actions");
+					showRandomActionsBtn.setText("Hide random actions");
 					container.getChildren().remove(selectableActions);
 					container.getChildren().add(showableActions);
 					showRandomActions(showableActions);
 				}
 				else {
 					setIsShown(false);
-					showRandomActionsBtn.setText("Show Random Actions");
+					showRandomActionsBtn.setText("Show random actions");
 					hideActions(showableActions);
 					container.getChildren().remove(showableActions);
 					container.getChildren().add(selectableActions);
 				}
 			}
 		});
-		Button showChooseActionsBtn = new Button("Show Choose Actions");
+		Button showChooseActionsBtn = new Button("Show choose actions");
 		showChooseActionsBtn.setAlignment(Pos.CENTER);
 		showChooseActionsBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -135,21 +135,21 @@ public class PlayingGameRootPane extends BorderPane {
 					}
 					
 					setIsShown(true);
-					showChooseActionsBtn.setText("Hide Choose Actions");
+					showChooseActionsBtn.setText("Hide choose actions");
 					container.getChildren().remove(selectableActions);
 					container.getChildren().add(showableActions);
 					showChooseActions(showableActions);
 				}
 				else {
 					setIsShown(false);
-					showChooseActionsBtn.setText("Show Choose Actions");
+					showChooseActionsBtn.setText("Show choose actions");
 					hideActions(showableActions);
 					container.getChildren().remove(showableActions);
 					container.getChildren().add(selectableActions);
 				}
 			}
 		});
-		Button showMonstersBtn = new Button("Show Monsters");
+		Button showMonstersBtn = new Button("Show monsters");
 		showMonstersBtn.setAlignment(Pos.CENTER);
 		showMonstersBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -159,14 +159,14 @@ public class PlayingGameRootPane extends BorderPane {
 					}
 					
 					setIsShown(true);
-					showMonstersBtn.setText("Hide Monsters");
+					showMonstersBtn.setText("Hide monsters");
 					container.getChildren().remove(selectableActions);
 					container.getChildren().add(showableActions);
 					showMonsters(showableActions);
 				}
 				else {
 					setIsShown(false);
-					showMonstersBtn.setText("Show Monsters");
+					showMonstersBtn.setText("Show monsters");
 					hideActions(showableActions);
 					container.getChildren().remove(showableActions);
 					container.getChildren().add(selectableActions);

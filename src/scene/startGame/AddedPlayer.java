@@ -20,7 +20,7 @@ public class AddedPlayer extends VBox {
 		text.setFont(new Font(20));
 		this.setPlayerName(playerName);
 		
-		Button button = new Button("remove");
+		Button button = new Button("Remove");
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				StartGameRootPane.getDisplayPlayerPane().removePlayer(AddedPlayer.this);

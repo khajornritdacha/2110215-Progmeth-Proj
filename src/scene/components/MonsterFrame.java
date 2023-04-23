@@ -40,11 +40,11 @@ public class MonsterFrame extends Frame {
 		});
 		selectBtn.setDisable(PlayingGameRootPane.isShown());
 		
-		TextStats swordText = new TextStats("Sword Stats:");
+		TextStats swordText = new TextStats("Sword stats:");
 		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()));
-		TextStats magicText = new TextStats("Magic Stats:");
+		TextStats magicText = new TextStats("Magic stats:");
 		TextStats magicStats = new TextStats(Integer.toString(monster.getMagicStats()));
-		TextStats moneyText = new TextStats("Drop Money:");
+		TextStats moneyText = new TextStats("Drop money:");
 		TextStats money = new TextStats(Integer.toString(monster.getDropMoney()));
 		
 		GridPane statsContainer = new GridPane();

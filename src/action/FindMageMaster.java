@@ -32,7 +32,7 @@ public class FindMageMaster implements BaseAction {
 			minStats *= GoodAtMagic.magicMultiplier;
 			maxStats *= GoodAtMagic.magicMultiplier;
 		}
-		return String.format("Increase Magic Stats for %d-%d Units", minStats, maxStats);
+		return String.format("Increase magic stats for %d-%d units", minStats, maxStats);
 	}
 
 	public BasePlayer getP1() {
