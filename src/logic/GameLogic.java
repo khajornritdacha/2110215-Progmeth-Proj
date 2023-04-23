@@ -83,7 +83,6 @@ public class GameLogic {
 					continue;
 				}
 				
-				
 				double potential = player.getMoney() * 50.0 + player.getSwordStats() * 24.0 + player.getMagicStats() * 26.0;
 				if (maxPotential < potential) {
 					maxPotential = potential;
@@ -121,7 +120,7 @@ public class GameLogic {
 			PlayingGameRootPane.showExecutingAction(new MonsterFrame(((FightBoss)randomAction).getB1()));
 		}
 		else {
-			PlayingGameRootPane.showExecutingAction(new ActionFrame(randomAction));
+			PlayingGameRootPane.showExecutingAction(new ActionFrame(randomAction, false));
 		}
 	}
 
@@ -135,6 +134,7 @@ public class GameLogic {
 		}
 		
 		PlayingGameRootPane.setExplanation(action);
+		System.out.println(action);
 		PlayingGameRootPane.setIsWaiting(false);
 		PlayingGameRootPane.updatePlayer();
 	}
@@ -157,6 +157,7 @@ public class GameLogic {
 	
 	public void handleFightMonster(BaseMonster monster) {
 		String action = Utility.fightAgainst(getCurrentPlayer(), monster);
+		System.out.println(action);
 		PlayingGameRootPane.setExplanation(action);
 		PlayingGameRootPane.setIsWaiting(false);
 		PlayingGameRootPane.updatePlayer();
@@ -164,6 +165,7 @@ public class GameLogic {
 	
 	public void handleFightBoss(ArrayList<BasePlayer> players) {
 		String action = Utility.fightBoss(players, summonDragon());
+		System.out.println(action);
 		PlayingGameRootPane.clearTempPlayers();
 		PlayingGameRootPane.setIsFightBoss(false);
 		PlayingGameRootPane.setIsWaiting(false);

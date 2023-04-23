@@ -190,12 +190,12 @@ public class PlayingGameRootPane extends BorderPane {
 		deck.getChildren().clear();
 		VBox deckContainer = new VBox();
 		Deck upper = new Deck(), lower = new Deck();
-		upper.getChildren().add(new ActionFrame(new FindSwordMaster(GameLogic.getInstance().getCurrentPlayer())));
-		upper.getChildren().add(new ActionFrame(new FindMageMaster(GameLogic.getInstance().getCurrentPlayer())));
-		upper.getChildren().add(new ActionFrame(new IsRobbed(GameLogic.getInstance().getCurrentPlayer())));
-		lower.getChildren().add(new ActionFrame(new WinLottery(GameLogic.getInstance().getCurrentPlayer())));
-		lower.getChildren().add(new ActionFrame(new FightMonster(GameLogic.getInstance().getCurrentPlayer(), Utility.genRandomMonster(), false)));
-		lower.getChildren().add(new ActionFrame(new FightBoss(GameLogic.getInstance().getCurrentPlayer(), GameLogic.getInstance().summonDragon())));
+		upper.getChildren().add(new ActionFrame(new FindSwordMaster(GameLogic.getInstance().getCurrentPlayer()), true));
+		upper.getChildren().add(new ActionFrame(new FindMageMaster(GameLogic.getInstance().getCurrentPlayer()), true));
+		upper.getChildren().add(new ActionFrame(new IsRobbed(GameLogic.getInstance().getCurrentPlayer()), true));
+		lower.getChildren().add(new ActionFrame(new WinLottery(GameLogic.getInstance().getCurrentPlayer()), true));
+		lower.getChildren().add(new ActionFrame(new FightMonster(GameLogic.getInstance().getCurrentPlayer(), Utility.genRandomMonster(), false), true));
+		lower.getChildren().add(new ActionFrame(new FightBoss(GameLogic.getInstance().getCurrentPlayer(), GameLogic.getInstance().summonDragon()), true));
 		deckContainer.getChildren().addAll(upper, lower);
 		deck.getChildren().add(deckContainer);
 	}
@@ -203,9 +203,9 @@ public class PlayingGameRootPane extends BorderPane {
 	public static void showChooseActions(Deck deck) {
 		getActionBtn.setDisable(true);
 		deck.getChildren().clear();
-		deck.getChildren().add(new ActionFrame(new LearnSword(GameLogic.getInstance().getCurrentPlayer())));
-		deck.getChildren().add(new ActionFrame(new LearnMagic(GameLogic.getInstance().getCurrentPlayer())));
-		deck.getChildren().add(new ActionFrame(new ScrubFloor(GameLogic.getInstance().getCurrentPlayer())));
+		deck.getChildren().add(new ActionFrame(new LearnSword(GameLogic.getInstance().getCurrentPlayer()), false));
+		deck.getChildren().add(new ActionFrame(new LearnMagic(GameLogic.getInstance().getCurrentPlayer()), false));
+		deck.getChildren().add(new ActionFrame(new ScrubFloor(GameLogic.getInstance().getCurrentPlayer()), false));
 		deck.getChildren().add(new FightingMonsterFrame());
 	}
 	

@@ -13,14 +13,14 @@ import scene.playingGame.PlayingGameRootPane;
 import utility.Utility;
 
 public class ActionFrame extends Frame {
-	public ActionFrame(BaseAction action) {
+	public ActionFrame(BaseAction action, boolean showProb) {
 		super(action.getColor());
 		
 		int prob = (180 - 2 * Utility.calculateExtraBuff(40)) / 4;
 		if (action instanceof FightBoss || action instanceof IsRobbed) {
 			prob = (100 - 4 * prob) / 2;
 		}
-		Text title = new Text(String.format("%s%s", action.toString(), (PlayingGameRootPane.isShown() ? "(" + prob + "%)" : "")));
+		Text title = new Text(String.format("%s%s", action.toString(), ((PlayingGameRootPane.isShown() && showProb) ? "(" + prob + "%)" : "")));
 		Text description = new Text(action.getDescription());
 		
 		Circle pic = new Circle();
