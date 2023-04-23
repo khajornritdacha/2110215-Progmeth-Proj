@@ -3,20 +3,33 @@ package scene.components;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
 import monster.BaseMonster;
 import monster.Dragon;
 import scene.playingGame.PlayingGameRootPane;
+import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
 public class MonsterFrame extends Frame {
 	public MonsterFrame(BaseMonster monster) {
 		super(monster.getColor());
 	
-		TextStats title = new TextStats(monster.getName() + " #" + monster.getLevel());
+		double winRate = 0.0;
+		if (monster instanceof Dragon) {
+			winRate = Utility.calculateWinRateBoss(PlayingGameRootPane.getTempPlayers(), (Dragon)monster);
+		}
+		else {
+			winRate = Utility.calculateWinRate(GameLogic.getInstance().getCurrentPlayer(), monster);
+		}
+		TextStats title = new TextStats(monster.getName() + 
+				String.format("%s #%d\n(win rate : %.2f%%)", monster.getName(), monster.getLevel(), winRate));
+		title.setTextAlignment(TextAlignment.CENTER);
 		
 		Circle pic = new Circle();
 		

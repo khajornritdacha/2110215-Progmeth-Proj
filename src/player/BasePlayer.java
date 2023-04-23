@@ -26,24 +26,27 @@ public abstract class BasePlayer {
 		if (this instanceof GoodAtMagic) {
 			magicStats *= GoodAtMagic.magicMultiplier;
 		}
-		this.setMagicStats(this.getMagicStats() + magicStats);
-		return this.getName() + " has learnt magic for " + magicStats + " units";
+		int before = this.getMagicStats();
+		this.setMagicStats(before + magicStats);
+		return String.format("%s has learnt magic for %d units (%d->%d)", this.getName(), magicStats, before, before + magicStats);
 	}
 	
 	public String learnSword(int swordStats) throws InvalidValueException {
 		if (this instanceof GoodAtSword) {
 			swordStats *= GoodAtSword.swordMultiplier;
 		}
-		this.setSwordStats(this.getSwordStats() + swordStats);
-		return this.getName() + " has learnt sword for " + swordStats + " units";
+		int before = this.getSwordStats();
+		this.setSwordStats(before + swordStats);
+		return String.format("%s has learnt sword for %d units (%d->%d)", this.getName(), swordStats, before, before + swordStats);
 	}
 	
 	public String earnMoney(int money) throws InvalidValueException {
 		if (this instanceof Rich) {
 			money *= Rich.moneyMultiplier;
 		}
-		this.setMoney(this.getMoney() + money);
-		return this.getName() + " has earned money for " + money + " bahts";
+		int before = this.getMoney();
+		this.setMoney(before + money);
+		return String.format("%s has earned money for %d bahts (%d->%d)", this.getName(), money, before, before + money);
 	}
 	
 	public abstract double calculateWinRate(double winRateSword, double winRateMagic);

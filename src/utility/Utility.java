@@ -62,6 +62,23 @@ public class Utility {
 		return Math.pow(x, value);
 	}
 	
+	public static double calculateWinRate(BasePlayer p1, BaseMonster m1) {
+		double winRateSword = calculateWinRateStats(p1.getSwordStats(), m1.getSwordStats());
+		double winRateMagic = calculateWinRateStats(p1.getMagicStats(), m1.getMagicStats());
+		return p1.calculateWinRate(winRateSword, winRateMagic);
+	}
+	
+	public static double calculateWinRateBoss(ArrayList<BasePlayer> players, Dragon boss) {
+		int playerSwordStats = 0, playerMagicStats = 0;
+		for (BasePlayer player : players) {
+			playerSwordStats += player.getSwordStats();
+			playerMagicStats += player.getMagicStats();
+		}
+		double winRateSword = calculateWinRateStats(playerSwordStats, boss.getSwordStats());
+		double winRateMagic = calculateWinRateStats(playerMagicStats, boss.getMagicStats());
+		return (winRateSword + winRateMagic) / 2;
+	}
+	
 	public static BasePlayer genRandomRole(String name) {
 		try {
 			BasePlayer player = new Farmer(name);
@@ -160,11 +177,10 @@ public class Utility {
 		try {
 			int evolveSwordStats = Math.max(0, m1.getSwordStats() - p1.getSwordStats());
 			int evolveMagicStats = Math.max(0, m1.getMagicStats() - p1.getMagicStats());
-			double winRateSword = calculateWinRateStats(p1.getSwordStats(), m1.getSwordStats());
-			double winRateMagic = calculateWinRateStats(p1.getMagicStats(), m1.getMagicStats());
-			boolean isWon = (randomInteger(1, 100) <= p1.calculateWinRate(winRateSword, winRateMagic));
+			double winRate = calculateWinRate(p1, m1);
+			boolean isWon = (randomInteger(1, 100) <= winRate);
 			
-			System.out.println(String.format("%s(%d, %d) vs %s(%d, %d) with win rate sword(%.2f) and magic(%.2f)", p1.getName(), p1.getSwordStats(), p1.getMagicStats(), m1.getName(), m1.getSwordStats(), m1.getMagicStats(), winRateSword, winRateMagic));
+			System.out.println(String.format("%s(%d, %d) vs %s(%d, %d) with win rate %.2f%%", p1.getName(), p1.getSwordStats(), p1.getMagicStats(), m1.getName(), m1.getSwordStats(), m1.getMagicStats(), winRate));
 			
 			int dropMoney = m1.getDropMoney();
 			if (p1 instanceof Rich) {
@@ -198,7 +214,8 @@ public class Utility {
 	
 	public static String fightBoss(ArrayList<BasePlayer> players, Dragon boss) {
 		try {
-			int n = players.size(), playerSwordStats = 0, playerMagicStats = 0;
+			int n = players.size();
+			int playerSwordStats = 0, playerMagicStats = 0;
 			ArrayList<String> playersName = new ArrayList<String>();
 			for (BasePlayer player : players) {
 				playerSwordStats += player.getSwordStats();
@@ -208,18 +225,17 @@ public class Utility {
 			
 			int evolveSwordStats = Math.max(0, boss.getSwordStats() - playerSwordStats);
 			int evolveMagicStats = Math.max(0, boss.getMagicStats() - playerMagicStats);
-			double winRateSword = calculateWinRateStats(playerSwordStats, boss.getSwordStats());
-			double winRateMagic = calculateWinRateStats(playerMagicStats, boss.getMagicStats());
-			boolean isWon = (randomInteger(1, 100) <= (winRateSword + winRateMagic) / 2);
+			double winRate = calculateWinRateBoss(players, boss); 
+			boolean isWon = (randomInteger(1, 100) <= winRate / 2);
 			
-			System.out.println(String.format("(%d, %d) vs %s(%d, %d) with win rate sword(%.2f) and magic(%.2f)", playerSwordStats, playerMagicStats, boss.getName(), boss.getSwordStats(), boss.getMagicStats(), winRateSword, winRateMagic));
+			System.out.println(String.format("(%d, %d) vs %s(%d, %d) with win rate %.2f", playerSwordStats, playerMagicStats, boss.getName(), boss.getSwordStats(), boss.getMagicStats(), winRate));
 			
 			String action = "";
 			int dropMoney = boss.getDropMoney() / n;
 			if (!isWon) {	
 				boss.evolve(evolveSwordStats, evolveMagicStats);
 				action = String.join(", ", playersName) + "\n"
-						+ "have been defeated by " + boss.getName() + " (recieved (not include TheRich Buff) " + dropMoney + " bahts/player) ";
+						+ "have been defeated by " + boss.getName() + " (lost (not include TheRich Buff) " + dropMoney + " bahts/player) ";
 				dropMoney *= -1;
 			}
 			else {

@@ -101,7 +101,7 @@ public class GameLogic {
 			}
 			PlayingGameRootPane.setExplanation(String.format("%s wins!!!", winner));
 		}
-		PlayingGameRootPane.setActionBtn("Play Again");
+		PlayingGameRootPane.setActionBtn("Play again");
 	}
 	
 	public void terminateGame() {
