@@ -27,8 +27,7 @@ public class MonsterFrame extends Frame {
 		else {
 			winRate = Utility.calculateWinRate(GameLogic.getInstance().getCurrentPlayer(), monster);
 		}
-		TextStats title = new TextStats(monster.getName() + 
-				String.format("%s #%d\n(win rate : %.2f%%)", monster.getName(), monster.getLevel(), winRate));
+		TextStats title = new TextStats(String.format("%s #%d\n(win rate : %.2f%%)", monster.getName(), monster.getLevel(), winRate));
 		title.setTextAlignment(TextAlignment.CENTER);
 		
 		Circle pic = new Circle();

@@ -36,10 +36,10 @@ public class GameLogic {
 			playersList.add(Utility.genRandomRole(name));
 		}
 		
-		goblin = new Goblin("Goblin", 10, 10, 5);
-		skeleton = new Skeleton("Skeleton", 30, 15, 11);
-		wizzard = new Wizzard("Wizzard", 15, 31, 12);
-		dragon = new Dragon("Dragon", 60, 61, 27);
+		goblin = new Goblin("", 10, 10, 5);
+		skeleton = new Skeleton("", 30, 15, 11);
+		wizzard = new Wizzard("", 15, 31, 12);
+		dragon = new Dragon("", 60, 61, 27);
 		this.setPlayersList(playersList);
 		this.setNumberOfTurn(numberTurn);
 		this.setCurrentPlayer(0);
