@@ -21,18 +21,24 @@ public class IsRobbed implements BaseAction {
 			ArrayList<String> robbedThings = new ArrayList<String>();
 			if ((rand & 1) > 0) {
 				int robbedMoney = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getMoney() / 100);
-				p1.setMoney(p1.getMoney() - robbedMoney);
-				robbedThings.add(robbedMoney + " for Money");
+				if (robbedMoney > 0) {
+					p1.setMoney(p1.getMoney() - robbedMoney);
+					robbedThings.add("Money(" + robbedMoney + ")");
+				}
 			}
 			if ((rand & 2) > 0) {
 				int robbedSword = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getSwordStats() / 100);
-				p1.setSwordStats(p1.getSwordStats() - robbedSword);
-				robbedThings.add(robbedSword + " for Sword");
+				if (robbedSword > 0) {
+					p1.setSwordStats(p1.getSwordStats() - robbedSword);
+					robbedThings.add("Sword(" + robbedSword + ")");
+				}
 			}
 			if ((rand & 4) > 0) {
 				int robbedMagic = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getMagicStats() / 100);
-				p1.setMagicStats(p1.getMagicStats() - robbedMagic);
-				robbedThings.add(robbedMagic + " for Magic");
+				if (robbedMagic > 0) {
+					p1.setMagicStats(p1.getMagicStats() - robbedMagic);
+					robbedThings.add("Magic(" + robbedMagic + ")");
+				}
 			}
 			return action + String.join(" | ", robbedThings);
 		}
