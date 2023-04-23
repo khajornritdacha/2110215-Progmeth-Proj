@@ -22,17 +22,17 @@ public class IsRobbed implements BaseAction {
 			if ((rand & 1) > 0) {
 				int robbedMoney = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getMoney() / 100);
 				p1.setMoney(p1.getMoney() - robbedMoney);
-				robbedThings.add("Money for " + robbedMoney + " Bahts");
+				robbedThings.add(robbedMoney + " for Money");
 			}
 			if ((rand & 2) > 0) {
 				int robbedSword = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getSwordStats() / 100);
 				p1.setSwordStats(p1.getSwordStats() - robbedSword);
-				robbedThings.add("Sword Stats for " + robbedSword + " Units");
+				robbedThings.add(robbedSword + " for Sword");
 			}
 			if ((rand & 4) > 0) {
 				int robbedMagic = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getMagicStats() / 100);
 				p1.setMagicStats(p1.getMagicStats() - robbedMagic);
-				robbedThings.add("Magic Stats for " + robbedMagic + " Units");
+				robbedThings.add(robbedMagic + " for Magic");
 			}
 			return action + String.join(" | ", robbedThings);
 		}

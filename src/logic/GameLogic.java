@@ -18,7 +18,6 @@ import scene.components.MonsterFrame;
 import scene.playingGame.PlayingGameRootPane;
 import utility.Utility;
 
-// TODO: implement game logic class
 public class GameLogic {
 	private static GameLogic instance = null;
 	private ArrayList<BasePlayer> playersList;
