@@ -27,20 +27,28 @@ public class InputPlayerFrame extends HBox {
 		TextField textField = new TextField();
 		textField.setPrefWidth(200);
 		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-			if (textField.getText().equals("adminJomnoiZ")) {
-				addNewPlayerBtn.setText("Force Start Game!!");
+			if (textField.getText().equals("adminjomjo")) {
+				addNewPlayerBtn.setText("Force start game!!");
 			}
 			else {
-				addNewPlayerBtn.setText("Add New Player");
+				if (textField.getText().length() > 10) {
+					addNewPlayerBtn.setText("The name is too long!");
+					addNewPlayerBtn.setDisable(true);
+				}
+				else {
+					addNewPlayerBtn.setText("Add new player");
+					addNewPlayerBtn.setDisable(false);
+				}
 			}
+			
 		});;
 		
-		addNewPlayerBtn = new Button("Add New Player");
+		addNewPlayerBtn = new Button("Add new player");
 		addNewPlayerBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (!textField.getText().isEmpty()) {
 					// This function is created for debugging purpose;
-					if (textField.getText().equals("adminJomnoiZ")) {
+					if (textField.getText().equals("adminjomjo")) {
 						final int NUMBER_TURN = 10; 
 						ArrayList<String> playerNames = new ArrayList<String>();
 						playerNames.add("JomnoiZ");
