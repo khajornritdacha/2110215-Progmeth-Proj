@@ -74,6 +74,7 @@ public class PlayerFrame extends VBox {
 				}
 			}
 		});
+//		sendHelpBtn.setDisable(PlayingGameRootPane.isShown());
 		
 		this.getChildren().addAll(title, pic, statsContainer);
 		if (PlayingGameRootPane.isFightingBoss() && p1.isAlive()) {

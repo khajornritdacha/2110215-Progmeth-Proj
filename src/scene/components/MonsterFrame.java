@@ -38,7 +38,7 @@ public class MonsterFrame extends Frame {
 				}
 			}
 		});
-		selectBtn.setDisable(PlayingGameRootPane.isShown());
+		selectBtn.setDisable(PlayingGameRootPane.isShown() && !PlayingGameRootPane.isFightingBoss());
 		
 		TextStats swordText = new TextStats("Sword stats:");
 		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()));
