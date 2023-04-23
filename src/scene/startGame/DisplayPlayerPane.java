@@ -25,12 +25,18 @@ public class DisplayPlayerPane extends HBox {
     	players.add(player);
         getChildren().add(player);
         StartGameRootPane.updateStartGameBtn();
+        if (players.size() >= 4) {
+        	InputPlayerFrame.getAddNewPlayerBtn().setDisable(true);
+        }
     }
 
     public void removePlayer(AddedPlayer player) {
     	players.remove(player);
         getChildren().remove(player);
         StartGameRootPane.updateStartGameBtn();
+        if (players.size() < 4) {
+        	InputPlayerFrame.getAddNewPlayerBtn().setDisable(false);
+        }
     }
     
     public void reset() {

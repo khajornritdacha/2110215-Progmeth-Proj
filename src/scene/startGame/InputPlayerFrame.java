@@ -35,9 +35,8 @@ public class InputPlayerFrame extends HBox {
 			}
 		});;
 		
-		Button button = new Button("Add New Player");
-		addNewPlayerBtn = button;
-		button.setOnAction(new EventHandler<ActionEvent>() {
+		addNewPlayerBtn = new Button("Add New Player");
+		addNewPlayerBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (!textField.getText().isEmpty()) {
 					// This function is created for debugging purpose;
@@ -58,7 +57,7 @@ public class InputPlayerFrame extends HBox {
 			}
 		});
 		
-		this.getChildren().addAll(textField, button);
+		this.getChildren().addAll(textField, addNewPlayerBtn);
 	}
 	
 	public static Button getAddNewPlayerBtn() {
