@@ -18,6 +18,7 @@ import monster.Evolutionary;
 import player.BasePlayer;
 import player.Farmer;
 import player.Mage;
+import player.Rich;
 import player.SwordMan;
 import player.TheRich;
 
@@ -165,24 +166,28 @@ public class Utility {
 			
 			System.out.println(String.format("%s(%d, %d) vs %s(%d, %d) with win rate sword(%.2f) and magic(%.2f)", p1.getName(), p1.getSwordStats(), p1.getMagicStats(), m1.getName(), m1.getSwordStats(), m1.getMagicStats(), winRateSword, winRateMagic));
 			
+			int dropMoney = m1.getDropMoney();
+			if (p1 instanceof Rich) {
+				dropMoney *= Rich.moneyMultiplier;
+			}
 			if (p1.getSwordStats() - m1.getSwordStats() / 2 < 0 && p1.getMagicStats() - m1.getMagicStats() / 2 < 0) {
 				if (m1 instanceof Evolutionary) {
 					((Evolutionary)m1).evolve(evolveSwordStats, evolveMagicStats);
 				}
-				p1.earnMoney(-m1.getDropMoney());
-				return p1.getName() + " has been completely defeated by " + m1.getName() + " (lost " + m1.getDropMoney() + " bahts) ";
+				p1.earnMoney(-dropMoney);
+				return p1.getName() + " has been completely defeated by " + m1.getName() + " (lost " + dropMoney + " bahts) ";
 			}
 			else if (!isWon) {
 				if (m1 instanceof Evolutionary) {
 					((Evolutionary)m1).evolve(evolveSwordStats / 2, evolveMagicStats / 2);
 				}
-				p1.earnMoney(-m1.getDropMoney() / 2);
-				return p1.getName() + " has been defeated by " + m1.getName() + " (lost " + m1.getDropMoney() / 2 + " bahts) ";
+				p1.earnMoney(-dropMoney / 2);
+				return p1.getName() + " has been defeated by " + m1.getName() + " (lost " + dropMoney / 2 + " bahts) ";
 			}
 			
 			m1.respawn();
-			p1.earnMoney(m1.getDropMoney());
-			return p1.getName() + " has defeated " + m1.getName() + " (recieved " + m1.getDropMoney() + " bahts) ";			
+			p1.earnMoney(dropMoney);
+			return p1.getName() + " has defeated " + m1.getName() + " (recieved " + dropMoney + " bahts) ";			
 		}
 		catch (InvalidValueException err) {
 			System.out.println(err);
@@ -213,12 +218,14 @@ public class Utility {
 			int dropMoney = boss.getDropMoney() / n;
 			if (!isWon) {	
 				boss.evolve(evolveSwordStats, evolveMagicStats);
-				action = String.join(", ", playersName) + " have been defeated by " + boss.getName() + " (lost (raw) " + dropMoney + " bahts/player) ";
+				action = String.join(", ", playersName) + "\n"
+						+ "have been defeated by " + boss.getName() + " (recieved (not include TheRich Buff) " + dropMoney + " bahts/player) ";
 				dropMoney *= -1;
 			}
 			else {
 				boss.respawn();
-				action = String.join(", ", playersName) + " have defeated " + boss.getName() + " (recieved (raw) " + dropMoney + " bahts/player) ";
+				action = String.join(", ", playersName) + "\n"
+						+ "have defeated " + boss.getName() + " (recieved (not include TheRich Buff) " + dropMoney + " bahts/player) ";
 			}
 			
 			for (BasePlayer player : players) {
