@@ -1,5 +1,7 @@
 package action;
 
+import java.util.ArrayList;
+
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
@@ -16,23 +18,24 @@ public class IsRobbed implements BaseAction {
 		// Don't use p1.earnMoney as the effect will be multiplied
 		try {
 			int rand = Utility.randomInteger(1, 7);
-			String action = this.getP1().getName() + " has been robbed ";
+			String action = this.getP1().getName() + " has been robbed : ";
+			ArrayList<String> robbedThings = new ArrayList<String>();
 			if ((rand & 1) > 0) {
 				int robbedMoney = Utility.randomInteger(14, 49) * p1.getMoney() / 100;
 				p1.setMoney(p1.getMoney() - Utility.calculateExtraBuff(robbedMoney));
-				action += (robbedMoney + " Bahts ");
+				robbedThings.add("Money for " + robbedMoney + " Bahts");
 			}
 			if ((rand & 2) > 0) {
 				int robbedSword = Utility.randomInteger(14, 49) * p1.getSwordStats() / 100;
 				p1.setSwordStats(p1.getSwordStats() - Utility.calculateExtraBuff(robbedSword));
-				action += (robbedSword + " Units ");
+				robbedThings.add("Sword Stats for " + robbedSword + " Units");
 			}
 			if ((rand & 4) > 0) {
 				int robbedMagic = Utility.randomInteger(14, 49) * p1.getMagicStats() / 100;
 				p1.setMagicStats(p1.getMagicStats() - Utility.calculateExtraBuff(robbedMagic));
-				action += (robbedMagic + " Units ");
+				robbedThings.add("Magic Stats for " + robbedMagic + " Units");
 			}
-			return action;
+			return action + String.join(" | ", robbedThings);
 		}
 		catch (InvalidValueException e) {
 			System.out.println(e);

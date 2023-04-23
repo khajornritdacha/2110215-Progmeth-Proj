@@ -56,7 +56,6 @@ public class Utility {
 	public static double calculateWinRateStats(double playerStats, double monsterStats) {
 		double x = Math.pow(100.0, 2.0 / monsterStats);
 		double value = Math.min(playerStats - monsterStats / 2.0, monsterStats / 2.0);
-		System.out.println(x + " " + value);
 		return Math.pow(x, value);
 	}
 	
