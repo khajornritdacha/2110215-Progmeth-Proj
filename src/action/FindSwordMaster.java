@@ -14,7 +14,7 @@ public class FindSwordMaster implements BaseAction{
 	}
 	
 	public String executeAction() throws InvalidValueException{
-		return p1.learnSword(Utility.calculateExtraBuff(2 * Utility.genSwordStats()));
+		return p1.learnSword(2 * Utility.genSwordStats());
 	}
 	
 	public Color getColor() {
@@ -26,8 +26,8 @@ public class FindSwordMaster implements BaseAction{
 	}
 	
 	public String getDescription() {
-		int minStats = Utility.calculateExtraBuff(2 * Utility.getMinStats());
-		int maxStats = Utility.calculateExtraBuff(2 * Utility.getMaxStats());
+		int minStats = Utility.calculateExtraBuff(2 * Utility.getMinSwordStats());
+		int maxStats = Utility.calculateExtraBuff(2 * Utility.getMaxSwordStats());
 		if (this.getP1() instanceof GoodAtSword) {
 			minStats *= GoodAtSword.swordMultiplier;
 			maxStats *= GoodAtSword.swordMultiplier;

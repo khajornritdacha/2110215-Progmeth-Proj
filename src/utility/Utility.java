@@ -23,7 +23,9 @@ import player.TheRich;
 
 public class Utility {
 	// TODO: change these numbers to make game balance
-	private static final int MIN_STATS = 5, MAX_STATS = 7;
+	private static final int MIN_SWORD_STATS = 5, MAX_SWORD_STATS = 7;
+	private static final int MIN_MAGIC_STATS = 5, MAX_MAGIC_STATS = 7;
+	private static final int MIN_MONEY_STATS = 5, MAX_MONEY_STATS = 7;
 	
 	public static void sleep(int value) {
 		value *= 1000;
@@ -232,22 +234,38 @@ public class Utility {
 	}
 	
 	public static int genMagicStats() {
-		return calculateExtraBuff(randomInteger(MIN_STATS, MAX_STATS));
+		return calculateExtraBuff(randomInteger(MIN_MAGIC_STATS, MAX_MAGIC_STATS));
 	}
 	
 	public static int genSwordStats() {
-		return calculateExtraBuff(randomInteger(MIN_STATS, MAX_STATS));
+		return calculateExtraBuff(randomInteger(MIN_SWORD_STATS, MAX_SWORD_STATS));
 	}
 	
 	public static int genMoney() {
-		return calculateExtraBuff(randomInteger(MIN_STATS, MAX_STATS));
+		return calculateExtraBuff(randomInteger(MIN_MONEY_STATS, MAX_MONEY_STATS));
 	}
-	
-	public static int getMinStats() {
-		return MIN_STATS;
+
+	public static int getMinSwordStats() {
+		return MIN_SWORD_STATS;
 	}
-	
-	public static int getMaxStats() {
-		return MAX_STATS;
+
+	public static int getMaxSwordStats() {
+		return MAX_SWORD_STATS;
+	}
+
+	public static int getMinMagicStats() {
+		return MIN_MAGIC_STATS;
+	}
+
+	public static int getMaxMagicStats() {
+		return MAX_MAGIC_STATS;
+	}
+
+	public static int getMinMoneyStats() {
+		return MIN_MONEY_STATS;
+	}
+
+	public static int getMaxMoneyStats() {
+		return MAX_MONEY_STATS;
 	}
 }

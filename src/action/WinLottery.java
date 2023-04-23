@@ -14,7 +14,7 @@ private BasePlayer p1;
 	}
 
 	public String executeAction() throws InvalidValueException {
-		return p1.earnMoney(Utility.calculateExtraBuff(2 * Utility.genMoney()));
+		return p1.earnMoney(2 * Utility.genMoney());
 	}
 	
 	public Color getColor() {
@@ -26,8 +26,8 @@ private BasePlayer p1;
 	}
 	
 	public String getDescription() {
-		int minStats = Utility.calculateExtraBuff(2 * Utility.getMinStats());
-		int maxStats = Utility.calculateExtraBuff(2 * Utility.getMaxStats());
+		int minStats = Utility.calculateExtraBuff(2 * Utility.getMinMoneyStats());
+		int maxStats = Utility.calculateExtraBuff(2 * Utility.getMaxMoneyStats());
 		if (this.getP1() instanceof Rich) {
 			minStats *= Rich.moneyMultiplier;
 			maxStats *= Rich.moneyMultiplier;

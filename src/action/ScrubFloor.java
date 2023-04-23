@@ -14,7 +14,7 @@ public class ScrubFloor implements BaseAction {
 	}
 
 	public String executeAction() throws InvalidValueException {
-		return p1.earnMoney(Utility.calculateExtraBuff(Utility.genMoney()));
+		return p1.earnMoney(Utility.genMoney());
 	}
 	
 	public Color getColor() {
@@ -26,8 +26,8 @@ public class ScrubFloor implements BaseAction {
 	}
 	
 	public String getDescription() {
-		int minStats = Utility.calculateExtraBuff(Utility.getMinStats());
-		int maxStats = Utility.calculateExtraBuff(Utility.getMaxStats());
+		int minStats = Utility.calculateExtraBuff(Utility.getMinMoneyStats());
+		int maxStats = Utility.calculateExtraBuff(Utility.getMaxMoneyStats());
 		if (this.getP1() instanceof Rich) {
 			minStats *= Rich.moneyMultiplier;
 			maxStats *= Rich.moneyMultiplier;
