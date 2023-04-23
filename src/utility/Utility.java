@@ -174,19 +174,19 @@ public class Utility {
 				if (m1 instanceof Evolutionary) {
 					((Evolutionary)m1).evolve(evolveSwordStats, evolveMagicStats);
 				}
-				p1.earnMoney(-dropMoney);
+				p1.earnMoney(-m1.getDropMoney());
 				return p1.getName() + " has been completely defeated by " + m1.getName() + " (lost " + dropMoney + " bahts) ";
 			}
 			else if (!isWon) {
 				if (m1 instanceof Evolutionary) {
 					((Evolutionary)m1).evolve(evolveSwordStats / 2, evolveMagicStats / 2);
 				}
-				p1.earnMoney(-dropMoney / 2);
+				p1.earnMoney(-m1.getDropMoney() / 2);
 				return p1.getName() + " has been defeated by " + m1.getName() + " (lost " + dropMoney / 2 + " bahts) ";
 			}
 			
 			m1.respawn();
-			p1.earnMoney(dropMoney);
+			p1.earnMoney(m1.getDropMoney());
 			return p1.getName() + " has defeated " + m1.getName() + " (recieved " + dropMoney + " bahts) ";			
 		}
 		catch (InvalidValueException err) {
