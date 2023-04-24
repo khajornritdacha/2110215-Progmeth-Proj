@@ -14,7 +14,7 @@ public class ScrubFloor implements BaseAction {
 	}
 
 	public String executeAction() throws InvalidValueException {
-		return p1.earnMoney(Utility.genMoney());
+		return p1.earnMoney(Utility.calculateExtraBuff(Utility.genMoney()));
 	}
 	
 	public Color getColor() {
