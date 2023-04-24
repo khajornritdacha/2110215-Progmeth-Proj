@@ -31,7 +31,12 @@ public class InputPlayerFrame extends HBox {
 				addNewPlayerBtn.setText("Force start game!!");
 			}
 			else {
-				if (textField.getText().length() > 10) {
+//				Need to handle this case first
+				if (StartGameRootPane.getDisplayPlayerPane().getAddedPlayers().size() >= 4) {
+					addNewPlayerBtn.setText("Add new player");
+					addNewPlayerBtn.setDisable(true);
+				} 
+				else if (textField.getText().length() > 10) {
 					addNewPlayerBtn.setText("The name is too long!");
 					addNewPlayerBtn.setDisable(true);
 				}
