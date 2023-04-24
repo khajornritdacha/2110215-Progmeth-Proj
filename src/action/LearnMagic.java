@@ -14,7 +14,7 @@ private BasePlayer p1;
 	}
 	
 	public String executeAction() throws InvalidValueException{
-		return p1.learnMagic(Utility.calculateExtraBuff(Utility.genMagicStats()));
+		return p1.learnMagic(Utility.genMagicStats());
 	}
 	
 	public Color getColor() {

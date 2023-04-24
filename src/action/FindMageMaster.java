@@ -14,7 +14,7 @@ public class FindMageMaster implements BaseAction {
 	}
 	
 	public String executeAction() throws InvalidValueException{
-		return p1.learnMagic(Utility.calculateExtraBuff(2 * Utility.genMagicStats()));
+		return p1.learnMagic(2 * Utility.genMagicStats());
 	}
 	
 	public Color getColor() {

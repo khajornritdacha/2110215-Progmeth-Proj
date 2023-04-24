@@ -14,7 +14,7 @@ public class FindSwordMaster implements BaseAction{
 	}
 	
 	public String executeAction() throws InvalidValueException{
-		return p1.learnSword(Utility.calculateExtraBuff(2 * Utility.genSwordStats()));
+		return p1.learnSword(2 * Utility.genSwordStats());
 	}
 	
 	public Color getColor() {
