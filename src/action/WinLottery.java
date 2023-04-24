@@ -14,7 +14,7 @@ private BasePlayer p1;
 	}
 
 	public String executeAction() throws InvalidValueException {
-		return p1.earnMoney(2 * Utility.genMoney());
+		return p1.earnMoney(Utility.calculateExtraBuff(2 * Utility.genMoney()));
 	}
 	
 	public Color getColor() {

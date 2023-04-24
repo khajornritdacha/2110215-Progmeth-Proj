@@ -14,7 +14,7 @@ public class LearnSword implements BaseAction {
 	}
 	
 	public String executeAction() throws InvalidValueException{
-		return p1.learnSword(Utility.genSwordStats());
+		return p1.learnSword(Utility.calculateExtraBuff(Utility.genSwordStats()));
 	}
 	
 	public Color getColor() {
