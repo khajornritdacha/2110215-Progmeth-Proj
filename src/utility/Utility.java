@@ -144,7 +144,7 @@ public class Utility {
 			else if (rand <= range) {
 				randAction = new FindMageMaster(p1);
 			}
-			else if (rand <= range * 3) {
+			else if (rand <= range * 2) {
 				randAction = new IsRobbed(p1);
 			}
 			else if (rand <= range * 3) {
