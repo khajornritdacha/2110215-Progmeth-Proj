@@ -10,9 +10,6 @@ import utility.Utility;
 public class IsRobbed implements BaseAction {
 	private BasePlayer p1;
 	
-	static final int MIN_ROB_PERCENT = 14;
-	static final int MAX_ROB_PERCENT = 49;
-
 	public IsRobbed(BasePlayer p1) {
 		this.setP1(p1);
 	}
@@ -23,21 +20,21 @@ public class IsRobbed implements BaseAction {
 			String action = this.getP1().getName() + " has been robbed : ";
 			ArrayList<String> robbedThings = new ArrayList<String>();
 			if ((rand & 1) > 0) {
-				int robbedMoney = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * p1.getMoney() / 100);
+				int robbedMoney = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getMoney() / 100);
 				if (robbedMoney > 0) {
 					p1.setMoney(p1.getMoney() - robbedMoney);
 					robbedThings.add("Money(" + robbedMoney + ")");
 				}
 			}
 			if ((rand & 2) > 0) {
-				int robbedSword = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * p1.getSwordStats() / 100);
+				int robbedSword = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getSwordStats() / 100);
 				if (robbedSword > 0) {
 					p1.setSwordStats(p1.getSwordStats() - robbedSword);
 					robbedThings.add("Sword(" + robbedSword + ")");
 				}
 			}
 			if ((rand & 4) > 0) {
-				int robbedMagic = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * p1.getMagicStats() / 100);
+				int robbedMagic = Utility.calculateExtraBuff(Utility.randomInteger(14, 49) * p1.getMagicStats() / 100);
 				if (robbedMagic > 0) {
 					p1.setMagicStats(p1.getMagicStats() - robbedMagic);
 					robbedThings.add("Magic(" + robbedMagic + ")");
@@ -60,7 +57,7 @@ public class IsRobbed implements BaseAction {
 	}
 	
 	public String getDescription() {
-		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(MIN_ROB_PERCENT), Utility.calculateExtraBuff(MAX_ROB_PERCENT));
+		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(14), Utility.calculateExtraBuff(49));
 	}
 	
 	public BasePlayer getP1() {
