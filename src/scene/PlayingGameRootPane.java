@@ -38,17 +38,22 @@ import utility.Utility;
 public class PlayingGameRootPane extends BorderPane {
 	private static GridPane playerContainer;
 	private static VBox container;
-	private static Text currentTurn = new Text("0");
-	private static Text explanation = new Text("Welcome to the game!!! ^_^");
-	private static Button getActionBtn = new Button("Start");
-	private static Deck selectableActions = new Deck(), showableActions = new Deck();
-	private static ArrayList<BasePlayer> tempPlayers = new ArrayList<BasePlayer>();
-	private static boolean isFightBoss = false, isWaiting = false, isShown = false;
+	private static Text currentTurn;
+	private static Text explanation;
+	private static Button getActionBtn;
+	private static Deck selectableActions, showableActions;
+	private static ArrayList<BasePlayer> tempPlayers;
+	private static boolean isFightBoss, isWaiting, isShown;
 	
-	/**
+		/**
 	 * Create new gameplay scene
 	 */
-	public PlayingGameRootPane() {		
+	public PlayingGameRootPane() {
+		tempPlayers = new ArrayList<BasePlayer>();
+		setIsFightBoss(false);
+		setIsWaiting(false);
+		setIsShown(false);
+		
 		container = new VBox();
 		playerContainer = new GridPane();
 		
@@ -180,6 +185,7 @@ public class PlayingGameRootPane extends BorderPane {
 		});
 		
 		selectableActions = new Deck();
+		showableActions = new Deck();
 		
 		Deck showFrame = new Deck();
 		showFrame.getChildren().addAll(getActionBtn, showRandomActionsBtn, showChooseActionsBtn, showMonstersBtn);

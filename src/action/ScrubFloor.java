@@ -41,12 +41,14 @@ public class ScrubFloor extends BaseAction {
 	}
 	
 	public String getDescription() {
-		int minStats = Utility.calculateExtraBuff(Utility.getMinMoneyStats());
-		int maxStats = Utility.calculateExtraBuff(Utility.getMaxMoneyStats());
+		int minStats = Utility.getMinMoneyStats();
+		int maxStats = Utility.getMaxMoneyStats();
 		if (this.getP1() instanceof Rich) {
 			minStats *= Rich.moneyMultiplier;
 			maxStats *= Rich.moneyMultiplier;
 		}
+		minStats = Utility.calculateExtraBuff(minStats);
+		maxStats = Utility.calculateExtraBuff(maxStats);
 		return String.format("Increase money for %d-%d bahts", minStats, maxStats);
 	}
 }

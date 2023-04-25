@@ -41,12 +41,14 @@ public class LearnMagic extends BaseAction {
 	}
 	
 	public String getDescription() {
-		int minStats = Utility.calculateExtraBuff(Utility.getMinMagicStats());
-		int maxStats = Utility.calculateExtraBuff(Utility.getMaxMagicStats());
+		int minStats = Utility.getMinMagicStats();
+		int maxStats = Utility.getMaxMagicStats();
 		if (this.getP1() instanceof GoodAtMagic) {
 			minStats *= GoodAtMagic.magicMultiplier;
 			maxStats *= GoodAtMagic.magicMultiplier;
 		}
+		minStats = Utility.calculateExtraBuff(minStats);
+		maxStats = Utility.calculateExtraBuff(maxStats);
 		return String.format("Increase magic stats for %d-%d units", minStats, maxStats);
 	}
 }

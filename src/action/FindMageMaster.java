@@ -41,12 +41,14 @@ public class FindMageMaster extends BaseAction {
 	}
 	
 	public String getDescription() {
-		int minStats = Utility.calculateExtraBuff(2 * Utility.getMinMagicStats());
-		int maxStats = Utility.calculateExtraBuff(2 * Utility.getMaxMagicStats());
+		int minStats = 2 * Utility.getMinMagicStats();
+		int maxStats = 2 * Utility.getMaxMagicStats();
 		if (this.getP1() instanceof GoodAtMagic) {
 			minStats *= GoodAtMagic.magicMultiplier;
 			maxStats *= GoodAtMagic.magicMultiplier;
 		}
+		minStats = Utility.calculateExtraBuff(minStats);
+		maxStats = Utility.calculateExtraBuff(maxStats);
 		return String.format("Increase magic stats for %d-%d units", minStats, maxStats);
 	}
 }

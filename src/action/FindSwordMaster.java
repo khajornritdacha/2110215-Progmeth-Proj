@@ -41,12 +41,14 @@ public class FindSwordMaster extends BaseAction{
 	}
 	
 	public String getDescription() {
-		int minStats = Utility.calculateExtraBuff(2 * Utility.getMinSwordStats());
-		int maxStats = Utility.calculateExtraBuff(2 * Utility.getMaxSwordStats());
+		int minStats = 2 * Utility.getMinSwordStats();
+		int maxStats = 2 * Utility.getMaxSwordStats();
 		if (this.getP1() instanceof GoodAtSword) {
 			minStats *= GoodAtSword.swordMultiplier;
 			maxStats *= GoodAtSword.swordMultiplier;
 		}
+		minStats = Utility.calculateExtraBuff(minStats);
+		maxStats = Utility.calculateExtraBuff(maxStats);
 		return String.format("Increase sword stats for %d-%d units", minStats, maxStats);
 	}
 }

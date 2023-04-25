@@ -295,7 +295,7 @@ public class Utility {
 	 * @return random magic stats
 	 */
 	public static int genMagicStats() {
-		return calculateExtraBuff(randomInteger(MIN_MAGIC_STATS, MAX_MAGIC_STATS));
+		return randomInteger(MIN_MAGIC_STATS, MAX_MAGIC_STATS);
 	}
 	
 	/**
@@ -303,7 +303,7 @@ public class Utility {
 	 * @return random sword stats
 	 */
 	public static int genSwordStats() {
-		return calculateExtraBuff(randomInteger(MIN_SWORD_STATS, MAX_SWORD_STATS));
+		return randomInteger(MIN_SWORD_STATS, MAX_SWORD_STATS);
 	}
 	
 	/**
@@ -311,7 +311,7 @@ public class Utility {
 	 * @return random money
 	 */
 	public static int genMoney() {
-		return calculateExtraBuff(randomInteger(MIN_MONEY_STATS, MAX_MONEY_STATS));
+		return randomInteger(MIN_MONEY_STATS, MAX_MONEY_STATS);
 	}
 
 	/**
