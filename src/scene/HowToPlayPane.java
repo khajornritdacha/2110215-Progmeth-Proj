@@ -1,5 +1,6 @@
 package scene;
 
+import application.Main;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -9,6 +10,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import scene.components.BackButton;
+import utility.GameState;
 
 public class HowToPlayPane extends BorderPane{
 	public HowToPlayPane() {
@@ -17,6 +19,9 @@ public class HowToPlayPane extends BorderPane{
 		this.setBackground(new Background(bg));
 		
 		Button backBtn = new BackButton();
+		backBtn.setOnAction((event) -> {
+			Main.changeState(GameState.WELCOME_SCENE);
+		});
 		this.setTop(backBtn);
 	}
 }
