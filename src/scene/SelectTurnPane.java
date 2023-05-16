@@ -2,7 +2,6 @@ package scene;
 
 import application.Main;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,9 +12,9 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import logic.GameLogic;
 import scene.components.BackButton;
 import scene.components.DecoratedButton;
 import scene.components.DecoratedText;
@@ -52,8 +51,10 @@ public class SelectTurnPane extends BorderPane{
 		
 		nextBtn = new DecoratedButton("Next", 320, 80, 40);
 		nextBtn.setDisable(true);
-		
-//		TODO: add nextBtn event handler
+		nextBtn.setOnAction((event) -> {
+			GameLogic.setNumberOfTurn(Integer.parseInt(numberOfTurn.getText()));
+			Main.changeState(GameState.INPUT_PLAYER_SCENE);
+		});
 		
 		container = new VBox();
 		container.setPrefSize(1024, 720);

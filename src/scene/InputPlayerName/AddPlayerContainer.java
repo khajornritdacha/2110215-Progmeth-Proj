@@ -31,7 +31,6 @@ public class AddPlayerContainer extends VBox{
 		addPlayerBtn = new DecoratedButton("Add Player", 320, 80, 40);
 		addPlayerBtn.setDisable(true);
 		addPlayerBtn.setOnAction((event) -> {
-			System.out.println(this.nameInput.getText());
 			InputPlayerNamePane.getPlayerNameContainer().addPlayer(this.nameInput.getText());
 			nameInput.setText("");
 		});

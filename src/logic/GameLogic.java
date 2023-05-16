@@ -21,9 +21,9 @@ import utility.Utility;
 
 public class GameLogic {
 	private static GameLogic instance = null;
+	private static int numberOfTurn;
 	private ArrayList<BasePlayer> playersList;
 	private int numberOfPlayer;
-	private int numberOfTurn;
 	private int currentTurn;
 	private int currentPlayer;
 	private Goblin goblin;
@@ -31,7 +31,11 @@ public class GameLogic {
 	private Wizzard wizzard;
 	private Dragon dragon;
 	
-	public GameLogic(ArrayList<String> playerNames, int numberTurn) {
+	static {
+		numberOfTurn = 0;
+	}
+	
+	public GameLogic(ArrayList<String> playerNames) {
 		ArrayList<BasePlayer> playersList = new ArrayList<BasePlayer>();
 		for (final String name : playerNames) {
 			playersList.add(Utility.genRandomRole(name));
@@ -42,21 +46,20 @@ public class GameLogic {
 		wizzard = new Wizzard("", 15, 31, 12);
 		dragon = new Dragon("", 60, 61, 27);
 		this.setPlayersList(playersList);
-		this.setNumberOfTurn(numberTurn);
 		this.setCurrentPlayer(0);
 		this.setCurrentTurn(1);
 	}
 	
 	public static GameLogic getInstance() {
 		if (instance == null) {
-			instance = new GameLogic(new ArrayList<String>(), 0);
+			instance = new GameLogic(new ArrayList<String>());
 		}
 		return instance;
 	}
 	
-	public static GameLogic getInstance(ArrayList<String> playerNames, int numberTurn) {
+	public static GameLogic getInstance(ArrayList<String> playerNames) {
 		if (instance == null) {
-			instance = new GameLogic(playerNames, numberTurn);
+			instance = new GameLogic(playerNames);
 		}
 		return instance;
 	}
@@ -198,7 +201,7 @@ public class GameLogic {
 			}
 		}
 
-		if (this.getCurrentTurn() > this.getNumberOfTurn()) {
+		if (this.getCurrentTurn() > getNumberOfTurn()) {
 			endGame();
 		}
 	}
@@ -211,12 +214,12 @@ public class GameLogic {
 		this.numberOfPlayer = numberOfPlayer;
 	}
 
-	public int getNumberOfTurn() {
+	public static int getNumberOfTurn() {
 		return numberOfTurn;
 	}
 
-	public void setNumberOfTurn(int numberOfTurn) {
-		this.numberOfTurn = numberOfTurn;
+	public static void setNumberOfTurn(int newNumberOfTurn) {
+		numberOfTurn = newNumberOfTurn;
 	}
 
 	public int getCurrentTurn() {

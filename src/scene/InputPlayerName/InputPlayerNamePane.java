@@ -1,5 +1,7 @@
 package scene.InputPlayerName;
 
+import java.util.ArrayList;
+
 import application.Main;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import logic.GameLogic;
 import scene.components.BackButton;
 import scene.components.DecoratedButton;
 import scene.components.DecoratedText;
@@ -49,7 +52,12 @@ public class InputPlayerNamePane extends BorderPane{
 		startGameBtn = new DecoratedButton("Start Game", 320, 80, 40);
 		startGameBtn.setDisable(true);
 		startGameBtn.setOnAction((event) -> {
-//			TODO: start game
+			ArrayList<String> playerNames = new ArrayList<>();
+			for (final SinglePlayerName player : playerNameContainer.getPlayerList()) {
+				playerNames.add(player.getName());
+			}
+			GameLogic.getInstance(playerNames);
+			Main.changeState(GameState.PLAYING_SCENE);
 		});
 		bottomContainer.getChildren().add(startGameBtn);
 		bottomContainer.setAlignment(Pos.TOP_CENTER);

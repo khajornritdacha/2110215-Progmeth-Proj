@@ -32,12 +32,13 @@ public class Main extends Application {
     
     public static void changeState(GameState gameState) {
     	if (gameState.equals(GameState.WELCOME_SCENE)) {
-//    		primaryStage.setScene(new Scene(new StartGameRootPane(), 1024, 720));
-    		primaryStage.setScene(new Scene(new InputPlayerNamePane(), 1024, 720));
+    		primaryStage.setScene(new Scene(new StartGameRootPane(), 1024, 720));
     	} else if (gameState.equals(GameState.SELECT_TURN_SCENE)) {
     		primaryStage.setScene(new Scene(new SelectTurnPane(), 1024, 720));    		
     	} else if (gameState.equals(GameState.HOW_TO_PLAY_SCENE)) {
     		primaryStage.setScene(new Scene(new HowToPlayPane(),1024, 720));
+    	} else if (gameState.equals(GameState.INPUT_PLAYER_SCENE)){
+    		primaryStage.setScene(new Scene(new InputPlayerNamePane(), 1024, 720));
     	} else if (gameState.equals(GameState.PLAYING_SCENE)){
     		primaryStage.setScene(new Scene(new PlayingGameRootPane(), 1024, 720));
     	}
