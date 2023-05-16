@@ -18,6 +18,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import scene.components.BackButton;
 import scene.components.DecoratedButton;
+import scene.components.DecoratedText;
+import utility.GameConfig;
 import utility.GameState;
 
 public class SelectTurnPane extends BorderPane{
@@ -26,9 +28,6 @@ public class SelectTurnPane extends BorderPane{
 	private static Text heading;
 	private static Button nextBtn;
 	private static Button backBtn;
-	
-	private static int MINIMUM_NUMBER_OF_TURN = 7;
-	private static int MAXIMUM_NUMBER_OF_TURN = 30;
 	
 	public SelectTurnPane() {
 		backBtn = new BackButton();
@@ -40,10 +39,7 @@ public class SelectTurnPane extends BorderPane{
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bg));
 
-		Font font = Font.loadFont(getClass().getResource("../assets/BreatheFire.ttf").toExternalForm(), 40);
-		heading = new Text("Enter Number of Turn (7-30 turns)");
-		heading.setFont(font);
-		heading.setFill(Color.WHITE);
+		heading = new DecoratedText("Enter Number of Turn (7-30 turns)", 40);
 		
 		numberOfTurn = new TextField();
 		numberOfTurn.setPrefWidth(80);
@@ -57,6 +53,8 @@ public class SelectTurnPane extends BorderPane{
 		nextBtn = new DecoratedButton("Next", 320, 80, 40);
 		nextBtn.setDisable(true);
 		
+//		TODO: add nextBtn event handler
+		
 		container = new VBox();
 		container.setPrefSize(1024, 720);
 		container.setAlignment(Pos.CENTER);
@@ -68,7 +66,7 @@ public class SelectTurnPane extends BorderPane{
 	public static boolean isValidNumberOfTurn(String textNumber) {
 		try {
 			int number = Integer.parseInt(textNumber.strip());
-			if (MINIMUM_NUMBER_OF_TURN <= number && number <= MAXIMUM_NUMBER_OF_TURN) {
+			if (GameConfig.MINIMUM_TURN <= number && number <= GameConfig.MAXIUMUM_TURN) {
 				return true;
 			}
 			return false;
