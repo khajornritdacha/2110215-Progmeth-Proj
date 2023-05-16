@@ -1,5 +1,6 @@
 package scene;
 
+import java.awt.TextField;
 import java.util.ArrayList;
 
 import action.FightBoss;
@@ -17,23 +18,30 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
 import player.BasePlayer;
 import scene.components.ActionFrame;
 import scene.components.Deck;
+import scene.components.DecoratedButton;
 import scene.components.FightingMonsterFrame;
 import scene.components.MonsterFrame;
 import scene.components.PlayerFrame;
 import scene.components.TeamFrame;
+import scene.components.TextStats;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
@@ -54,7 +62,10 @@ public class PlayingGameRootPane extends BorderPane {
 	 * Create new gameplay scene
 	 */
 	public PlayingGameRootPane() {
-		this.setBackground(new Background(new BackgroundFill(Color.MIDNIGHTBLUE, null, null)));
+		Image img = new Image(getClass().getResource("../../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
+		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+		
+		this.setBackground(new Background(bg));
 		tempPlayers = new ArrayList<BasePlayer>();
 		setIsFightBoss(false);
 		setIsWaiting(false);
@@ -64,19 +75,16 @@ public class PlayingGameRootPane extends BorderPane {
 		container = new VBox();
 		playerContainer = new GridPane();
 		
-		currentTurn = new Text("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getNumberOfTurn());
-		currentTurn.setFont(new Font(50));
+		currentTurn = new TextStats("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getInstance().getNumberOfTurn(), 50);
 		currentTurn.setFill(Color.WHITE);
 		currentTurn.setTextAlignment(TextAlignment.CENTER);
 		
-		explanation = new Text("Welcome to the game!!! ^_^");
-		explanation.setFont(new Font(25));
+		explanation = new Text("Welcome to the game!");
+		explanation.setFont(Font.font(null, FontWeight.EXTRA_BOLD, 25));
 		explanation.setFill(Color.WHITE);
 		explanation.setTextAlignment(TextAlignment.CENTER);
 		
-		getActionBtn = new Button("Random action");
-		getActionBtn.setFont(new Font(18));
-		getActionBtn.setAlignment(Pos.CENTER);
+		getActionBtn = new DecoratedButton("Random action", 256, 48, 18);
 		getActionBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (getActionBtn.getText().equals("Play again")) {

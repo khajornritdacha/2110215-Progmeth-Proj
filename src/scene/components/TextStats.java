@@ -23,6 +23,6 @@ public class TextStats extends Text{
 	 */
 	public TextStats(String text, int fontSize) {
 		this.setText(text);
-		this.setFont(new Font(fontSize));
+		this.setFont(Font.loadFont(getClass().getResource("../../assets/BreatheFire.ttf").toExternalForm(), fontSize));
 	}
 }
