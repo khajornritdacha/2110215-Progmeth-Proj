@@ -2,6 +2,7 @@ package monster;
 
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
+import utility.Utility;
 
 /**
  * Base class of monster
@@ -47,6 +48,17 @@ public abstract class BaseMonster {
 	 * Respawn monster
 	 */
 	public abstract void respawn();
+	
+	public void evolveByTurn() {
+		try {
+			this.setSwordStats(2 + Utility.calculateExtraBuff(this.getSwordStats()) * 4 / 5);
+			this.setMagicStats(2 + Utility.calculateExtraBuff(this.getMagicStats()) * 4 / 5);
+			this.setDropMoney(2 + Utility.calculateExtraBuff(this.getDropMoney()) * 4 / 5);
+		}
+		catch(InvalidValueException e) {
+			System.out.println(e);
+		}
+	}
 
 	/**
 	 * Get drop money

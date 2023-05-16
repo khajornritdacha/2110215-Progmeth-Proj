@@ -13,11 +13,16 @@ import action.ScrubFloor;
 import action.WinLottery;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -49,31 +54,28 @@ public class PlayingGameRootPane extends BorderPane {
 	 * Create new gameplay scene
 	 */
 	public PlayingGameRootPane() {
+		this.setBackground(new Background(new BackgroundFill(Color.MIDNIGHTBLUE, null, null)));
 		tempPlayers = new ArrayList<BasePlayer>();
 		setIsFightBoss(false);
 		setIsWaiting(false);
 		setIsShown(false);
+		tempPlayers.add(GameLogic.getInstance().getCurrentPlayer());
 		
 		container = new VBox();
 		playerContainer = new GridPane();
 		
 		currentTurn = new Text("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getNumberOfTurn());
 		currentTurn.setFont(new Font(50));
+		currentTurn.setFill(Color.WHITE);
 		currentTurn.setTextAlignment(TextAlignment.CENTER);
 		
 		explanation = new Text("Welcome to the game!!! ^_^");
 		explanation.setFont(new Font(25));
+		explanation.setFill(Color.WHITE);
 		explanation.setTextAlignment(TextAlignment.CENTER);
 		
-		Button endGameBtn = new Button("Exit game");
-		endGameBtn.setAlignment(Pos.TOP_RIGHT);
-		endGameBtn.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				GameLogic.getInstance().terminateGame();
-			}
-		});
-		
 		getActionBtn = new Button("Random action");
+		getActionBtn.setFont(new Font(18));
 		getActionBtn.setAlignment(Pos.CENTER);
 		getActionBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -108,6 +110,14 @@ public class PlayingGameRootPane extends BorderPane {
 					getActionBtn.setText("Random action");
 					GameLogic.getInstance().goToNextPlayer();
 				}
+			}
+		});
+		
+		Button endGameBtn = new Button("Exit game");
+		endGameBtn.setAlignment(Pos.TOP_RIGHT);
+		endGameBtn.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				GameLogic.getInstance().terminateGame();
 			}
 		});
 		
@@ -187,13 +197,17 @@ public class PlayingGameRootPane extends BorderPane {
 		selectableActions = new Deck();
 		showableActions = new Deck();
 		
-		Deck showFrame = new Deck();
-		showFrame.getChildren().addAll(getActionBtn, showRandomActionsBtn, showChooseActionsBtn, showMonstersBtn);
+		Deck menu = new Deck();
+		menu.getChildren().addAll(showRandomActionsBtn, showChooseActionsBtn, showMonstersBtn, endGameBtn);
 		
-		container.getChildren().addAll(endGameBtn, currentTurn, explanation, showFrame, selectableActions);
+		container.getChildren().addAll(menu, currentTurn, explanation, getActionBtn, selectableActions);
+		for (Node node : container.getChildren()) {
+			container.setMargin(node, new Insets(0, 20, 10, 20));
+		}
 		updatePlayer();
 		this.setCenter(container);
 		this.setBottom(playerContainer);
+		setMargin(playerContainer, new Insets(20, 20, 20, 20));
 	}
 	
 	/**
@@ -245,6 +259,9 @@ public class PlayingGameRootPane extends BorderPane {
 	 * Show fight boss action
 	 */
 	public static void showFightBoss() {
+		if (!isFightingBoss()) {
+			return;
+		}
 		getActionBtn.setDisable(true);
 		selectableActions.getChildren().clear();
 		selectableActions.getChildren().add(new TeamFrame(getTempPlayers()));

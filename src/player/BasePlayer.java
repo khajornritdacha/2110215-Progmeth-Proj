@@ -82,6 +82,18 @@ public abstract class BasePlayer {
 		return String.format("%s has earned money for %d bahts (%d->%d)", this.getName(), money, before, before + money);
 	}
 	
+	// TODO: add comments
+	public String lostHalfMoney(int money) throws InvalidValueException {
+		if (this instanceof Rich) {
+			money *= Rich.moneyMultiplier;
+		}
+		money = Utility.calculateExtraBuff(money) / 2;
+		
+		int before = this.getMoney();
+		this.setMoney(before + money);
+		return String.format("%s has lost money for %d bahts (%d->%d)", this.getName(), money, before, before + money);
+	}
+	
 	/**
 	 * Calculate win rate depending on each class
 	 * @param winRateSword win rate by comparing sword stats

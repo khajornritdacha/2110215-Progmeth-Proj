@@ -232,6 +232,7 @@ public class GameLogic {
 		String action = Utility.fightBoss(players, summonDragon());
 		System.out.println(action);
 		PlayingGameRootPane.clearTempPlayers();
+		PlayingGameRootPane.addTempPlayer(getCurrentPlayer());
 		PlayingGameRootPane.setIsFightBoss(false);
 		PlayingGameRootPane.setIsWaiting(false);
 		PlayingGameRootPane.setExplanation(action);
@@ -261,6 +262,7 @@ public class GameLogic {
 			return;
 		}
 		
+		PlayingGameRootPane.removeTempPlayer(getCurrentPlayer());
 		while (true) {
 			this.setCurrentPlayer(currentPlayer + 1);
 			if (this.getCurrentPlayer().isAlive()) {
@@ -273,6 +275,7 @@ public class GameLogic {
 		if (this.getCurrentTurn() > getNumberOfTurn()) {
 			endGame();
 		}
+		PlayingGameRootPane.addTempPlayer(getCurrentPlayer());
 	}
 
 	/**
@@ -346,11 +349,12 @@ public class GameLogic {
 	 */
 	public void setCurrentPlayer(int currentPlayer) {
 		if (currentPlayer >= this.getPlayersList().size()) {
-//			TODO: remove assertion
-			assert (currentPlayer <= this.getPlayersList().size());
-			
 			this.setCurrentTurn(this.getCurrentTurn() + 1);
 			PlayingGameRootPane.updateCurrentTurn();
+			goblin.evolveByTurn();
+			skeleton.evolveByTurn();
+			wizzard.evolveByTurn();
+			dragon.evolveByTurn();
 			currentPlayer = 0;
 		}
 		this.currentPlayer = currentPlayer;

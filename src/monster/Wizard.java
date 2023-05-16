@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
  */
 public class Wizard extends BaseMonster implements Evolutionary {
 	// TODO: change magic multiplier to make game balance (in percent)
-	private final int MULTIPLIER = 38;
 	private static int level = 1;
 	
 	/**
@@ -24,8 +23,9 @@ public class Wizard extends BaseMonster implements Evolutionary {
 	
 	public void evolve(int swordStats, int magicStats) {
 		try {
-			this.setMagicStats(this.getMagicStats() + magicStats * MULTIPLIER / 100);
-			this.setDropMoney(this.getDropMoney() + magicStats * MULTIPLIER / 100);
+			this.setSwordStats(this.getSwordStats() + swordStats / 7);
+			this.setMagicStats(this.getMagicStats() + magicStats / 5);
+			this.setDropMoney(this.getDropMoney() + (swordStats + magicStats) / 14);
 		}
 		catch (InvalidValueException e) {
 			System.out.println("Wizzard evolved failed by " + e);
@@ -34,9 +34,9 @@ public class Wizard extends BaseMonster implements Evolutionary {
 	
 	public void respawn() {
 		try {
-			this.setSwordStats(this.getSwordStats() + 16 * level / 7);
-			this.setMagicStats(this.getMagicStats() + MULTIPLIER * level / 7);
-			this.setDropMoney(this.getDropMoney() + MULTIPLIER * level / 7);
+			this.setSwordStats(this.getSwordStats() + 8 + 80 * level / 100);
+			this.setMagicStats(this.getMagicStats() + 16 + 160 * level / 100);
+			this.setDropMoney(this.getDropMoney() + 11 + 110 * level / 100);
 			level++;
 		}
 		catch (InvalidValueException e) {

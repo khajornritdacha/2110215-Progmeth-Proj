@@ -3,16 +3,15 @@ package scene.components;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
 import monster.BaseMonster;
 import monster.Dragon;
-import scene.PlayingGameRootPane;
+import player.Rich;
+import scene.playingGame.PlayingGameRootPane;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
@@ -59,12 +58,18 @@ public class MonsterFrame extends Frame {
 		});
 		selectBtn.setDisable(PlayingGameRootPane.isShown() && !PlayingGameRootPane.isFightingBoss());
 		
+		int dropMoney = monster.getDropMoney();
+		if (GameLogic.getInstance().getCurrentPlayer() instanceof Rich) {
+			dropMoney *= Rich.moneyMultiplier;
+		}
+		dropMoney = Utility.calculateExtraBuff(dropMoney);
+		
 		TextStats swordText = new TextStats("Sword stats:");
 		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()));
 		TextStats magicText = new TextStats("Magic stats:");
 		TextStats magicStats = new TextStats(Integer.toString(monster.getMagicStats()));
-		TextStats moneyText = new TextStats("Drop money:");
-		TextStats money = new TextStats(Integer.toString(monster.getDropMoney()));
+		TextStats moneyText = new TextStats("Drop money (or lost):");
+		TextStats money = new TextStats(Integer.toString(dropMoney));
 		
 		GridPane statsContainer = new GridPane();
 		statsContainer.add(swordText, 0, 0);

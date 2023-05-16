@@ -27,9 +27,9 @@ import player.TheRich;
  */
 public class Utility {
 	// TODO: change these numbers to make game balance
-	private static final int MIN_SWORD_STATS = 5, MAX_SWORD_STATS = 7;
-	private static final int MIN_MAGIC_STATS = 5, MAX_MAGIC_STATS = 7;
-	private static final int MIN_MONEY_STATS = 5, MAX_MONEY_STATS = 7;
+	private static final int MIN_SWORD_STATS = 8, MAX_SWORD_STATS = 14;
+	private static final int MIN_MAGIC_STATS = 8, MAX_MAGIC_STATS = 14;
+	private static final int MIN_MONEY_STATS = 12, MAX_MONEY_STATS = 20;
 	
 	/**
 	 * Random number in range [min, max] (both inclusive)
@@ -62,6 +62,11 @@ public class Utility {
 		double x = Math.pow(100.0, 2.0 / monsterStats);
 		double value = Math.min(playerStats - monsterStats / 2.0, monsterStats / 2.0);
 		return Math.pow(x, value);
+	}
+	
+	// TODO: add comments
+	public static double calculateProbDragon() {
+		return Math.max(8, calculateExtraBuff(20) - 20);
 	}
 	
 	/**
@@ -163,8 +168,8 @@ public class Utility {
 	public static BaseAction genRandomAction(BasePlayer p1) {
 		int rand = randomInteger(1, 100);
 		BaseAction randAction = new WinLottery(p1);
-		int probDragon = calculateExtraBuff(40) - 40;
-		int range = (100 - 2 * probDragon) / 4;
+		double probDragon = calculateProbDragon();
+		double range = (100 - 2 * probDragon) / 4;
 		try {
 			if (rand < 1 || rand > 100) {
 				throw new InvalidValueException(String.format("Invalid random Action number: %d", rand));
@@ -173,16 +178,16 @@ public class Utility {
 				randAction = new FindMageMaster(p1);
 			}
 			else if (rand <= range * 2) {
-				randAction = new IsRobbed(p1);
+				randAction = new WinLottery(p1);
 			}
 			else if (rand <= range * 3) {
-				randAction = new WinLottery(p1);
+				randAction = new FindSwordMaster(p1);
 			}
 			else if (rand <= range * 4) {
 				randAction = new FightMonster(p1, genRandomMonster(), true);
 			}
 			else if (rand <= range * 4 + probDragon) {
-				randAction = new FindSwordMaster(p1);
+				randAction = new IsRobbed(p1);
 			}
 			else {
 				randAction = new FightBoss(p1, GameLogic.getInstance().summonDragon());
@@ -210,28 +215,40 @@ public class Utility {
 			
 			System.out.println(String.format("%s(%d, %d) vs %s(%d, %d) with win rate %.2f%%", p1.getName(), p1.getSwordStats(), p1.getMagicStats(), m1.getName(), m1.getSwordStats(), m1.getMagicStats(), winRate));
 			
+			String action = p1.getName();
 			int dropMoney = m1.getDropMoney();
-			if (p1 instanceof Rich) {
-				dropMoney *= Rich.moneyMultiplier;
-			}
+			
+			boolean isHalf = false;
 			if (p1.getSwordStats() - m1.getSwordStats() / 2 < 0 && p1.getMagicStats() - m1.getMagicStats() / 2 < 0) {
 				if (m1 instanceof Evolutionary) {
 					((Evolutionary)m1).evolve(evolveSwordStats, evolveMagicStats);
 				}
-				p1.earnMoney(-m1.getDropMoney());
-				return p1.getName() + " has been completely defeated by " + m1.getName() + " (lost " + dropMoney + " bahts) ";
+				dropMoney *= -1;
+				p1.earnMoney(dropMoney);
+				action += " has been completely defeated by " + m1.getName() + " (lost ";
 			}
 			else if (!isWon) {
 				if (m1 instanceof Evolutionary) {
 					((Evolutionary)m1).evolve(evolveSwordStats / 2, evolveMagicStats / 2);
 				}
-				p1.earnMoney(-m1.getDropMoney() / 2);
-				return p1.getName() + " has been defeated by " + m1.getName() + " (lost " + dropMoney / 2 + " bahts) ";
+				isHalf = true;
+				p1.lostHalfMoney(dropMoney);
+				action += " has been defeated by " + m1.getName() + " (lost ";
+			}
+			else {
+				m1.respawn();
+				p1.earnMoney(dropMoney);			
+				action += " has defeated " + m1.getName() + " (recieved ";
 			}
 			
-			m1.respawn();
-			p1.earnMoney(m1.getDropMoney());
-			return p1.getName() + " has defeated " + m1.getName() + " (recieved " + dropMoney + " bahts) ";			
+			if (p1 instanceof Rich) {
+				dropMoney *= Rich.moneyMultiplier;
+			}
+			dropMoney = calculateExtraBuff(dropMoney);
+			if (isHalf) {
+				dropMoney /= 2;
+			}
+			return action + Math.abs(dropMoney) + " bahts)";
 		}
 		catch (InvalidValueException err) {
 			System.out.println(err);
@@ -260,22 +277,23 @@ public class Utility {
 			int evolveSwordStats = Math.max(0, boss.getSwordStats() - playerSwordStats);
 			int evolveMagicStats = Math.max(0, boss.getMagicStats() - playerMagicStats);
 			double winRate = calculateWinRateBoss(players, boss); 
-			boolean isWon = (randomInteger(1, 100) <= winRate / 2);
+			boolean isWon = (randomInteger(1, 100) <= winRate);
 			
 			System.out.println(String.format("(%d, %d) vs %s(%d, %d) with win rate %.2f", playerSwordStats, playerMagicStats, boss.getName(), boss.getSwordStats(), boss.getMagicStats(), winRate));
 			
 			String action = "";
 			int dropMoney = boss.getDropMoney() / n;
+			int dropMoneyForShow = calculateExtraBuff(dropMoney);
 			if (!isWon) {	
 				boss.evolve(evolveSwordStats, evolveMagicStats);
 				action = String.join(", ", playersName) + "\n"
-						+ "have been defeated by " + boss.getName() + " (lost (not include TheRich Buff) " + dropMoney + " bahts/player) ";
+						+ "have been defeated by " + boss.getName() + " (lost (not include TheRich Buff) " + dropMoneyForShow + " bahts/player) ";
 				dropMoney *= -1;
 			}
 			else {
 				boss.respawn();
 				action = String.join(", ", playersName) + "\n"
-						+ "have defeated " + boss.getName() + " (recieved (not include TheRich Buff) " + dropMoney + " bahts/player) ";
+						+ "have defeated " + boss.getName() + " (recieved (not include TheRich Buff) " + dropMoneyForShow + " bahts/player) ";
 			}
 			
 			for (BasePlayer player : players) {

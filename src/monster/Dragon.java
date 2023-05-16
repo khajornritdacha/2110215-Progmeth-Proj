@@ -6,11 +6,7 @@ import javafx.scene.paint.Color;
 /**
  * Dragon, a boss in this game
  */
-public class Dragon extends BaseMonster implements Evolutionary {
-	// TODO: change sword multiplier to make game balance (in percent)
-	private final int SWORD_MULTIPLIER = 81;
-	private final int MAGIC_MULTIPLIER = 82;
-	
+public class Dragon extends BaseMonster implements Evolutionary {		
 	/**
 	 * Level of this boss
 	 */
@@ -29,9 +25,9 @@ public class Dragon extends BaseMonster implements Evolutionary {
 	
 	public void evolve(int swordStats, int magicStats) {
 		try {
-			this.setSwordStats(this.getSwordStats() + swordStats * SWORD_MULTIPLIER / 100);
-			this.setMagicStats(this.getMagicStats() + magicStats * MAGIC_MULTIPLIER / 100);
-			this.setDropMoney(this.getDropMoney() + (swordStats + magicStats) * (SWORD_MULTIPLIER + MAGIC_MULTIPLIER) / 400);
+			this.setSwordStats(this.getSwordStats() + swordStats / 4);
+			this.setMagicStats(this.getMagicStats() + magicStats / 4);
+			this.setDropMoney(this.getDropMoney() + (swordStats + magicStats) / 8);
 		}
 		catch (InvalidValueException e) {
 			System.out.println("Dragon evolved failed by " + e);
@@ -40,9 +36,9 @@ public class Dragon extends BaseMonster implements Evolutionary {
 	
 	public void respawn() {
 		try {
-			this.setSwordStats(this.getSwordStats() + SWORD_MULTIPLIER * level / 7);
-			this.setMagicStats(this.getMagicStats() + MAGIC_MULTIPLIER * level / 7);
-			this.setDropMoney(this.getDropMoney() + (SWORD_MULTIPLIER + MAGIC_MULTIPLIER) * level / 14);
+			this.setSwordStats(this.getSwordStats() + 40 + 400 * level / 100);
+			this.setMagicStats(this.getMagicStats() + 41 + 410 * level / 100);
+			this.setDropMoney(this.getDropMoney() + 25 + 250 * level / 100);
 			level++;
 		}
 		catch (InvalidValueException e) {

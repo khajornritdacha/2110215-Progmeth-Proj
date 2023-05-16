@@ -22,9 +22,9 @@ public class Goblin extends BaseMonster {
 	
 	public void respawn() {
 		try {
-			this.setSwordStats(this.getSwordStats() + 10 * level / 7);
-			this.setMagicStats(this.getMagicStats() + 10 * level / 7);
-			this.setDropMoney(this.getDropMoney() + 10 * level / 7);
+			this.setSwordStats(this.getSwordStats() + 4 + 40 * level / 100);
+			this.setMagicStats(this.getMagicStats() + 4 + 40 * level / 100);
+			this.setDropMoney(this.getDropMoney() + 3 + 30 * level / 100);
 			level++;
 		}
 		catch (InvalidValueException e) {

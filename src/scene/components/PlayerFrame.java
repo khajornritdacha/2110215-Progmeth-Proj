@@ -86,7 +86,6 @@ public class PlayerFrame extends VBox {
 		this.getChildren().addAll(title, pic, statsContainer);
 		if (PlayingGameRootPane.isFightingBoss() && p1.isAlive()) {
 			if (GameLogic.getInstance().getCurrentPlayer() == p1 && sendHelpBtn.getText().equals("Send help")) {
-				PlayingGameRootPane.addTempPlayer(p1);
 				sendHelpBtn.setDisable(true);
 				sendHelpBtn.setText("Sent");
 			}

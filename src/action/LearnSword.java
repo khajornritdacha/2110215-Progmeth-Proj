@@ -3,7 +3,6 @@ package action;
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
-import player.GoodAtMagic;
 import player.GoodAtSword;
 import utility.Utility;
 
@@ -44,7 +43,7 @@ public class LearnSword extends BaseAction {
 	public String getDescription() {
 		int minStats = Utility.getMinSwordStats();
 		int maxStats = Utility.getMaxSwordStats();
-		if (this.getP1() instanceof GoodAtMagic) {
+		if (this.getP1() instanceof GoodAtSword) {
 			minStats *= GoodAtSword.swordMultiplier;
 			maxStats *= GoodAtSword.swordMultiplier;
 		}
