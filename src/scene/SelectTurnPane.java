@@ -1,6 +1,8 @@
 package scene;
 
+import application.Main;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,18 +16,26 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import scene.components.BackButton;
 import scene.components.DecoratedButton;
+import utility.GameState;
 
 public class SelectTurnPane extends BorderPane{
 	private static TextField numberOfTurn;
 	private static VBox container;
 	private static Text heading;
 	private static Button nextBtn;
+	private static Button backBtn;
 	
 	private static int MINIMUM_NUMBER_OF_TURN = 7;
 	private static int MAXIMUM_NUMBER_OF_TURN = 30;
 	
 	public SelectTurnPane() {
+		backBtn = new BackButton();
+		backBtn.setOnAction((event) -> {
+			Main.changeState(GameState.WELCOME_SCENE);
+		});
+		this.setTop(backBtn);
 		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bg));
@@ -36,7 +46,10 @@ public class SelectTurnPane extends BorderPane{
 		heading.setFill(Color.WHITE);
 		
 		numberOfTurn = new TextField();
-		numberOfTurn.setMaxWidth(200);
+		numberOfTurn.setPrefWidth(80);
+		numberOfTurn.setMaxWidth(80);
+		numberOfTurn.setPrefHeight(60);
+		numberOfTurn.setFont(new Font(25));
 		numberOfTurn.textProperty().addListener((observable, oldValue, newValue) -> {
 			updateNextBtn();
 		});					
