@@ -6,6 +6,7 @@ import customException.InvalidValueException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import scene.HowToPlayPane;
 import scene.SelectTurnPane;
 import scene.playingGame.PlayingGameRootPane;
 //import scene.chooseRole.ChooseRolePane;
@@ -33,8 +34,9 @@ public class Main extends Application {
     		primaryStage.setScene(new Scene(new StartGameRootPane(), 1024, 720));
     	} else if (gameState.equals(GameState.SELECT_TURN_SCENE)) {
     		primaryStage.setScene(new Scene(new SelectTurnPane(), 1024, 720));    		
-    	}
-    	else if (gameState.equals(GameState.PLAYING_SCENE)){
+    	} else if (gameState.equals(GameState.HOW_TO_PLAY_SCENE)) {
+    		primaryStage.setScene(new Scene(new HowToPlayPane(),1024, 720));
+    	} else if (gameState.equals(GameState.PLAYING_SCENE)){
     		primaryStage.setScene(new Scene(new PlayingGameRootPane(), 1024, 720));
     	}
     }

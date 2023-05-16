@@ -1,5 +1,6 @@
 package scene.components;
 
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -20,7 +21,7 @@ public class DecoratedButton extends Button{
 		this.setFont(buttonFont);
 		
 		this.setTextFill(Color.WHITE);
-		
+		this.setCursor(Cursor.HAND);
 		
 		Image buttonBgImg = new Image(getClass().getResource("../../assets/buttonPlain.png").toExternalForm(), width, height, false, true);
 		BackgroundImage buttonBg = new BackgroundImage(buttonBgImg, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
