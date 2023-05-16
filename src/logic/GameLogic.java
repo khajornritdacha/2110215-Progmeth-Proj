@@ -16,6 +16,7 @@ import player.*;
 import scene.components.ActionFrame;
 import scene.components.MonsterFrame;
 import scene.playingGame.PlayingGameRootPane;
+import utility.GameState;
 import utility.Utility;
 
 public class GameLogic {
@@ -65,7 +66,7 @@ public class GameLogic {
 	}
 
 	public void startGame() {
-		Main.changeState(false);
+		Main.changeState(GameState.PLAYING_SCENE);
 	}
 	
 	private void endGame() {
@@ -106,7 +107,7 @@ public class GameLogic {
 	
 	public void terminateGame() {
 		GameLogic.clearInstance();
-		Main.changeState(true);
+		Main.changeState(GameState.WELCOME_SCENE);
 	}
 	
 	public void handleRandomAction() {
