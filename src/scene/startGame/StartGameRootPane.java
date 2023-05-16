@@ -22,12 +22,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
+import scene.components.DecoratedButton;
 
 // TODO: adjust the GUI to make it be more beautiful
 public class StartGameRootPane extends BorderPane{
 	private static DisplayPlayerPane displayPlayerPane;
 	private static InputPlayerFrame inputPlayerFrame;
 	private static Button startGameBtn;
+	private static Button howToPlayBtn;
 	private static TextField numberOfTurn;
 	
 	public StartGameRootPane() {
@@ -41,7 +43,8 @@ public class StartGameRootPane extends BorderPane{
 		container.setBackground(new Background(bg));
 		
 		Text numberPlayerText = new Text("Enter number of player (2-4 players) : ");
-		numberPlayerText.setFont(new Font(20));
+		Font font = Font.loadFont(getClass().getResource("../../assets/BreatheFire.ttf").toExternalForm(), 20);
+		numberPlayerText.setFont(font);
 		numberPlayerText.setFill(Color.WHITE);
 		numberPlayerText.setTextAlignment(TextAlignment.CENTER);
 		
@@ -55,7 +58,7 @@ public class StartGameRootPane extends BorderPane{
 			updateStartGameBtn();
 		});		
 
-		startGameBtn = new Button("");
+		startGameBtn = new DecoratedButton("Start Game", 320, 80, 40);
 		startGameBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				ArrayList<String> playerNames = new ArrayList<String>();
@@ -69,18 +72,20 @@ public class StartGameRootPane extends BorderPane{
 			}
 		});
 		startGameBtn.setDisable(true);
-		startGameBtn.setMinWidth(382);
-		startGameBtn.setMinHeight(195);
-		Image img2 = new Image(getClass().getResource("../../assets/startGameBtn.png").toExternalForm(), 382, 195, false, true);
-		BackgroundImage bg2 = new BackgroundImage(img2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-		startGameBtn.setBackground(new Background(bg2));
+		
+		howToPlayBtn = new DecoratedButton("How To Play", 320, 80, 40);
+		
+		HBox buttonContainer = new HBox();
+		buttonContainer.getChildren().addAll(startGameBtn, howToPlayBtn);
+		buttonContainer.setSpacing(80);
+		buttonContainer.setAlignment(Pos.CENTER);
 		
 		HBox inputTurnField = new HBox();
 		inputTurnField.getChildren().addAll(inputTurn, numberOfTurn);
 		inputTurnField.setAlignment(Pos.CENTER);
 		inputTurnField.setPadding(new Insets(20, 20, 20, 20));
 		
-		container.getChildren().addAll(numberPlayerText, displayPlayerPane, inputPlayerFrame, inputTurnField, startGameBtn);
+		container.getChildren().addAll(numberPlayerText, displayPlayerPane, inputPlayerFrame, inputTurnField, buttonContainer);
 		container.setAlignment(Pos.CENTER);
 		container.setPadding(new Insets(100, 0, 0, 0));
 		this.setCenter(container);
