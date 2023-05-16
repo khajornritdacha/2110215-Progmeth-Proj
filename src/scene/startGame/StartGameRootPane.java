@@ -42,7 +42,7 @@ public class StartGameRootPane extends BorderPane{
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		container.setBackground(new Background(bg));
 
-		startGameBtn = new DecoratedButton("Start Game", 320, 80, 40);
+    startGameBtn = new DecoratedButton("Start Game", 320, 80, 40);
 		startGameBtn.setOnAction((event) -> {
 			Main.changeState(GameState.SELECT_TURN_SCENE);
 		});
@@ -56,7 +56,7 @@ public class StartGameRootPane extends BorderPane{
 		buttonContainer.getChildren().addAll(startGameBtn, howToPlayBtn);
 		buttonContainer.setSpacing(80);
 		buttonContainer.setAlignment(Pos.CENTER);
-		
+    
 		container.getChildren().addAll(buttonContainer);
 		container.setAlignment(Pos.CENTER);
 		container.setPadding(new Insets(100, 0, 0, 0));
