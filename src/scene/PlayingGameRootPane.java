@@ -42,6 +42,7 @@ import scene.components.MonsterFrame;
 import scene.components.PlayerFrame;
 import scene.components.TeamFrame;
 import scene.components.TextStats;
+import utility.GameConfig;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful

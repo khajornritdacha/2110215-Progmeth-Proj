@@ -24,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
 import scene.components.DecoratedButton;
+import utility.GameConfig;
 import utility.GameState;
 
 // TODO: adjust the GUI to make it be more beautiful
@@ -38,20 +39,20 @@ public class StartGameRootPane extends BorderPane{
 	public StartGameRootPane() {
 		VBox container = new VBox();
 
-		Image img = new Image(getClass().getResource("../../assets/startGameBg.png").toExternalForm(), 1024, 720, false, true);
+		Image img = new Image(getClass().getResource("../../assets/startGameBg.png").toExternalForm(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		container.setBackground(new Background(bg));
 
 		startGameBtn = new DecoratedButton("Start Game", 320, 80, 40);
 		startGameBtn.setOnAction((event) -> {
-//			Main.changeState(GameState.SELECT_TURN_SCENE);
-			final int NUMBER_TURN = 10; 
-			ArrayList<String> playerNames = new ArrayList<String>();
-			playerNames.add("JomnoiZ");
-			playerNames.add("JO");
-			playerNames.add("Puun");
-			playerNames.add("Bow");
-			GameLogic.getInstance(playerNames, NUMBER_TURN).startGame();
+			Main.changeState(GameState.SELECT_TURN_SCENE);
+//			final int NUMBER_TURN = 10; 
+//			ArrayList<String> playerNames = new ArrayList<String>();
+//			playerNames.add("JomnoiZ");
+//			playerNames.add("JO");
+//			playerNames.add("Puun");
+//			playerNames.add("Bow");
+//			GameLogic.getInstance(playerNames).startGame();
 		});
 		
 		howToPlayBtn = new DecoratedButton("How To Play", 320, 80, 40);

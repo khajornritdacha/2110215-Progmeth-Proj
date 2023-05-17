@@ -33,7 +33,7 @@ public class InputPlayerNamePane extends BorderPane{
 	 * Create new scene for input players names
 	 */
 	public InputPlayerNamePane() {		
-		Image img = new Image(getClass().getResource("../../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
+		Image img = new Image(getClass().getResource("../../assets/bgPlain.png").toExternalForm(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bg));
 		

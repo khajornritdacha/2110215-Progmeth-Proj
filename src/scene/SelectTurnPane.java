@@ -40,7 +40,7 @@ public class SelectTurnPane extends BorderPane{
 			Main.changeState(GameState.WELCOME_SCENE);
 		});
 		this.setTop(backBtn);
-		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
+		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bg));
 
@@ -63,7 +63,7 @@ public class SelectTurnPane extends BorderPane{
 		});
 		
 		container = new VBox();
-		container.setPrefSize(1024, 720);
+		container.setPrefSize(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
 		container.setAlignment(Pos.CENTER);
 		container.setSpacing(30);
 		container.getChildren().addAll(heading, numberOfTurn, nextBtn);
@@ -78,7 +78,7 @@ public class SelectTurnPane extends BorderPane{
 	public static boolean isValidNumberOfTurn(String textNumber) {
 		try {
 			int number = Integer.parseInt(textNumber.strip());
-			if (GameConfig.MINIMUM_TURN <= number && number <= GameConfig.MAXIUMUM_TURN) {
+			if (GameConfig.MINIMUM_TURN <= number && number <= GameConfig.MAXIMUM_TURN) {
 				return true;
 			}
 			return false;
