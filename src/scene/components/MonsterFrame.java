@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
 import monster.BaseMonster;
@@ -33,10 +36,13 @@ public class MonsterFrame extends Frame {
 		else {
 			winRate = Utility.calculateWinRate(GameLogic.getInstance().getCurrentPlayer(), monster);
 		}
-		TextStats title = new TextStats(String.format("%s #%d\n(win rate : %.2f%%)", monster.getName(), monster.getLevel(), winRate));
+		
+		Text title = new TextStats(String.format("%s #%d", monster.getName(), monster.getLevel()), 20);
 		title.setTextAlignment(TextAlignment.CENTER);
 		
-		Circle pic = new Circle();
+		Circle pic = new Circle(48);
+		pic.setFill(new ImagePattern(monster.getPicture()));
+		pic.setEffect(new DropShadow());
 		
 		Button selectBtn = new Button("Fight with");
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -68,8 +74,10 @@ public class MonsterFrame extends Frame {
 		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()));
 		TextStats magicText = new TextStats("Magic stats:");
 		TextStats magicStats = new TextStats(Integer.toString(monster.getMagicStats()));
-		TextStats moneyText = new TextStats("Drop money (or lost):");
+		TextStats moneyText = new TextStats("Drop money:");
 		TextStats money = new TextStats(Integer.toString(dropMoney));
+		TextStats winRateText = new TextStats("Win rate:");
+		TextStats winRateStats = new TextStats(String.format("%.2f%%", winRate));
 		
 		GridPane statsContainer = new GridPane();
 		statsContainer.add(swordText, 0, 0);
@@ -78,6 +86,8 @@ public class MonsterFrame extends Frame {
 		statsContainer.add(magicStats, 1, 1);
 		statsContainer.add(moneyText, 0, 2);
 		statsContainer.add(money, 1, 2);
+		statsContainer.add(winRateText, 0, 3);
+		statsContainer.add(winRateStats, 1, 3);
 		
 		statsContainer.setHgap(10);
 		
@@ -85,7 +95,8 @@ public class MonsterFrame extends Frame {
 		statsContainer.setHalignment(moneyText, HPos.RIGHT);
 		statsContainer.setHalignment(swordText, HPos.RIGHT);
 		statsContainer.setHalignment(magicText, HPos.RIGHT);
+		statsContainer.setHalignment(winRateText, HPos.RIGHT);
 		
-		this.getChildren().addAll(title, pic, statsContainer, selectBtn);
+		this.getChildren().addAll(pic, title, statsContainer, selectBtn);
 	}
 }

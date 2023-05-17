@@ -1,6 +1,7 @@
 package action;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
 
@@ -51,4 +52,7 @@ public abstract class BaseAction {
 	public void setP1(BasePlayer p1) {
 		this.p1 = p1;
 	}
+	
+	// TODO: add comments
+	abstract Image getPicture();
 }

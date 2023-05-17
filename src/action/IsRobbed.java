@@ -1,6 +1,7 @@
 package action;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
 import utility.Utility;
@@ -83,5 +84,10 @@ public class IsRobbed extends BaseAction {
 	
 	public String getDescription() {
 		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(MIN_ROB_PERCENT), Utility.calculateExtraBuff(MAX_ROB_PERCENT));
+	}
+	
+	// TODO: add comments
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/robber.png").toExternalForm(), 1024, 720, false, true);
 	}
 }

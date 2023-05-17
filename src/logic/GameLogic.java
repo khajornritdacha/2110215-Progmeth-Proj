@@ -266,7 +266,7 @@ public class GameLogic {
 		while (true) {
 			this.setCurrentPlayer(currentPlayer + 1);
 			if (this.getCurrentPlayer().isAlive()) {
-				PlayingGameRootPane.setExplanation("It's now " + GameLogic.getInstance().getCurrentPlayer().getName() + "'s turn");
+				PlayingGameRootPane.setExplanation("It is now " + GameLogic.getInstance().getCurrentPlayer().getName() + "'s turn");
 				PlayingGameRootPane.updatePlayer();
 				break;
 			}

@@ -3,6 +3,7 @@ package action;
 import java.util.ArrayList;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import monster.Dragon;
 import player.BasePlayer;
@@ -62,6 +63,10 @@ public class FightBoss extends BaseAction {
 	
 	public String getDescription() {
 		return "";
+	}
+	
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/enderDragon.png").toExternalForm(), 1024, 720, false, true);
 	}
 
 	/**

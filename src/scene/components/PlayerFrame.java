@@ -6,8 +6,10 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -28,17 +30,6 @@ public class PlayerFrame extends VBox {
 	 */
 	public PlayerFrame(BasePlayer p1) {
 		this.setAlignment(Pos.CENTER);
-		if (!p1.isAlive()) {
-			this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, null, null)));
-		}
-		else if (GameLogic.getInstance().getCurrentPlayer() == p1) {
-			this.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
-		}
-		else {
-			this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
-		}
-		this.setPadding(new Insets(20, 20, 20, 20));
-
 //		TODO: get player name and role
 		Text title = new Text(String.format("%s (%s) %s", p1.getName(), p1.getClass().getSimpleName(), (p1.isAlive() ? "" : "[Dead]")));
 		
@@ -67,6 +58,25 @@ public class PlayerFrame extends VBox {
 		statsContainer.setHalignment(moneyText, HPos.RIGHT);
 		statsContainer.setHalignment(swordText, HPos.RIGHT);
 		statsContainer.setHalignment(magicText, HPos.RIGHT);
+		
+		if (!p1.isAlive()) {
+			this.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(25), null)));
+		}
+		else if (GameLogic.getInstance().getCurrentPlayer() == p1) {
+			this.setBackground(new Background(new BackgroundFill(Color.ORANGE, new CornerRadii(25), null)));
+		}
+		else {
+			moneyText.setFill(Color.LIGHTGRAY);
+			money.setFill(Color.LIGHTGRAY);
+			swordText.setFill(Color.LIGHTGRAY);
+			swordStats.setFill(Color.LIGHTGRAY);
+			magicText.setFill(Color.LIGHTGRAY);
+			magicStats.setFill(Color.LIGHTGRAY);
+			title.setFill(Color.LIGHTGRAY);
+			this.setBackground(new Background(new BackgroundFill(Color.BLUE, new CornerRadii(25), null)));
+		}
+		this.setPadding(new Insets(20, 20, 20, 20));
+		this.setEffect(new DropShadow());
 		
 		Button sendHelpBtn = new Button("Send help");
 		sendHelpBtn.setOnAction(new EventHandler<ActionEvent>() {

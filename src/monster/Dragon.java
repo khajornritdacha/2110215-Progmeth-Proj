@@ -1,6 +1,7 @@
 package monster;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
@@ -46,8 +47,12 @@ public class Dragon extends BaseMonster implements Evolutionary {
 		}
 	}
 	
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/enderDragon.png").toExternalForm(), 1024, 720, false, true);
+	}
+	
 	public Color getColor() {
-		return Color.DARKRED;
+		return Color.PALEVIOLETRED;
 	}
 	
 	public int getLevel() {

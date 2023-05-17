@@ -3,9 +3,14 @@ package scene.components;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import scene.PlayingGameRootPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import logic.GameLogic;
+import scene.playingGame.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
 /**
@@ -18,10 +23,13 @@ public class FightingMonsterFrame extends Frame {
 	public FightingMonsterFrame() {
 		super(Color.RED);
 	
-		TextStats title = new TextStats("Fight with Monsters");
-		TextStats description = new TextStats("Fight with monsters (or boss)", 12);
+		Text title = new TextStats("Fight with Monsters", 20);
+		Text description = new Text("Fight with monsters (or boss)");
+		description.setFont(new Font(12));
 		
-		Circle pic = new Circle();
+		Circle pic = new Circle(48);
+		pic.setFill(new ImagePattern(GameLogic.getInstance().summonGoblin().getPicture()));
+		pic.setEffect(new DropShadow());
 		
 		Button selectBtn = new Button("Select");
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -31,6 +39,6 @@ public class FightingMonsterFrame extends Frame {
 		});
 		selectBtn.setDisable(PlayingGameRootPane.isShown());
 		
-		this.getChildren().addAll(title, pic, description, selectBtn);
+		this.getChildren().addAll(pic, title, description, selectBtn);
 	}
 }

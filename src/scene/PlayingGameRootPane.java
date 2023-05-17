@@ -1,6 +1,5 @@
 package scene;
 
-import java.awt.TextField;
 import java.util.ArrayList;
 
 import action.FightBoss;
@@ -18,6 +17,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -50,13 +50,13 @@ import utility.Utility;
  */
 public class PlayingGameRootPane extends BorderPane {
 	private static GridPane playerContainer;
-	private static VBox container;
 	private static Text currentTurn;
 	private static Text explanation;
 	private static Button getActionBtn;
 	private static Deck selectableActions, showableActions;
 	private static ArrayList<BasePlayer> tempPlayers;
 	private static boolean isFightBoss, isWaiting, isShown;
+	private String tempText = "";
 	
 		/**
 	 * Create new gameplay scene
@@ -72,8 +72,9 @@ public class PlayingGameRootPane extends BorderPane {
 		setIsShown(false);
 		tempPlayers.add(GameLogic.getInstance().getCurrentPlayer());
 		
-		container = new VBox();
 		playerContainer = new GridPane();
+		VBox container = new VBox(), upperContainer = new VBox();
+		container.setAlignment(Pos.CENTER);
 		
 		currentTurn = new TextStats("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getInstance().getNumberOfTurn(), 50);
 		currentTurn.setFill(Color.WHITE);
@@ -83,8 +84,9 @@ public class PlayingGameRootPane extends BorderPane {
 		explanation.setFont(Font.font(null, FontWeight.EXTRA_BOLD, 25));
 		explanation.setFill(Color.WHITE);
 		explanation.setTextAlignment(TextAlignment.CENTER);
+		explanation.setEffect(new DropShadow());
 		
-		getActionBtn = new DecoratedButton("Random action", 256, 48, 18);
+		getActionBtn = new DecoratedButton("Random action", 196, 36, 18);
 		getActionBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (getActionBtn.getText().equals("Play again")) {
@@ -95,8 +97,8 @@ public class PlayingGameRootPane extends BorderPane {
 					GameLogic.getInstance().goToNextPlayer();
 				}
 				else if (!GameLogic.getInstance().getCurrentPlayer().isAlive()) {
-					System.out.println(GameLogic.getInstance().getCurrentPlayer().getName() + " has died...");
-					setExplanation(GameLogic.getInstance().getCurrentPlayer().getName() + " has died...");
+					System.out.println(GameLogic.getInstance().getCurrentPlayer().getName() + " is dead...");
+					setExplanation(GameLogic.getInstance().getCurrentPlayer().getName() + " is dead...");
 					setActionBtn("(R.I.P.) Go to next player");
 				}
 				else if (getActionBtn.getText().equals("Random action")) {
@@ -118,26 +120,39 @@ public class PlayingGameRootPane extends BorderPane {
 					getActionBtn.setText("Random action");
 					GameLogic.getInstance().goToNextPlayer();
 				}
+				if (!getActionBtn.getText().equals("Random action")) {
+					setExplanation("");
+				}
 			}
 		});
 		
-		Button endGameBtn = new Button("Exit game");
-		endGameBtn.setAlignment(Pos.TOP_RIGHT);
+		Button endGameBtn = new DecoratedButton("Exit game", 96, 32, 16);
+		endGameBtn.setAlignment(Pos.CENTER);
 		endGameBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				GameLogic.getInstance().terminateGame();
 			}
 		});
 		
-		Button showRandomActionsBtn = new Button("Show random actions");
+		Button showRandomActionsBtn = new DecoratedButton("Show random actions", 188, 32, 16);
 		showRandomActionsBtn.setAlignment(Pos.CENTER);
+		
+		Button showChooseActionsBtn = new DecoratedButton("Show choose actions", 188, 32, 16);
+		showChooseActionsBtn.setAlignment(Pos.CENTER);
+
+		Button showMonstersBtn = new DecoratedButton("Show monsters", 128, 32, 16);
+		showMonstersBtn.setAlignment(Pos.CENTER);
+		
 		showRandomActionsBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (showRandomActionsBtn.getText().substring(0, 4).equals("Show")) {
 					if (isShown()) {
 						return;
 					}
-					
+					showChooseActionsBtn.setDisable(true);
+					showMonstersBtn.setDisable(true);
+					tempText = explanation.getText();
+					setExplanation("");
 					setIsShown(true);
 					showRandomActionsBtn.setText("Hide random actions");
 					container.getChildren().remove(selectableActions);
@@ -145,6 +160,9 @@ public class PlayingGameRootPane extends BorderPane {
 					showRandomActions(showableActions);
 				}
 				else {
+					showChooseActionsBtn.setDisable(false);
+					showMonstersBtn.setDisable(false);
+					setExplanation(tempText);
 					setIsShown(false);
 					showRandomActionsBtn.setText("Show random actions");
 					hideActions(showableActions);
@@ -153,15 +171,17 @@ public class PlayingGameRootPane extends BorderPane {
 				}
 			}
 		});
-		Button showChooseActionsBtn = new Button("Show choose actions");
-		showChooseActionsBtn.setAlignment(Pos.CENTER);
+		
 		showChooseActionsBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (showChooseActionsBtn.getText().substring(0, 4).equals("Show")) {
 					if (isShown()) {
 						return;
 					}
-					
+					showRandomActionsBtn.setDisable(true);
+					showMonstersBtn.setDisable(true);
+					tempText = explanation.getText();
+					setExplanation("");
 					setIsShown(true);
 					showChooseActionsBtn.setText("Hide choose actions");
 					container.getChildren().remove(selectableActions);
@@ -169,6 +189,9 @@ public class PlayingGameRootPane extends BorderPane {
 					showChooseActions(showableActions);
 				}
 				else {
+					showRandomActionsBtn.setDisable(false);
+					showMonstersBtn.setDisable(false);
+					setExplanation(tempText);
 					setIsShown(false);
 					showChooseActionsBtn.setText("Show choose actions");
 					hideActions(showableActions);
@@ -177,15 +200,17 @@ public class PlayingGameRootPane extends BorderPane {
 				}
 			}
 		});
-		Button showMonstersBtn = new Button("Show monsters");
-		showMonstersBtn.setAlignment(Pos.CENTER);
+		
 		showMonstersBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (showMonstersBtn.getText().substring(0, 4).equals("Show")) {
 					if (isShown()) {
 						return;
 					}
-					
+					showRandomActionsBtn.setDisable(true);
+					showChooseActionsBtn.setDisable(true);
+					tempText = explanation.getText();
+					setExplanation("");
 					setIsShown(true);
 					showMonstersBtn.setText("Hide monsters");
 					container.getChildren().remove(selectableActions);
@@ -193,6 +218,9 @@ public class PlayingGameRootPane extends BorderPane {
 					showMonsters(showableActions);
 				}
 				else {
+					showRandomActionsBtn.setDisable(false);
+					showChooseActionsBtn.setDisable(false);
+					setExplanation(tempText);
 					setIsShown(false);
 					showMonstersBtn.setText("Show monsters");
 					hideActions(showableActions);
@@ -205,14 +233,16 @@ public class PlayingGameRootPane extends BorderPane {
 		selectableActions = new Deck();
 		showableActions = new Deck();
 		
-		Deck menu = new Deck();
+		scene.components.Menu menu = new scene.components.Menu();
 		menu.getChildren().addAll(showRandomActionsBtn, showChooseActionsBtn, showMonstersBtn, endGameBtn);
 		
-		container.getChildren().addAll(menu, currentTurn, explanation, getActionBtn, selectableActions);
+		upperContainer.getChildren().addAll(menu, currentTurn, getActionBtn);
+		container.getChildren().addAll(explanation, selectableActions);
 		for (Node node : container.getChildren()) {
 			container.setMargin(node, new Insets(0, 20, 10, 20));
 		}
 		updatePlayer();
+		this.setTop(upperContainer);
 		this.setCenter(container);
 		this.setBottom(playerContainer);
 		setMargin(playerContainer, new Insets(20, 20, 20, 20));

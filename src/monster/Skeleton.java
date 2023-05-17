@@ -1,6 +1,7 @@
 package monster;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
@@ -41,6 +42,10 @@ public class Skeleton extends BaseMonster implements Evolutionary {
 		catch (InvalidValueException e) {
 			System.out.println(e);
 		}
+	}
+	
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/witherSkeleton.png").toExternalForm(), 1024, 720, false, true);
 	}
 	
 	public Color getColor() {

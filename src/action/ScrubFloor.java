@@ -1,6 +1,7 @@
 package action;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
 import player.Rich;
@@ -50,5 +51,10 @@ public class ScrubFloor extends BaseAction {
 		minStats = Utility.calculateExtraBuff(minStats);
 		maxStats = Utility.calculateExtraBuff(maxStats);
 		return String.format("Increase money for %d-%d bahts", minStats, maxStats);
+	}
+	
+	// TODO: add comments
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/money.png").toExternalForm(), 1024, 720, false, true);
 	}
 }

@@ -1,6 +1,7 @@
 package action;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
 import player.GoodAtSword;
@@ -50,5 +51,10 @@ public class LearnSword extends BaseAction {
 		minStats = Utility.calculateExtraBuff(minStats);
 		maxStats = Utility.calculateExtraBuff(maxStats);
 		return String.format("Increase sword stats for %d-%d units", minStats, maxStats);
+	}
+	
+	// TODO: add comments
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/enchantedSword.png").toExternalForm(), 1024, 720, false, true);
 	}
 }

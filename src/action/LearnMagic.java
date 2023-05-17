@@ -1,6 +1,7 @@
 package action;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import player.BasePlayer;
 import player.GoodAtMagic;
@@ -33,7 +34,7 @@ public class LearnMagic extends BaseAction {
 	}
 	
 	public Color getColor() {
-		return Color.PURPLE;
+		return Color.MEDIUMPURPLE;
 	}
 	
 	public String toString() {
@@ -50,5 +51,10 @@ public class LearnMagic extends BaseAction {
 		minStats = Utility.calculateExtraBuff(minStats);
 		maxStats = Utility.calculateExtraBuff(maxStats);
 		return String.format("Increase magic stats for %d-%d units", minStats, maxStats);
+	}
+	
+	// TODO: add comments
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/enchantedBook.png").toExternalForm(), 1024, 720, false, true);
 	}
 }

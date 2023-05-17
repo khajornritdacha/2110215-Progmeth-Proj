@@ -1,6 +1,7 @@
 package monster;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import utility.Utility;
 
@@ -48,6 +49,8 @@ public abstract class BaseMonster {
 	 * Respawn monster
 	 */
 	public abstract void respawn();
+	
+	public abstract Image getPicture();
 	
 	public void evolveByTurn() {
 		try {

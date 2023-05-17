@@ -1,6 +1,7 @@
 package action;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import monster.BaseMonster;
 import player.BasePlayer;
@@ -56,6 +57,10 @@ public class FightMonster extends BaseAction {
 	
 	public String getDescription() {
 		return "";
+	}
+	
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/zombie.png").toExternalForm(), 1024, 720, false, true);
 	}
 
 	/**

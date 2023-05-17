@@ -6,6 +6,8 @@ import action.IsRobbed;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import logic.GameLogic;
@@ -28,10 +30,12 @@ public class ActionFrame extends Frame {
 		if (!(action instanceof FightBoss || action instanceof IsRobbed)) {
 			prob = (100 - 2 * prob) / 4;
 		}
-		Text title = new Text(String.format("%s%s", action.toString(), ((PlayingGameRootPane.isShown() && showProb) ? "(" + prob + "%)" : "")));
+		Text title = new TextStats(String.format("%s%s", action.toString(), ((PlayingGameRootPane.isShown() && showProb) ? "(" + prob + "%)" : "")), 20);
 		Text description = new Text(action.getDescription());
 		
-		Circle pic = new Circle();
+		Circle pic = new Circle(48);
+		pic.setFill(new ImagePattern(action.getPicture()));
+		pic.setEffect(new DropShadow());
 		
 		Button selectBtn = new Button("Select");
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -42,6 +46,6 @@ public class ActionFrame extends Frame {
 		});
 		selectBtn.setDisable(PlayingGameRootPane.isShown());
 		
-		this.getChildren().addAll(title, pic, description, selectBtn);
+		this.getChildren().addAll(pic, title, description, selectBtn);
 	}
 }

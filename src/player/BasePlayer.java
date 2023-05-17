@@ -45,7 +45,7 @@ public abstract class BasePlayer {
 		
 		int before = this.getMagicStats();
 		this.setMagicStats(before + magicStats);
-		return String.format("%s has learnt magic for %d units (%d->%d)", this.getName(), magicStats, before, before + magicStats);
+		return String.format("%s learns magic for %d units (%d->%d)", this.getName(), magicStats, before, before + magicStats);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public abstract class BasePlayer {
 		
 		int before = this.getSwordStats();
 		this.setSwordStats(before + swordStats);
-		return String.format("%s has learnt sword for %d units (%d->%d)", this.getName(), swordStats, before, before + swordStats);
+		return String.format("%s learns sword for %d units (%d->%d)", this.getName(), swordStats, before, before + swordStats);
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public abstract class BasePlayer {
 		
 		int before = this.getMoney();
 		this.setMoney(before + money);
-		return String.format("%s has earned money for %d bahts (%d->%d)", this.getName(), money, before, before + money);
+		return String.format("%s earns money for %d bahts (%d->%d)", this.getName(), money, before, before + money);
 	}
 	
 	// TODO: add comments
@@ -90,8 +90,20 @@ public abstract class BasePlayer {
 		money = Utility.calculateExtraBuff(money) / 2;
 		
 		int before = this.getMoney();
-		this.setMoney(before + money);
-		return String.format("%s has lost money for %d bahts (%d->%d)", this.getName(), money, before, before + money);
+		this.setMoney(before - money);
+		return String.format("%s loses (half) money for %d bahts (%d->%d)", this.getName(), money, before, before - money);
+	}
+	
+	// TODO: add comments
+	public String loseMoney(int money) throws InvalidValueException {
+		if (this instanceof Rich) {
+			money *= Rich.moneyMultiplier;
+		}
+		money = Utility.calculateExtraBuff(money);
+		
+		int before = this.getMoney();
+		this.setMoney(before - money);
+		return String.format("%s loses money for %d bahts (%d->%d)", this.getName(), money, before, before - money);
 	}
 	
 	/**

@@ -1,6 +1,7 @@
 package monster;
 
 import customException.InvalidValueException;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
@@ -32,8 +33,12 @@ public class Goblin extends BaseMonster {
 		}
 	}
 	
+	public Image getPicture() {
+		return new Image(getClass().getResource("../assets/zombie.png").toExternalForm(), 1024, 720, false, true);
+	}
+	
 	public Color getColor() {
-		return Color.DARKGREEN;
+		return Color.DARKOLIVEGREEN;
 	}
 	
 	public int getLevel() {
