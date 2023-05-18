@@ -118,7 +118,7 @@ public class Utility {
 				monster = GameLogic.getInstance().summonSkeleton();
 			}
 			else if (rand == 2) {
-				monster = GameLogic.getInstance().summonWizzard();
+				monster = GameLogic.getInstance().summonWizard();
 			}
 			else {
 				throw new InvalidValueException(String.format("Invalid random Monster number: %d", rand));

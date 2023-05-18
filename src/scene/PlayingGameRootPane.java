@@ -214,7 +214,7 @@ public class PlayingGameRootPane extends BorderPane {
 		deck.getChildren().clear();
 		deck.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonGoblin()));
 		deck.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonSkeleton()));
-		deck.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonWizzard()));
+		deck.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonWizard()));
 		deck.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonDragon()));
 	}
 	
