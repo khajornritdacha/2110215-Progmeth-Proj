@@ -13,15 +13,20 @@ import scene.StartGameRootPane;
 import scene.InputPlayerName.InputPlayerNamePane;
 import utility.GameState;
 
+/**
+ * Main class of this game
+ */
 public class Main extends Application {
+	/**
+	 * Main Stage of this game
+	 */
 	public static Stage primaryStage;
 	
+	/**
+	 * JavaFX start Function
+	 */
     @Override
-    public void start(Stage stage) throws InvalidValueException, IOException, SecurityException{
-//    	TODO: remove these lines
-//    	String path = new File(".").getCanonicalPath();
-//		System.out.println("Path in start game pane: " + path);
-    	
+    public void start(Stage stage) throws InvalidValueException, IOException, SecurityException{    	
     	primaryStage = stage;
     	primaryStage.setTitle("RPG Life");
     	primaryStage.setResizable(false);
@@ -29,6 +34,11 @@ public class Main extends Application {
     	primaryStage.show();
     }
     
+    /**
+     * Change state(scene) of the game by passing GameState
+     * @param gameState new GameState
+     * @see GameState
+     */
     public static void changeState(GameState gameState) {
     	if (gameState.equals(GameState.WELCOME_SCENE)) {
     		primaryStage.setScene(new Scene(new StartGameRootPane(), 1024, 720));
@@ -43,6 +53,10 @@ public class Main extends Application {
     	}
     }
 
+    /**
+     * Main Entry Point
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
