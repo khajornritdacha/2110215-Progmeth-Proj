@@ -7,16 +7,38 @@ import javafx.scene.paint.Color;
 import player.BasePlayer;
 import utility.Utility;
 
+/**
+ * Rob player money and stats, executed in random phase
+ */
 public class IsRobbed implements BaseAction {
+	/**
+	 * Player to be robbed
+	 */
 	private BasePlayer p1;
 	
+	/**
+	 * Minimum percentage of money and stats to be robbed
+	 */
 	static final int MIN_ROB_PERCENT = 14;
+	
+	/**
+	 * Maximum percentage of money and stats to be robbed
+	 */
 	static final int MAX_ROB_PERCENT = 49;
 
+	/**
+	 * Create new IsRobbed action
+	 * @param p1 player to be robbed
+	 */
 	public IsRobbed(BasePlayer p1) {
 		this.setP1(p1);
 	}
-
+	
+	/**
+	 * Randomly decrease player stats or money
+	 * @return string explaining stats being decreased 
+	 * @see Utility
+	 */
 	public String executeAction() {
 		try {
 			int rand = Utility.randomInteger(1, 7);
@@ -63,10 +85,18 @@ public class IsRobbed implements BaseAction {
 		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(MIN_ROB_PERCENT), Utility.calculateExtraBuff(MAX_ROB_PERCENT));
 	}
 	
+	/**
+	 * Get player involving this action
+	 * @return player involves this action
+	 */
 	public BasePlayer getP1() {
 		return p1;
 	}
 
+	/**
+	 * Set player involving this action
+	 * @param p1 player involves this action
+	 */
 	public void setP1(BasePlayer p1) {
 		this.p1 = p1;
 	}

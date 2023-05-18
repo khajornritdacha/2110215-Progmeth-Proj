@@ -8,11 +8,11 @@ import monster.Dragon;
 import player.BasePlayer;
 import utility.Utility;
 
-/*
+/**
  * Executed when player fight with boss
  */
 public class FightBoss implements BaseAction {
-	/*
+	/**
 	 * Players to fight boss of this action
 	 */
 	private ArrayList<BasePlayer> players;
@@ -43,6 +43,11 @@ public class FightBoss implements BaseAction {
 		this.setB1(b1);
 	}
 	
+	/**
+	 * Invoke fight boss event
+	 * @return string explaining action
+	 * @see Utility
+	 */
 	public String executeAction() throws InvalidValueException{
 		return Utility.fightBoss(players, b1);
 	}
@@ -67,10 +72,18 @@ public class FightBoss implements BaseAction {
 		this.players = players;
 	}
 
+	/**
+	 * Get dragon involving this action
+	 * @return dragon involves this action
+	 */
 	public Dragon getB1() {
 		return b1;
 	}
 
+	/**
+	 * Set dragon this action 
+	 * @param b1 dragon involves this action
+	 */
 	public void setB1(Dragon b1) {
 		this.b1 = b1;
 	}

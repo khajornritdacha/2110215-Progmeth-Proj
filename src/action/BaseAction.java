@@ -2,6 +2,7 @@ package action;
 
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
+import player.BasePlayer;
 
 /**
  * Action interface proceeding game state
