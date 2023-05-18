@@ -9,7 +9,7 @@ import utility.Utility;
 /**
  * Randomly add player's money, executed in random action phase
  */
-public class WinLottery implements BaseAction {
+public class WinLottery extends BaseAction {
 	/**
 	 * Player to add money
 	 */
@@ -49,20 +49,4 @@ public class WinLottery implements BaseAction {
 		}
 		return String.format("Increase money for %d-%d bahts", minStats, maxStats);
 	}
-	
-	/**
-	 * Get player involving this action
-	 * @return player involves this action
-	 */
-	public BasePlayer getP1() {
-		return p1;
-	}
-
-	/**
-	 * Set player involving this action
-	 * @param p1 player involves this action
-	 */
-	public void setP1(BasePlayer p1) {
-		this.p1 = p1;
-	}	
 }

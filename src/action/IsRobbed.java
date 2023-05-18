@@ -10,7 +10,7 @@ import utility.Utility;
 /**
  * Rob player money and stats, executed in random phase
  */
-public class IsRobbed implements BaseAction {
+public class IsRobbed extends BaseAction {
 	/**
 	 * Player to be robbed
 	 */
@@ -83,21 +83,5 @@ public class IsRobbed implements BaseAction {
 	
 	public String getDescription() {
 		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(MIN_ROB_PERCENT), Utility.calculateExtraBuff(MAX_ROB_PERCENT));
-	}
-	
-	/**
-	 * Get player involving this action
-	 * @return player involves this action
-	 */
-	public BasePlayer getP1() {
-		return p1;
-	}
-
-	/**
-	 * Set player involving this action
-	 * @param p1 player involves this action
-	 */
-	public void setP1(BasePlayer p1) {
-		this.p1 = p1;
 	}
 }

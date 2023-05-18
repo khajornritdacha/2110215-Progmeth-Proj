@@ -9,7 +9,7 @@ import utility.Utility;
 /**
  * Increase player magic stats when choosing action
  */
-public class LearnMagic implements BaseAction {
+public class LearnMagic extends BaseAction {
 	/**
 	 * Player to increase magic stats
 	 */
@@ -48,21 +48,5 @@ public class LearnMagic implements BaseAction {
 			maxStats *= GoodAtMagic.magicMultiplier;
 		}
 		return String.format("Increase magic stats for %d-%d units", minStats, maxStats);
-	}
-
-	/**
-	 * Get player involving this action
-	 * @return player involves this action
-	 */
-	public BasePlayer getP1() {
-		return p1;
-	}
-
-	/**
-	 * Set player involving this action
-	 * @param p1 player involves this action
-	 */
-	public void setP1(BasePlayer p1) {
-		this.p1 = p1;
 	}
 }

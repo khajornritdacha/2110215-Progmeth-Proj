@@ -9,7 +9,7 @@ import utility.Utility;
 /**
  * Executed when player fight with monster
  */
-public class FightMonster implements BaseAction {
+public class FightMonster extends BaseAction {
 	/**
 	 * Player to fight monster of this action
 	 */
@@ -56,22 +56,6 @@ public class FightMonster implements BaseAction {
 	
 	public String getDescription() {
 		return "";
-	}
-
-	/**
-	 * Get player involving this action
-	 * @return player involves this action
-	 */
-	public BasePlayer getP1() {
-		return p1;
-	}
-
-	/**
-	 * Set player involving this action
-	 * @param p1 player involves this action
-	 */
-	public void setP1(BasePlayer p1) {
-		this.p1 = p1;
 	}
 
 	/**

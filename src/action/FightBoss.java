@@ -11,7 +11,7 @@ import utility.Utility;
 /**
  * Executed when player fight with boss
  */
-public class FightBoss implements BaseAction {
+public class FightBoss extends BaseAction {
 	/**
 	 * Players to fight boss of this action
 	 */
