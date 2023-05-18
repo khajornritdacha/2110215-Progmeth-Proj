@@ -1,4 +1,4 @@
-package scene.playingGame;
+package scene;
 
 import java.util.ArrayList;
 
@@ -47,7 +47,7 @@ public class PlayingGameRootPane extends BorderPane {
 		container = new VBox();
 		playerContainer = new GridPane();
 		
-		currentTurn = new Text("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getInstance().getNumberOfTurn());
+		currentTurn = new Text("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getNumberOfTurn());
 		currentTurn.setFont(new Font(50));
 		currentTurn.setTextAlignment(TextAlignment.CENTER);
 		
@@ -318,6 +318,6 @@ public class PlayingGameRootPane extends BorderPane {
 	}	
 	
 	public static void updateCurrentTurn() {
-		currentTurn.setText("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getInstance().getNumberOfTurn());
+		currentTurn.setText("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getNumberOfTurn());
 	}
 }

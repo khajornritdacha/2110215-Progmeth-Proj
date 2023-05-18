@@ -1,4 +1,4 @@
-package scene.chooseRole;
+package scene;
 
 import java.util.ArrayList;
 

@@ -12,7 +12,7 @@ import javafx.scene.text.TextAlignment;
 import logic.GameLogic;
 import monster.BaseMonster;
 import monster.Dragon;
-import scene.playingGame.PlayingGameRootPane;
+import scene.PlayingGameRootPane;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful

@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import scene.playingGame.PlayingGameRootPane;
+import scene.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
 public class FightingMonsterFrame extends Frame {

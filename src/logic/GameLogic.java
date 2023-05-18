@@ -13,9 +13,9 @@ import monster.Goblin;
 import monster.Skeleton;
 import monster.Wizzard;
 import player.*;
+import scene.PlayingGameRootPane;
 import scene.components.ActionFrame;
 import scene.components.MonsterFrame;
-import scene.playingGame.PlayingGameRootPane;
 import utility.GameState;
 import utility.Utility;
 

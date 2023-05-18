@@ -15,7 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 import player.BasePlayer;
-import scene.playingGame.PlayingGameRootPane;
+import scene.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
 public class PlayerFrame extends VBox {

@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import logic.GameLogic;
-import scene.playingGame.PlayingGameRootPane;
+import scene.PlayingGameRootPane;
 import utility.Utility;
 
 public class ActionFrame extends Frame {

@@ -7,11 +7,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import scene.HowToPlayPane;
+import scene.PlayingGameRootPane;
 import scene.SelectTurnPane;
+import scene.StartGameRootPane;
 import scene.InputPlayerName.InputPlayerNamePane;
-import scene.playingGame.PlayingGameRootPane;
-//import scene.chooseRole.ChooseRolePane;
-import scene.startGame.StartGameRootPane;
 import utility.GameState;
 
 public class Main extends Application {
