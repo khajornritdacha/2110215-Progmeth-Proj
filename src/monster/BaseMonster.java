@@ -50,8 +50,16 @@ public abstract class BaseMonster {
 	 */
 	public abstract void respawn();
 	
+	
+	/**
+	 * Get picture of the monster
+	 * @return picture of the monster
+	 */
 	public abstract Image getPicture();
 	
+	/**
+	 * When the turn increase, monsters' stats will increase too.
+	 */
 	public void evolveByTurn() {
 		try {
 			this.setSwordStats(2 + Utility.calculateExtraBuff(this.getSwordStats()) * 4 / 5);

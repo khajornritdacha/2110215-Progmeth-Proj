@@ -64,7 +64,10 @@ public class Utility {
 		return Math.pow(x, value);
 	}
 	
-	// TODO: add comments
+	/**
+	 * calculate the probability that the players will win the dragon
+	 * @return probability to win the dragon
+	 */
 	public static double calculateProbDragon() {
 		return Math.max(8, calculateExtraBuff(20) - 20);
 	}

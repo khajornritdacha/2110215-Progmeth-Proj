@@ -83,7 +83,12 @@ public abstract class BasePlayer {
 		return String.format("%s earns money for %d bahts (%d->%d)", this.getName(), money, before, before + money);
 	}
 	
-	// TODO: add comments
+	/**
+	 * Decrease player's money (just half of the money), tremendously decrease if player is {@link Rich}
+	 * @param money amount of money to decrease (just half of the money)
+	 * @return string describing the amount of money to decrease
+	 * @throws InvalidValueException throw error when value is invalid
+	 */
 	public String loseHalfMoney(int money) throws InvalidValueException {
 		if (this instanceof Rich) {
 			money *= Rich.moneyMultiplier;
@@ -95,7 +100,12 @@ public abstract class BasePlayer {
 		return String.format("%s loses (half) money for %d bahts (%d->%d)", this.getName(), money, before, Math.max(0, before - money));
 	}
 	
-	// TODO: add comments
+	/**
+	 * Decrease player's money, tremendously decrease if player is {@link Rich}
+	 * @param money amount of money to decrease
+	 * @return string describing the amount of money to decrease
+	 * @throws InvalidValueException throw error when value is invalid
+	 */
 	public String loseMoney(int money) throws InvalidValueException {
 		if (this instanceof Rich) {
 			money *= Rich.moneyMultiplier;

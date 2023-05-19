@@ -17,7 +17,14 @@ import scene.components.DecoratedText;
 import utility.GameConfig;
 import utility.GameState;
 
+/**
+ * Loading scene before the game actually starts
+ * @author JomnoiZ
+ */
 public class LoadingPane extends BorderPane{
+	/**
+	 * Create Loading pane
+	 */
 	public LoadingPane() {
 		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);

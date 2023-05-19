@@ -77,6 +77,10 @@ public class Main extends Application {
     	}
     }
     
+    /**
+     * Set effect path and play it
+     * @param effectPath Path of the effect
+     */
     public static void playEffect(String effectPath) {
     	Media media = new Media(new File(effectPath).toURI().toString());
     	MediaPlayer effectPlayer = new MediaPlayer(media);
@@ -84,6 +88,10 @@ public class Main extends Application {
     	effectPlayer.play(); 
     }
     
+    /**
+     * Set music path and play it repeatly
+     * @param musicPath Path of the music
+     */
     public static void playMusic(String musicPath) {
     	Media media = new Media(new File(musicPath).toURI().toString());
     	mediaPlayer = new MediaPlayer(media);
@@ -97,12 +105,19 @@ public class Main extends Application {
     	mediaPlayer.play();
     }
     
+    /**
+     * stop playing the current music
+     */
     public static void stopMusic() {
     	if (mediaPlayer != null) {
     		mediaPlayer.stop();
     	}
     }
     
+    /**
+     * Get the status of playing music
+     * @return status of playing music
+     */
     public static boolean isPlayedMusic() {
     	return isPlayedMusic;
     }
