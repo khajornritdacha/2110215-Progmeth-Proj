@@ -9,7 +9,7 @@ public class TheRich extends BasePlayer implements Rich {
 	/**
 	 * Create new player with TheRich role
 	 * @param name player name
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public TheRich(String name) throws InvalidValueException{
 		super(name);

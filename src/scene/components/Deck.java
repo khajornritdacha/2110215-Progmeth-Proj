@@ -8,6 +8,9 @@ import javafx.scene.layout.HBox;
  * Deck, decorated HBox
  */
 public class Deck extends HBox {
+	/**
+	 * Create new deck
+	 */
 	public Deck() {
 		super();
 		this.setPadding(new Insets(20, 20, 20, 20));

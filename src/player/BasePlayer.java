@@ -20,7 +20,7 @@ public abstract class BasePlayer {
 	/**
 	 * Create new player with fixed starting money and stats
 	 * @param name player name
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public BasePlayer(String name) throws InvalidValueException{
 		this.setMoney(START_MONEY);
@@ -34,7 +34,7 @@ public abstract class BasePlayer {
 	 * Increase player magic stats, tremendously increase if player is {@link GoodAtMagic GoodAtMagic}
 	 * @param magicStats magic stats to increase
 	 * @return string describing amount of increased magic stats
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public String learnMagic(int magicStats) throws InvalidValueException {
 		if (this instanceof GoodAtMagic) {
@@ -49,7 +49,7 @@ public abstract class BasePlayer {
 	 * Increase player sword stats, tremendously increase if player is {@link GoodAtSword}
 	 * @param swordStats sword stats to increase
 	 * @return string describing amount of increased sword stats
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public String learnSword(int swordStats) throws InvalidValueException {
 		if (this instanceof GoodAtSword) {
@@ -64,7 +64,7 @@ public abstract class BasePlayer {
 	 * Increase player's money, tremendously increase if player is {@link Rich}
 	 * @param money amount of money to increase
 	 * @return string describing the amount of money to increase
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public String earnMoney(int money) throws InvalidValueException {
 		if (this instanceof Rich) {
@@ -132,7 +132,7 @@ public abstract class BasePlayer {
 	/**
 	 * Set sword stats of this player
 	 * @param swordStats new sword stats of this player
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public void setSwordStats(int swordStats) throws InvalidValueException{
 		if (swordStats <= 0) {
@@ -152,7 +152,7 @@ public abstract class BasePlayer {
 	/**
 	 * Set magic stats of this player
 	 * @param magicStats new magic stats of this player
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public void setMagicStats(int magicStats) throws InvalidValueException{
 		if (magicStats <= 0) {

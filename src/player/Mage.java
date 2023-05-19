@@ -9,7 +9,7 @@ public class Mage extends BasePlayer implements GoodAtMagic {
 	/**
 	 * Create new player with Mage role
 	 * @param name player name
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public Mage(String name) throws InvalidValueException{
 		super(name);

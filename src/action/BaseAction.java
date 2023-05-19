@@ -14,7 +14,7 @@ public abstract class BaseAction {
 	/**
 	 * Execute each action
 	 * @return result string of each action
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public abstract String executeAction() throws InvalidValueException;
 	

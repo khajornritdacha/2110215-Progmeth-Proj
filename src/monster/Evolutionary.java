@@ -1,5 +1,8 @@
 package monster;
 
+/**
+ * Indicate if monsters can evolve
+ */
 public interface Evolutionary {
 	/**
 	 * Evolve the monster by increasing sword and magic stats

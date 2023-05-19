@@ -55,7 +55,7 @@ public class Main extends Application {
 
     /**
      * Main Entry Point
-     * @param args
+     * @param args args string
      */
     public static void main(String[] args) {
         launch();

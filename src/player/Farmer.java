@@ -9,7 +9,7 @@ public class Farmer extends BasePlayer {
 	/**
 	 * Create new player with farmer role 
 	 * @param name player name
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public Farmer(String name) throws InvalidValueException{
 		super(name);

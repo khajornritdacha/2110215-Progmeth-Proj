@@ -10,6 +10,10 @@ public class Dragon extends BaseMonster implements Evolutionary {
 	// TODO: change sword multiplier to make game balance (in percent)
 	private final int SWORD_MULTIPLIER = 81;
 	private final int MAGIC_MULTIPLIER = 82;
+	
+	/**
+	 * Level of this boss
+	 */
 	public static int level = 1;
 	
 	/**

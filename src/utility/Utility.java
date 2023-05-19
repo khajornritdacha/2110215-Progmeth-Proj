@@ -22,6 +22,9 @@ import player.Rich;
 import player.SwordMan;
 import player.TheRich;
 
+/**
+ * Contain utility method for this game
+ */
 public class Utility {
 	// TODO: change these numbers to make game balance
 	private static final int MIN_SWORD_STATS = 5, MAX_SWORD_STATS = 7;
@@ -30,8 +33,8 @@ public class Utility {
 	
 	/**
 	 * Random number in range [min, max] (both inclusive)
-	 * @param min
-	 * @param max
+	 * @param min minimum number
+	 * @param max maximum number
 	 * @return a number in range [min, max] 
 	 */
 	public static int randomInteger(int min, int max) {
@@ -41,7 +44,7 @@ public class Utility {
 	
 	/**
 	 * Multiply the value with the ratio of current turn with number of turn
-	 * @param value
+	 * @param value base value
 	 * @return value + value * currentTurn / turn
 	 */
 	public static int calculateExtraBuff(int value) {
@@ -49,18 +52,36 @@ public class Utility {
 	}
 	
 	// TODO: change the formula to make game balance
+	/**
+	 * Calculate win rate base on difference of player stats and monster stats
+	 * @param playerStats player stats
+	 * @param monsterStats monster stats
+	 * @return probability of winning
+	 */
 	public static double calculateWinRateStats(double playerStats, double monsterStats) {
 		double x = Math.pow(100.0, 2.0 / monsterStats);
 		double value = Math.min(playerStats - monsterStats / 2.0, monsterStats / 2.0);
 		return Math.pow(x, value);
 	}
 	
+	/**
+	 * Calculate net win rate 
+	 * @param p1 player
+	 * @param m1 monster
+	 * @return winrate
+	 */
 	public static double calculateWinRate(BasePlayer p1, BaseMonster m1) {
 		double winRateSword = calculateWinRateStats(p1.getSwordStats(), m1.getSwordStats());
 		double winRateMagic = calculateWinRateStats(p1.getMagicStats(), m1.getMagicStats());
 		return p1.calculateWinRate(winRateSword, winRateMagic);
 	}
 	
+	/**
+	 * Calculate win rate when fighting boss
+	 * @param players list of players
+	 * @param boss a boss
+	 * @return win rate of fighting boss
+	 */
 	public static double calculateWinRateBoss(ArrayList<BasePlayer> players, Dragon boss) {
 		int playerSwordStats = 0, playerMagicStats = 0;
 		for (BasePlayer player : players) {
@@ -72,6 +93,11 @@ public class Utility {
 		return (winRateSword + winRateMagic) / 2;
 	}
 	
+	/**
+	 * Random player role
+	 * @param name player name
+	 * @return new player and their role
+	 */
 	public static BasePlayer genRandomRole(String name) {
 		try {
 			BasePlayer player = new Farmer(name);
@@ -100,6 +126,10 @@ public class Utility {
 		return null;
 	}
 	
+	/**
+	 * Random monster
+	 * @return new monster and their role
+	 */
 	public static BaseMonster genRandomMonster() {
 		BaseMonster monster = GameLogic.getInstance().summonGoblin();
 		int rand = randomInteger(0, 2);
@@ -125,6 +155,11 @@ public class Utility {
 	}
 	
 	// TODO: (optional) change the percent late to random the actions to make game balance
+	/**
+	 * Random action
+	 * @param p1 player
+	 * @return new random action
+	 */
 	public static BaseAction genRandomAction(BasePlayer p1) {
 		int rand = randomInteger(1, 100);
 		BaseAction randAction = new WinLottery(p1);
@@ -161,7 +196,7 @@ public class Utility {
 	}
 	
 	/**
-	 * If player win then drop money, otherwise reduce player's money
+	 * If player wins then drop money, otherwise reduce player's money
 	 * @param p1 player
 	 * @param m1 monster
 	 * @return string that refer to the result of that fight
@@ -205,6 +240,12 @@ public class Utility {
 		return null;
 	}
 	
+	/**
+	 * If player win then drop money, otherwise reduce players' money
+	 * @param players list of players
+	 * @param boss boss
+	 * @return string that refer to the result of that fight
+	 */
 	public static String fightBoss(ArrayList<BasePlayer> players, Dragon boss) {
 		try {
 			int n = players.size();
@@ -249,38 +290,73 @@ public class Utility {
 		return null;
 	}
 	
+	/**
+	 * Random magic stats
+	 * @return random magic stats
+	 */
 	public static int genMagicStats() {
 		return calculateExtraBuff(randomInteger(MIN_MAGIC_STATS, MAX_MAGIC_STATS));
 	}
 	
+	/**
+	 * Random sword stats
+	 * @return random sword stats
+	 */
 	public static int genSwordStats() {
 		return calculateExtraBuff(randomInteger(MIN_SWORD_STATS, MAX_SWORD_STATS));
 	}
 	
+	/**
+	 * Random money
+	 * @return random money
+	 */
 	public static int genMoney() {
 		return calculateExtraBuff(randomInteger(MIN_MONEY_STATS, MAX_MONEY_STATS));
 	}
 
+	/**
+	 * Get minimum possible sword stats
+	 * @return Minimum possible sword stats
+	 */
 	public static int getMinSwordStats() {
 		return MIN_SWORD_STATS;
 	}
-
+	/**
+	 * Get maximum possible sword stats
+	 * @return Maximum possible sword stats
+	 */
 	public static int getMaxSwordStats() {
 		return MAX_SWORD_STATS;
 	}
 
+	/**
+	 * Get minimum possible magic stats
+	 * @return Minimum possible magic stats
+	 */
 	public static int getMinMagicStats() {
 		return MIN_MAGIC_STATS;
 	}
 
+	/**
+	 * Get maximum possible magic stats
+	 * @return Maximum possible magic stats
+	 */
 	public static int getMaxMagicStats() {
 		return MAX_MAGIC_STATS;
 	}
 
+	/**
+	 * Get minimum possible money
+	 * @return Minimum possible money
+	 */
 	public static int getMinMoneyStats() {
 		return MIN_MONEY_STATS;
 	}
 
+	/**
+	 * Get maximum possible money
+	 * @return Maximum possible money
+	 */
 	public static int getMaxMoneyStats() {
 		return MAX_MONEY_STATS;
 	}

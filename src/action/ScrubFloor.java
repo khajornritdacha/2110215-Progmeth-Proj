@@ -26,7 +26,7 @@ public class ScrubFloor extends BaseAction {
 	/**
 	 * Increase player's money
 	 * @return string explaining action
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public String executeAction() throws InvalidValueException {
 		return p1.earnMoney(Utility.genMoney());

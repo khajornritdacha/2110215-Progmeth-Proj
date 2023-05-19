@@ -95,7 +95,7 @@ public abstract class BaseMonster {
 	/**
 	 * Set monster's sword stats
 	 * @param swordStats new monster's sword stats
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public void setSwordStats(int swordStats) throws InvalidValueException {
 		if (swordStats <= 0) {
@@ -115,7 +115,7 @@ public abstract class BaseMonster {
 	/**
 	 * Set monster's magic stats
 	 * @param magicStats monster's magic stats
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public void setMagicStats(int magicStats) throws InvalidValueException {
 		if (magicStats <= 0) {

@@ -325,7 +325,7 @@ public class PlayingGameRootPane extends BorderPane {
 	
 	/**
 	 * Set isFighting boss state. True if fighting boss, otherwise false
-	 * @return
+	 * @return isFightBoss boolean
 	 */
 	public static boolean isFightingBoss() {
 		return isFightBoss;

@@ -8,6 +8,11 @@ import javafx.scene.text.Text;
  * Text, styled with font, and text color 
  */
 public class DecoratedText extends Text{
+	/**
+	 * Create new decorated text 
+	 * @param text text 
+	 * @param fontSize font size
+	 */
 	public DecoratedText(String text, int fontSize) {
 		super(text);
 		Font font = Font.loadFont(getClass().getResource("../../assets/BreatheFire.ttf").toExternalForm(), fontSize);

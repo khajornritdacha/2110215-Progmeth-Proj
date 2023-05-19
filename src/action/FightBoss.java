@@ -64,10 +64,18 @@ public class FightBoss extends BaseAction {
 		return "";
 	}
 
+	/**
+	 * Get list of players
+	 * @return list of players
+	 */
 	public ArrayList<BasePlayer> getPlayers() {
 		return players;
 	}
 
+	/**
+	 * Set list of players
+	 * @param players list of players
+	 */
 	public void setPlayers(ArrayList<BasePlayer> players) {
 		this.players = players;
 	}

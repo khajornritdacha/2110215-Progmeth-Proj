@@ -9,7 +9,7 @@ public class SwordMan extends BasePlayer implements GoodAtSword {
 	/**
 	 * Create new player with SwordMan role
 	 * @param name player name
-	 * @throws InvalidValueException
+	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public SwordMan(String name) throws InvalidValueException{
 		super(name);

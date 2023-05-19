@@ -74,14 +74,26 @@ public class InputPlayerNamePane extends BorderPane{
 		this.setTop(topbar);
 	}
 	
+	/**
+	 * Get player name container
+	 * @return playerNameContainer
+	 */
 	public static PlayerNameContainer getPlayerNameContainer() {
 		return playerNameContainer;
 	}
 
+	/**
+	 * Get add player container 
+	 * @return addPlayerContainer
+	 */
 	public static AddPlayerContainer getAddPlayerContainer() {
 		return addPlayerContainer;
 	}
 	
+	/**
+	 * Get start game button
+	 * @return start game button
+	 */
 	public static Button getStartGameBtn() {
 		return startGameBtn;
 	}
