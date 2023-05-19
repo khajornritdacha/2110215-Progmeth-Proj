@@ -32,6 +32,9 @@ import scene.components.TeamFrame;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
+/**
+ * Gameplay scene
+ */
 public class PlayingGameRootPane extends BorderPane {
 	private static GridPane playerContainer;
 	private static VBox container;
@@ -42,8 +45,10 @@ public class PlayingGameRootPane extends BorderPane {
 	private static ArrayList<BasePlayer> tempPlayers = new ArrayList<BasePlayer>();
 	private static boolean isFightBoss = false, isWaiting = false, isShown = false;
 	
-	// TODO: How about throwing exception?
-	public PlayingGameRootPane() /*throws InvalidValueExecption*/{		
+	/**
+	 * Create new gameplay scene
+	 */
+	public PlayingGameRootPane() {		
 		container = new VBox();
 		playerContainer = new GridPane();
 		
@@ -185,6 +190,10 @@ public class PlayingGameRootPane extends BorderPane {
 		this.setBottom(playerContainer);
 	}
 	
+	/**
+	 * Show possible random actions
+	 * @param deck deck containing actions
+	 */
 	public static void showRandomActions(Deck deck) {
 		getActionBtn.setDisable(true);
 		deck.getChildren().clear();
@@ -200,6 +209,10 @@ public class PlayingGameRootPane extends BorderPane {
 		deck.getChildren().add(deckContainer);
 	}
 	
+	/**
+	 * Show possible choose actions
+	 * @param deck deck containing actions
+	 */
 	public static void showChooseActions(Deck deck) {
 		getActionBtn.setDisable(true);
 		deck.getChildren().clear();
@@ -209,6 +222,10 @@ public class PlayingGameRootPane extends BorderPane {
 		deck.getChildren().add(new FightingMonsterFrame());
 	}
 	
+	/**
+	 * Show all monsters
+	 * @param deck deck containing monsters
+	 */
 	public static void showMonsters(Deck deck) {
 		getActionBtn.setDisable(true);
 		deck.getChildren().clear();
@@ -218,6 +235,9 @@ public class PlayingGameRootPane extends BorderPane {
 		deck.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonDragon()));
 	}
 	
+	/**
+	 * Show fight boss action
+	 */
 	public static void showFightBoss() {
 		getActionBtn.setDisable(true);
 		selectableActions.getChildren().clear();
@@ -225,12 +245,19 @@ public class PlayingGameRootPane extends BorderPane {
 		selectableActions.getChildren().add(new MonsterFrame(GameLogic.getInstance().summonDragon()));
 	}
 	
+	/**
+	 * Show actions that are executed
+	 * @param action to execute action
+	 */
 	public static void showExecutingAction(VBox action) {
 		selectableActions.getChildren().clear();
 		selectableActions.getChildren().add(action);
-		Utility.sleep(3000);
 	}
 	
+	/**
+	 * Hide actions
+	 * @param deck deck to hide actions
+	 */
 	public static void hideActions(Deck deck) {
 		if (!isWaiting()) {
 			getActionBtn.setDisable(false);
@@ -238,75 +265,140 @@ public class PlayingGameRootPane extends BorderPane {
 		deck.getChildren().clear();
 	}
 	
+	/**
+	 * Send help in fighting boss
+	 */
 	public static void sendHelpFightingBoss() {
 		setIsFightBoss(true);
 		showFightBoss();
 		updatePlayer();
 	}
 	
+	/**
+	 * Add temporary players (used in calculating stuffs when fighting boss)
+	 * @param p1 player to add
+	 */
 	public static void addTempPlayer(BasePlayer p1) {
 		tempPlayers.add(p1);
 		showFightBoss();
 	}
 	
+	/**
+	 * Remove player from list of players to fight boss
+	 * @param p1 player to remove
+	 */
 	public static void removeTempPlayer(BasePlayer p1) {
 		tempPlayers.remove(p1);
 		showFightBoss();
 	}
 	
+	/**
+	 * Get list of players to fight boss
+	 * @return list of players to fight boss
+	 */
 	public static ArrayList<BasePlayer> getTempPlayers() {
 		return tempPlayers;
 	}
 	
+	/**
+	 * Clear list of players to fight boss
+	 */
 	public static void clearTempPlayers() {
 		tempPlayers.clear();
 	}
 	
+	/**
+	 * Set text of getAction button
+	 * @param text new text
+	 */
 	public static void setActionBtn(String text) {
 		getActionBtn.setText(text);
 	}
 	
+	/**
+	 * Set isFighting boss state. True if fighting boss, otherwise false
+	 * @param state new state
+	 */
 	public static void setIsFightBoss(boolean state) {
 		isFightBoss = state;
 	}
 	
+	/**
+	 * Set isFighting boss state. True if fighting boss, otherwise false
+	 * @return
+	 */
 	public static boolean isFightingBoss() {
 		return isFightBoss;
 	}
 	
+	/**
+	 * Get getAction button
+	 * @return getAction button
+	 */
 	public static Button getActionBtn() {
 		return getActionBtn;
 	}
 	
+	/**
+	 * Get UI of actions players can choose
+	 * @return UI of action's players can choose
+	 */
 	public static Deck getSelectableActions() {
 		return selectableActions;
 	}
 	
+	/**
+	 * Get UI of other actions
+	 * @return UI of other actions
+	 */
 	public static Deck getShowableActions() {
 		return showableActions;
 	}
 	
+	/**
+	 * Set explanation text
+	 * @param text new text
+	 */
 	public static void setExplanation(String text) {
 		explanation.setText(text);
 	}
 	
+	/**
+	 * Set isWaiting
+	 * @param state new isWaiting state
+	 */
 	public static void setIsWaiting(boolean state) {
 		isWaiting = state;
 	}
 	
+	/**
+	 * IsWaiting status
+	 * @return isWaiting
+	 */
 	public static boolean isWaiting() {
 		return isWaiting;
 	}
 	
+	/**
+	 * Set isShown boolean
+	 * @param state new state
+	 */
 	public static void setIsShown(boolean state) {
 		isShown = state;
 	}
 	
+	/**
+	 * True if any shown buttons are click, otherwise false
+	 * @return isShown
+	 */
 	public static boolean isShown() {
 		return isShown;
 	}
 	
 	// TODO: change this function by using thread
+	/**
+	 * Update player status
+	 */
 	public static void updatePlayer() {
 		playerContainer.getChildren().clear();
 		ArrayList<BasePlayer> players = GameLogic.getInstance().getPlayersList();
@@ -317,6 +409,9 @@ public class PlayingGameRootPane extends BorderPane {
 		playerContainer.setAlignment(Pos.CENTER);
 	}	
 	
+	/**
+	 * Update current turn
+	 */
 	public static void updateCurrentTurn() {
 		currentTurn.setText("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getNumberOfTurn());
 	}

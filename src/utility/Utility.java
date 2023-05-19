@@ -28,13 +28,6 @@ public class Utility {
 	private static final int MIN_MAGIC_STATS = 5, MAX_MAGIC_STATS = 7;
 	private static final int MIN_MONEY_STATS = 5, MAX_MONEY_STATS = 7;
 	
-	public static void sleep(int value) {
-		value *= 1000;
-		while (value >= 0) {
-			value--;
-		}
-	}
-	
 	/**
 	 * Random number in range [min, max] (both inclusive)
 	 * @param min

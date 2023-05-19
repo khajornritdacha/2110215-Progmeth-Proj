@@ -21,6 +21,9 @@ import scene.components.DecoratedText;
 import utility.GameConfig;
 import utility.GameState;
 
+/**
+ * Choosing turn pane, shown after start game button in welcome scene is clicked
+ */
 public class SelectTurnPane extends BorderPane{
 	private static TextField numberOfTurn;
 	private static VBox container;
@@ -28,6 +31,9 @@ public class SelectTurnPane extends BorderPane{
 	private static Button nextBtn;
 	private static Button backBtn;
 	
+	/**
+	 * Create new select turn pane
+	 */
 	public SelectTurnPane() {
 		backBtn = new BackButton();
 		backBtn.setOnAction((event) -> {
@@ -64,6 +70,11 @@ public class SelectTurnPane extends BorderPane{
 		this.setCenter(container);
 	}
 	
+	/**
+	 * Check if the entered number is within valid range of number of turns
+	 * @param textNumber string of number to be checked
+	 * @return True if the number is valid 
+	 */
 	public static boolean isValidNumberOfTurn(String textNumber) {
 		try {
 			int number = Integer.parseInt(textNumber.strip());
@@ -77,6 +88,9 @@ public class SelectTurnPane extends BorderPane{
 		}
 	}
 	
+	/**
+	 * Update go to next page button 
+	 */
 	public static void updateNextBtn() {
 		if (numberOfTurn.getText().isEmpty() || !isValidNumberOfTurn(numberOfTurn.getText())) {
 	    	nextBtn.setDisable(true);

@@ -12,7 +12,13 @@ import javafx.scene.layout.BorderPane;
 import scene.components.BackButton;
 import utility.GameState;
 
+/**
+ * How to play scene of this game
+ */
 public class HowToPlayPane extends BorderPane{
+	/**
+	 * Create new HowToPlay scene
+	 */
 	public HowToPlayPane() {
 		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);

@@ -16,11 +16,16 @@ import javafx.scene.layout.VBox;
 import scene.components.DecoratedButton;
 import utility.GameState;
 
-
+/**
+ * Welcome scene of this game
+ */
 public class StartGameRootPane extends BorderPane{
 	private static Button startGameBtn;
 	private static Button howToPlayBtn;
 	
+	/**
+	 * Create new welcome scene
+	 */
 	public StartGameRootPane() {
 		VBox container = new VBox();
 
@@ -49,6 +54,10 @@ public class StartGameRootPane extends BorderPane{
 		this.setCenter(container);
 	}
 
+	/**
+	 * Get start game button
+	 * @return start game button
+	 */
 	public static Button getStartGamebtn() {
 		return startGameBtn;
 	}
