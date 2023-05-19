@@ -10,12 +10,18 @@ import scene.components.DecoratedButton;
 import scene.components.DecoratedText;
 import utility.GameConfig;
 
+/**
+ * Container of form that takes players' name
+ */
 public class AddPlayerContainer extends VBox{
 	private Button addPlayerBtn;
 	private TextField nameInput;
 	private Text heading;
 	private Text subHeading;
 	
+	/**
+	 * Create new add player container
+	 */
 	public AddPlayerContainer() {
 		heading = new DecoratedText("Enter Player Name", 40);
 		subHeading = new DecoratedText(String.format("(No More than %d Characters)", GameConfig.MAXIMUM_PLAYER_CHARS), 18);
@@ -42,10 +48,19 @@ public class AddPlayerContainer extends VBox{
 		this.getChildren().addAll(heading, subHeading, nameInput, addPlayerBtn);
 	}
 	
+	/**
+	 * True if player name is valid, otherwise false
+	 * @param name player name to check
+	 * @return true if player name is valid, otherwise false
+	 */
 	public boolean validatePlayerName(String name) {
 		return (!name.isEmpty() && name.length() <= GameConfig.MAXIMUM_PLAYER_CHARS);
 	}
 	
+	/**
+	 * Update add player button (Set disable if player name is invalid)
+	 * @param name player name
+	 */
 	public void updateAddPlayerBtn(String name) {
 		int numberPlayer = InputPlayerNamePane.getPlayerNameContainer().getPlayerList().size();
 		boolean canAddPlayer = (numberPlayer < GameConfig.MAXIMUM_PLAYER);
@@ -56,6 +71,9 @@ public class AddPlayerContainer extends VBox{
 		}	
 	}
 	
+	/**
+	 * Force refresh add player button
+	 */
 	public void refreshAddPlayerBtn() {
 		updateAddPlayerBtn(nameInput.getText());
 	}

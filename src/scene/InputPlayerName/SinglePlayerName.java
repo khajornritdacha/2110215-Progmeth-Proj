@@ -10,9 +10,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import scene.components.DecoratedText;
 
+/**
+ * Container for showing player name
+ */
 public class SinglePlayerName extends HBox {
 	private String name;
 	
+	/**
+	 * Create new container for showing player name
+	 * @param name player name
+	 * @param index index of the player
+	 */
 	public SinglePlayerName(String name, int index) {
 		this.name = name;
 
@@ -30,6 +38,10 @@ public class SinglePlayerName extends HBox {
 		this.getChildren().addAll(btnContainer, playerTitle);
 	}
 	
+	/**
+	 * Get name of this player
+	 * @return name of this player
+	 */
 	public String getName() {
 		return name;
 	}

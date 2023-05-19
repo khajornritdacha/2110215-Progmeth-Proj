@@ -7,9 +7,15 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import utility.GameConfig;
 
+/**
+ * Container for showing players names
+ */
 public class PlayerNameContainer extends VBox{
-	ArrayList<SinglePlayerName> playerList;
+	private ArrayList<SinglePlayerName> playerList;
 	
+	/**
+	 * Create new player name container
+	 */
 	public PlayerNameContainer() {
 		this.setPrefWidth(600);
 		this.setPrefHeight(300);
@@ -20,6 +26,10 @@ public class PlayerNameContainer extends VBox{
 		this.setPadding(new Insets(0, 0, 0, 50));
 	}
 	
+	/**
+	 * Add player to this container
+	 * @param name player name
+	 */
 	public void addPlayer(String name) {
 		SinglePlayerName newPlayer = new SinglePlayerName(name, playerList.size()+1);
 		playerList.add(newPlayer);
@@ -29,6 +39,10 @@ public class PlayerNameContainer extends VBox{
 		}
 	}
 	
+	/**
+	 * Remove player from this container
+	 * @param playerName player object to be removed
+	 */
 	public void removePlayer(SinglePlayerName playerName) {
 		playerList.remove(playerName);
 		this.getChildren().clear();
@@ -46,6 +60,10 @@ public class PlayerNameContainer extends VBox{
 		}
 	}
 
+	/**
+	 * Get player lists
+	 * @return list of players
+	 */
 	public ArrayList<SinglePlayerName> getPlayerList() {
 		return playerList;
 	}

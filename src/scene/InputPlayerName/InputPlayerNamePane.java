@@ -21,11 +21,17 @@ import scene.components.DecoratedText;
 import utility.GameConfig;
 import utility.GameState;
 
+/**
+ * Scene for input and show players name before game start
+ */
 public class InputPlayerNamePane extends BorderPane{
 	private static PlayerNameContainer playerNameContainer;
 	private static AddPlayerContainer addPlayerContainer;
 	private static Button startGameBtn;
 	
+	/**
+	 * Create new scene for input players names
+	 */
 	public InputPlayerNamePane() {		
 		Image img = new Image(getClass().getResource("../../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
