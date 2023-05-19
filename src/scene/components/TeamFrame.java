@@ -9,7 +9,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import player.BasePlayer;
 
+/**
+ * UI for showing team details
+ */
 public class TeamFrame extends Frame {
+	/**
+	 * Create new team frames from array list of players
+	 * @param players array list of players in this team
+	 */
 	public TeamFrame(ArrayList<BasePlayer> players) {
 		super(Color.PINK);
 

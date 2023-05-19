@@ -18,7 +18,14 @@ import player.BasePlayer;
 import scene.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
+/**
+ * UI for showing player details
+ */
 public class PlayerFrame extends VBox {
+	/**
+	 * Create new player frame
+	 * @param p1 player to create frame
+	 */
 	public PlayerFrame(BasePlayer p1) {
 		this.setAlignment(Pos.CENTER);
 		if (!p1.isAlive()) {

@@ -9,9 +9,15 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 
+/**
+ * Go back button
+ */
 public class BackButton extends Button{
 	private int BACK_BUTTON_SIZE = 81;
 	
+	/**
+	 * Create new go back button
+	 */
 	public BackButton() {
 		Image img2 = new Image(getClass().getResource("../../assets/backArrowScaled.png").toExternalForm(), BACK_BUTTON_SIZE, BACK_BUTTON_SIZE, false, true);
 		BackgroundImage bg2 = new BackgroundImage(img2, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);

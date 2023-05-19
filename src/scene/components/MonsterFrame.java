@@ -16,7 +16,14 @@ import scene.PlayingGameRootPane;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
+/**
+ * UI for showing monster details
+ */
 public class MonsterFrame extends Frame {
+	/**
+	 * Create new monster frame
+	 * @param monster monster in this frame
+	 */
 	public MonsterFrame(BaseMonster monster) {
 		super(monster.getColor());
 	

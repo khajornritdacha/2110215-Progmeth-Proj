@@ -4,6 +4,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Text, styled with font, and text color 
+ */
 public class DecoratedText extends Text{
 	public DecoratedText(String text, int fontSize) {
 		super(text);

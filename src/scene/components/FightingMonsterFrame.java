@@ -8,7 +8,13 @@ import javafx.scene.shape.Circle;
 import scene.PlayingGameRootPane;
 
 //TODO: adjust the GUI to make it be more beautiful
+/**
+ * Fighting monster frame
+ */
 public class FightingMonsterFrame extends Frame {
+	/**
+	 * Create new frame when fighting monster
+	 */
 	public FightingMonsterFrame() {
 		super(Color.RED);
 	

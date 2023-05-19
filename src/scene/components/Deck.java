@@ -4,6 +4,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
+/**
+ * Deck, decorated HBox
+ */
 public class Deck extends HBox {
 	public Deck() {
 		super();

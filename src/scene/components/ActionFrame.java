@@ -12,7 +12,15 @@ import logic.GameLogic;
 import scene.PlayingGameRootPane;
 import utility.Utility;
 
+/**
+ * UI show action details
+ */
 public class ActionFrame extends Frame {
+	/**
+	 * Create new action frame
+	 * @param action action to show inside frame
+	 * @param showProb probability 
+	 */
 	public ActionFrame(BaseAction action, boolean showProb) {
 		super(action.getColor());
 		

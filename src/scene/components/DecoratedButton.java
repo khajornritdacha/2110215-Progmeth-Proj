@@ -11,7 +11,17 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * Button with medival-styled background image
+ */
 public class DecoratedButton extends Button{
+	/**
+	 * Create new decorated button
+	 * @param text text inside button
+	 * @param width width of this button
+	 * @param height height of this button
+	 * @param fontSize font size of this button
+	 */
 	public DecoratedButton(String text, int width, int height, int fontSize) {
 		super(text);
 		this.setPrefWidth(width);

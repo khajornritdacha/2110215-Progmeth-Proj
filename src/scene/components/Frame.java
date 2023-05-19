@@ -7,7 +7,14 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * Base frame
+ */
 public class Frame extends VBox {
+	/**
+	 * Create new frame
+	 * @param color background color of this frame
+	 */
 	public Frame(Color color) {
 		this.setAlignment(Pos.CENTER);
 		this.setPrefHeight(300);
