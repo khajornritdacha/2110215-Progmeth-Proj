@@ -1,6 +1,7 @@
 package player;
 
 import customException.InvalidValueException;
+import logic.GameLogic;
 import utility.Utility;
 
 /**
@@ -91,7 +92,7 @@ public abstract class BasePlayer {
 		
 		int before = this.getMoney();
 		this.setMoney(before - money);
-		return String.format("%s loses (half) money for %d bahts (%d->%d)", this.getName(), money, before, before - money);
+		return String.format("%s loses (half) money for %d bahts (%d->%d)", this.getName(), money, before, Math.max(0, before - money));
 	}
 	
 	// TODO: add comments
@@ -103,7 +104,7 @@ public abstract class BasePlayer {
 		
 		int before = this.getMoney();
 		this.setMoney(before - money);
-		return String.format("%s loses money for %d bahts (%d->%d)", this.getName(), money, before, before - money);
+		return String.format("%s loses money for %d bahts (%d->%d)", this.getName(), money, before, Math.max(0, before - money));
 	}
 	
 	/**

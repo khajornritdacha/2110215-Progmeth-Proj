@@ -1,6 +1,5 @@
 package scene;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import action.FightBoss;
@@ -12,7 +11,6 @@ import action.LearnMagic;
 import action.LearnSword;
 import action.ScrubFloor;
 import action.WinLottery;
-import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -44,7 +42,6 @@ import scene.components.MonsterFrame;
 import scene.components.PlayerFrame;
 import scene.components.TeamFrame;
 import scene.components.TextStats;
-import utility.GameConfig;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
@@ -81,7 +78,7 @@ public class PlayingGameRootPane extends BorderPane {
 		VBox container = new VBox(), upperContainer = new VBox();
 		container.setAlignment(Pos.CENTER);
 		
-		currentTurn = new TextStats("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getInstance().getNumberOfTurn(), 50);
+		currentTurn = new TextStats("Turn : " + GameLogic.getInstance().getCurrentTurn() + "/" + GameLogic.getNumberOfTurn(), 50);
 		currentTurn.setFill(Color.WHITE);
 		currentTurn.setTextAlignment(TextAlignment.CENTER);
 		
@@ -96,6 +93,10 @@ public class PlayingGameRootPane extends BorderPane {
 			public void handle(ActionEvent e) {
 				if (getActionBtn.getText().equals("Play again")) {
 					GameLogic.getInstance().terminateGame();
+				}
+				else if (GameLogic.getInstance().getNumberAlivePlayers() <= 1) {
+					GameLogic.getInstance().endGame();
+					return;
 				}
 				else if (getActionBtn.getText().equals("(R.I.P.) Go to next player")) {
 					getActionBtn.setText("Random action");
@@ -125,7 +126,7 @@ public class PlayingGameRootPane extends BorderPane {
 					getActionBtn.setText("Random action");
 					GameLogic.getInstance().goToNextPlayer();
 				}
-				if (!getActionBtn.getText().equals("Random action")) {
+				if (!getActionBtn.getText().equals("Random action") && !getActionBtn.getText().equals("Play again")) {
 					setExplanation("");
 				}
 			}
@@ -430,6 +431,14 @@ public class PlayingGameRootPane extends BorderPane {
 	}
 	
 	/**
+	 * Get explanation text
+	 * @return explanation text
+	 */
+	public static Text getExplanation() {
+		return explanation;
+	}
+	
+	/**
 	 * Set isWaiting
 	 * @param state new isWaiting state
 	 */
@@ -461,7 +470,6 @@ public class PlayingGameRootPane extends BorderPane {
 		return isShown;
 	}
 	
-	// TODO: change this function by using thread
 	/**
 	 * Update player status
 	 */

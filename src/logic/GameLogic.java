@@ -7,6 +7,7 @@ import action.FightBoss;
 import action.FightMonster;
 import application.Main;
 import customException.InvalidValueException;
+import javafx.scene.text.Font;
 import monster.BaseMonster;
 import monster.Dragon;
 import monster.Goblin;
@@ -98,7 +99,7 @@ public class GameLogic {
 	/**
 	 * Logic for handling game ending including finding winners and set UI
 	 */
-	private void endGame() {
+	public void endGame() {
 		if (getNumberAlivePlayers() == 0) {
 			PlayingGameRootPane.setExplanation("No one wins");
 		}
@@ -131,6 +132,7 @@ public class GameLogic {
 			}
 			PlayingGameRootPane.setExplanation(String.format("%s wins!!!", winner));
 		}
+		PlayingGameRootPane.getExplanation().setFont(Font.loadFont(getClass().getResource("../assets/BreatheFire.ttf").toExternalForm(), 72));
 		PlayingGameRootPane.setActionBtn("Play again");
 	}
 	
@@ -243,7 +245,7 @@ public class GameLogic {
 	 * Get the number of alive players
 	 * @return The number of alive players
 	 */
-	private int getNumberAlivePlayers() {
+	public int getNumberAlivePlayers() {
 		int num = 0;
 		for(final BasePlayer p : playersList) {
 			if (p.isAlive()) {
