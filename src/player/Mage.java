@@ -2,7 +2,15 @@ package player;
 
 import customException.InvalidValueException;
 
+/**
+ * Mage, expert in magic 
+ */
 public class Mage extends BasePlayer implements GoodAtMagic {	
+	/**
+	 * Create new player with Mage role
+	 * @param name player name
+	 * @throws InvalidValueException
+	 */
 	public Mage(String name) throws InvalidValueException{
 		super(name);
 	}
