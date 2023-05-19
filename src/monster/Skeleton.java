@@ -3,11 +3,21 @@ package monster;
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 
+/**
+ * Skeleton, a melee monster
+ */
 public class Skeleton extends BaseMonster implements Evolutionary {
 	// TODO: change sword multiplier to make game balance (in percent)
 	private final int MULTIPLIER = 35;
 	private static int level = 1;
 	
+	/**
+	 * Create new monster
+	 * @param name monster's name
+	 * @param swordStats monster's sword stats
+	 * @param magicStats monster's magic stats
+	 * @param dropMoney monster's drop money
+	 */
 	public Skeleton(String name, int swordStats, int magicStats, int dropMoney) {
 		super(name, swordStats, magicStats, dropMoney);
 	}

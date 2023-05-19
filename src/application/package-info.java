@@ -1,4 +1,4 @@
 /**
- * Package containing Main class of this game
+ * Contain Main class of this game
  */
 package application;

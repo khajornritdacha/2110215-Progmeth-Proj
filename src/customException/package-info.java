@@ -1,4 +1,4 @@
 /**
- * Package containing custom exceptions
+ * Contain custom exceptions
  */
 package customException;

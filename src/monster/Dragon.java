@@ -3,12 +3,22 @@ package monster;
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 
+/**
+ * Dragon, a boss in this game
+ */
 public class Dragon extends BaseMonster implements Evolutionary {
 	// TODO: change sword multiplier to make game balance (in percent)
 	private final int SWORD_MULTIPLIER = 81;
 	private final int MAGIC_MULTIPLIER = 82;
 	public static int level = 1;
 	
+	/**
+	 * Create new monster
+	 * @param name monster's name
+	 * @param swordStats monster's sword stats
+	 * @param magicStats monster's magic stats
+	 * @param dropMoney monster's drop money
+	 */
 	public Dragon(String name, int swordStats, int magicStats, int dropMoney) {
 		super(name, swordStats, magicStats, dropMoney);
 	}

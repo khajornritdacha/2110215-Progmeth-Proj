@@ -3,11 +3,21 @@ package monster;
 import customException.InvalidValueException;
 import javafx.scene.paint.Color;
 
+/**
+ * Wizard, a magic monster
+ */
 public class Wizard extends BaseMonster implements Evolutionary {
 	// TODO: change magic multiplier to make game balance (in percent)
 	private final int MULTIPLIER = 38;
 	private static int level = 1;
 	
+	/**
+	 * Create new monster
+	 * @param name monster's name
+	 * @param swordStats monster's sword stats
+	 * @param magicStats monster's magic stats
+	 * @param dropMoney monster's drop money
+	 */
 	public Wizard(String name, int swordStats, int magicStats, int dropMoney) {
 		super(name, swordStats, magicStats, dropMoney);
 	}
