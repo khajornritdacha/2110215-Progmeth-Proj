@@ -4,6 +4,7 @@ import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
@@ -47,6 +48,7 @@ public class MonsterFrame extends Frame {
 		pic.setEffect(new DropShadow());
 		
 		Button selectBtn = new Button("Fight with");
+		MonsterFrame.setMargin(selectBtn, new Insets(15, 0, 0, 0));
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				if (monster instanceof Dragon) {
@@ -74,14 +76,14 @@ public class MonsterFrame extends Frame {
 		}
 		dropMoney = Utility.calculateExtraBuff(dropMoney);
 		
-		TextStats swordText = new TextStats("Sword stats:");
-		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()));
-		TextStats magicText = new TextStats("Magic stats:");
-		TextStats magicStats = new TextStats(Integer.toString(monster.getMagicStats()));
-		TextStats moneyText = new TextStats("Drop money:");
-		TextStats money = new TextStats(Integer.toString(dropMoney));
-		TextStats winRateText = new TextStats("Win rate:");
-		TextStats winRateStats = new TextStats(String.format("%.2f%%", winRate));
+		TextStats swordText = new TextStats("Sword stats:", 16, false);
+		TextStats swordStats = new TextStats(Integer.toString(monster.getSwordStats()), 16, false);
+		TextStats magicText = new TextStats("Magic stats:", 16, false);
+		TextStats magicStats = new TextStats(Integer.toString(monster.getMagicStats()), 16, false);
+		TextStats moneyText = new TextStats("Drop money:", 16, false);
+		TextStats money = new TextStats(Integer.toString(dropMoney), 16, false);
+		TextStats winRateText = new TextStats("Win rate:", 16, false);
+		TextStats winRateStats = new TextStats(String.format("%.2f%%", winRate), 16, false);
 		
 		GridPane statsContainer = new GridPane();
 		statsContainer.add(swordText, 0, 0);

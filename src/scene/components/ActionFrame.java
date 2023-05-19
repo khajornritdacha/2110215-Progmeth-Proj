@@ -6,6 +6,7 @@ import action.IsRobbed;
 import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.ImagePattern;

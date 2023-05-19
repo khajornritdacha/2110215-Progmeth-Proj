@@ -365,9 +365,6 @@ public class GameLogic {
 	 * @return current player
 	 */
 	public BasePlayer getCurrentPlayer() {
-		System.out.println("Current Player1: " + currentPlayer);
-		System.out.println("Current Player2: " + playersList.get(currentPlayer));
-		System.out.println("List of Players: " + playersList);
 		return playersList.get(currentPlayer);
 	}
 }

@@ -20,7 +20,9 @@ public class Frame extends VBox {
 	public Frame(Color color) {
 		this.setAlignment(Pos.CENTER);
 		this.setPrefHeight(300);
+		this.setMaxHeight(300);
 		this.setPrefWidth(200);
+		this.setMaxWidth(200);
 		this.setBackground(new Background(new BackgroundFill(color, new CornerRadii(25), null)));
 		this.setPadding(new Insets(20, 20, 20, 20));
 		this.setEffect(new DropShadow());
