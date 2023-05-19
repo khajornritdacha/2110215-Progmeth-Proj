@@ -3,6 +3,7 @@ package scene.components;
 import action.BaseAction;
 import action.FightBoss;
 import action.IsRobbed;
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import logic.GameLogic;
+import utility.GameConfig;
 import scene.PlayingGameRootPane;
 import utility.Utility;
 
@@ -40,6 +42,7 @@ public class ActionFrame extends Frame {
 		Button selectBtn = new Button("Select");
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
+				Main.playEffect(GameConfig.TAKE_ACTION);
 				GameLogic.getInstance().handleAction(action);
 				PlayingGameRootPane.hideActions(PlayingGameRootPane.getSelectableActions());
 			}

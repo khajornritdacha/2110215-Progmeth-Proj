@@ -1,5 +1,6 @@
 package scene.components;
 
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 import scene.playingGame.PlayingGameRootPane;
+import utility.GameConfig;
 
 //TODO: adjust the GUI to make it be more beautiful
 /**

@@ -11,6 +11,7 @@ import action.LearnMagic;
 import action.LearnSword;
 import action.ScrubFloor;
 import action.WinLottery;
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

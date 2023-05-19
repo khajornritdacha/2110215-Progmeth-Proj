@@ -63,7 +63,8 @@ public class InputPlayerNamePane extends BorderPane{
 				playerNames.add(player.getName());
 			}
 			GameLogic.getInstance(playerNames);
-			Main.changeState(GameState.PLAYING_SCENE);
+//			Main.changeState(GameState.PLAYING_SCENE);
+			Main.changeState(GameState.LOADING_SCENE);
 		});
 		bottomContainer.getChildren().add(startGameBtn);
 		bottomContainer.setAlignment(Pos.TOP_CENTER);

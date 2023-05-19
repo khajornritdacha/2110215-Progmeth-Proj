@@ -1,5 +1,6 @@
 package scene.components;
 
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -15,6 +16,7 @@ import monster.BaseMonster;
 import monster.Dragon;
 import player.Rich;
 import scene.playingGame.PlayingGameRootPane;
+import utility.GameConfig;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
@@ -49,6 +51,7 @@ public class MonsterFrame extends Frame {
 			public void handle(ActionEvent e) {
 				if (monster instanceof Dragon) {
 					if (PlayingGameRootPane.isFightingBoss()) {
+						Main.playEffect(GameConfig.TAKE_ACTION);
 						GameLogic.getInstance().handleFightBoss(PlayingGameRootPane.getTempPlayers());
 						PlayingGameRootPane.hideActions(PlayingGameRootPane.getSelectableActions());
 					}
@@ -57,6 +60,7 @@ public class MonsterFrame extends Frame {
 					}
 				}
 				else {
+					Main.playEffect(GameConfig.TAKE_ACTION);
 					GameLogic.getInstance().handleFightMonster(monster);
 					PlayingGameRootPane.hideActions(PlayingGameRootPane.getSelectableActions());
 				}

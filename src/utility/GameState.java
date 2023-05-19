@@ -28,4 +28,5 @@ public enum GameState {
 	 * Game is in How To Play scene
 	 */
 	HOW_TO_PLAY_SCENE,
+	LOADING_SCENE,
 }
