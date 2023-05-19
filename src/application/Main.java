@@ -2,7 +2,6 @@ package application;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 import customException.InvalidValueException;
 import javafx.application.Application;
@@ -17,9 +16,6 @@ import scene.PlayingGameRootPane;
 import scene.SelectTurnPane;
 import scene.StartGameRootPane;
 import scene.InputPlayerName.InputPlayerNamePane;
-import scene.playingGame.PlayingGameRootPane;
-//import scene.chooseRole.ChooseRolePane;
-import scene.startGame.StartGameRootPane;
 import utility.GameConfig;
 import utility.GameState;
 
@@ -28,7 +24,6 @@ import utility.GameState;
  */
 public class Main extends Application {
 	private static boolean isPlayedMusic = false;
-	public static Stage primaryStage;
 	private static MediaPlayer mediaPlayer;
 		
 	/**
@@ -62,7 +57,6 @@ public class Main extends Application {
     		primaryStage.setScene(new Scene(new StartGameRootPane(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));
     	}
     	else if (gameState.equals(GameState.SELECT_TURN_SCENE)) {
-//    		primaryStage.setScene(new Scene(new LoadingPane(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));
     		primaryStage.setScene(new Scene(new SelectTurnPane(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT));    		
     	}
     	else if (gameState.equals(GameState.HOW_TO_PLAY_SCENE)) {

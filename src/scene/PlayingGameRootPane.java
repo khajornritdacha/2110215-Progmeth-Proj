@@ -1,5 +1,6 @@
 package scene;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import action.FightBoss;
@@ -64,7 +65,9 @@ public class PlayingGameRootPane extends BorderPane {
 	 * Create new gameplay scene
 	 */
 	public PlayingGameRootPane() {
-		Image img = new Image(getClass().getResource("../../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
+		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
+//		Image img = new Image(getClass().getResource("../../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
+//		new File(musicPath).toURI().toString()
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		
 		this.setBackground(new Background(bg));

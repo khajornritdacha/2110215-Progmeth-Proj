@@ -83,7 +83,7 @@ public abstract class BasePlayer {
 	}
 	
 	// TODO: add comments
-	public String lostHalfMoney(int money) throws InvalidValueException {
+	public String loseHalfMoney(int money) throws InvalidValueException {
 		if (this instanceof Rich) {
 			money *= Rich.moneyMultiplier;
 		}

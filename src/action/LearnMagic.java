@@ -10,12 +10,7 @@ import utility.Utility;
 /**
  * Increase player magic stats when choosing action
  */
-public class LearnMagic extends BaseAction {
-	/**
-	 * Player to increase magic stats
-	 */
-	private BasePlayer p1;
-	
+public class LearnMagic extends BaseAction {	
 	/**
 	 * Create new LearnMagic action
 	 * @param p1 player to increase magic stats
@@ -30,7 +25,7 @@ public class LearnMagic extends BaseAction {
 	 * @see Utility
 	 */
 	public String executeAction() throws InvalidValueException{
-		return p1.learnMagic(Utility.genMagicStats());
+		return this.getP1().learnMagic(Utility.genMagicStats());
 	}
 	
 	public Color getColor() {
@@ -53,7 +48,6 @@ public class LearnMagic extends BaseAction {
 		return String.format("Increase magic stats for %d-%d units", minStats, maxStats);
 	}
 	
-	// TODO: add comments
 	public Image getPicture() {
 		return new Image(getClass().getResource("../assets/enchantedBook.png").toExternalForm(), 1024, 720, false, true);
 	}

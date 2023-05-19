@@ -10,12 +10,7 @@ import utility.Utility;
 /**
  * Increase player magic stats when choosing action
  */
-public class LearnSword extends BaseAction {
-	/**
-	 * Player to increase sword stats
-	 */
-	private BasePlayer p1;
-	
+public class LearnSword extends BaseAction {	
 	/**
 	 * Create new LearnSword action
 	 * @param p1 player to increase sword stats
@@ -30,7 +25,7 @@ public class LearnSword extends BaseAction {
 	 * @see Utility
 	 */
 	public String executeAction() throws InvalidValueException{
-		return p1.learnSword(Utility.genSwordStats());
+		return this.getP1().learnSword(Utility.genSwordStats());
 	}
 	
 	public Color getColor() {
@@ -53,7 +48,6 @@ public class LearnSword extends BaseAction {
 		return String.format("Increase sword stats for %d-%d units", minStats, maxStats);
 	}
 	
-	// TODO: add comments
 	public Image getPicture() {
 		return new Image(getClass().getResource("../assets/enchantedSword.png").toExternalForm(), 1024, 720, false, true);
 	}

@@ -31,7 +31,7 @@ public class GameConfig {
 	public final static int MAXIMUM_PLAYER_CHARS = 10;
 	public final static int SCREEN_WIDTH = 1024;
 	public final static int SCREEN_HEIGHT = 720;
-	public final static String HOMEPAGE_MUSIC = "C:\\Users\\IT\\eclipse-workspace\\RGBLife\\src\\assets\\a-song-of-wolves-and-dragons.mp3";
-	public final static String INGAME_MUSIC = "C:\\Users\\IT\\eclipse-workspace\\RGBLife\\src\\assets\\ragnarok.mp3";
-	public final static String TAKE_ACTION = "C:\\Users\\IT\\eclipse-workspace\\RGBLife\\src\\assets\\dropmetalthing.mp3";
+	public final static String HOMEPAGE_MUSIC = "./src/assets/a-song-of-wolves-and-dragons.mp3";
+	public final static String INGAME_MUSIC = "./src/assets/ragnarok.mp3";
+	public final static String TAKE_ACTION = "./src/assets/dropmetalthing.mp3";
 }

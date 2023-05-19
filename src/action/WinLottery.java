@@ -12,11 +12,6 @@ import utility.Utility;
  */
 public class WinLottery extends BaseAction {
 	/**
-	 * Player to add money
-	 */
-	private BasePlayer p1;
-	
-	/**
 	 * Create new WinLottery action
 	 * @param p1 player to add money
 	 */
@@ -30,7 +25,7 @@ public class WinLottery extends BaseAction {
 	 * @see Utility
 	 */
 	public String executeAction() throws InvalidValueException {
-		return p1.earnMoney(2 * Utility.genMoney());
+		return this.getP1().earnMoney(2 * Utility.genMoney());
 	}
 	
 	public Color getColor() {
@@ -53,7 +48,6 @@ public class WinLottery extends BaseAction {
 		return String.format("Increase money for %d-%d bahts", minStats, maxStats);
 	}
 	
-	// TODO: add comments
 	public Image getPicture() {
 		return new Image(getClass().getResource("../assets/money.png").toExternalForm(), 1024, 720, false, true);
 	}

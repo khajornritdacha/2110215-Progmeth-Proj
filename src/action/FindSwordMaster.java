@@ -10,12 +10,7 @@ import utility.Utility;
 /**
  * Tremendously increase player sword stats, executed in random action phase 
  */
-public class FindSwordMaster extends BaseAction{
-	/**
-	 * Player to increase sword stats
-	 */
-	private BasePlayer p1;
-	
+public class FindSwordMaster extends BaseAction{	
 	/**
 	 * Create new FindSwordMaster action
 	 * @param p1 player to increase sword stats
@@ -30,7 +25,7 @@ public class FindSwordMaster extends BaseAction{
 	 * @see Utility
 	 */
 	public String executeAction() throws InvalidValueException{
-		return p1.learnSword(2 * Utility.genSwordStats());
+		return this.getP1().learnSword(2 * Utility.genSwordStats());
 	}
 	
 	public Color getColor() {
@@ -53,7 +48,6 @@ public class FindSwordMaster extends BaseAction{
 		return String.format("Increase sword stats for %d-%d units", minStats, maxStats);
 	}
 	
-	// TODO: add comments
 	public Image getPicture() {
 		return new Image(getClass().getResource("../assets/enchantedSword.png").toExternalForm(), 1024, 720, false, true);
 	}

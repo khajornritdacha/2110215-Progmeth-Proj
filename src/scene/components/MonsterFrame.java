@@ -15,7 +15,7 @@ import logic.GameLogic;
 import monster.BaseMonster;
 import monster.Dragon;
 import player.Rich;
-import scene.playingGame.PlayingGameRootPane;
+import scene.PlayingGameRootPane;
 import utility.GameConfig;
 import utility.Utility;
 

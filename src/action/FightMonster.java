@@ -10,12 +10,7 @@ import utility.Utility;
 /**
  * Executed when player fight with monster
  */
-public class FightMonster extends BaseAction {
-	/**
-	 * Player to fight monster of this action
-	 */
-	private BasePlayer p1;
-	
+public class FightMonster extends BaseAction {	
 	/**
 	 * Monster of this action
 	 */
@@ -44,7 +39,7 @@ public class FightMonster extends BaseAction {
 	 * @see Utility
 	 */
 	public String executeAction() throws InvalidValueException{
-		return Utility.fightAgainst(p1, m1);
+		return Utility.fightAgainst(this.getP1(), m1);
 	}
 	
 	public Color getColor() {

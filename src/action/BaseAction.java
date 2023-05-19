@@ -10,6 +10,9 @@ import player.BasePlayer;
  * @author JomnoiZ
  */
 public abstract class BaseAction {
+	/**
+	 * Player involves in this action
+	 */
 	private BasePlayer p1;
 	
 	/**
@@ -53,6 +56,9 @@ public abstract class BaseAction {
 		this.p1 = p1;
 	}
 	
-	// TODO: add comments
-	abstract Image getPicture();
+	/**
+	 * Get picture according to actions
+	 * @return picture according to actions
+	 */
+	public abstract Image getPicture();
 }

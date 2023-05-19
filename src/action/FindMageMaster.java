@@ -10,12 +10,7 @@ import utility.Utility;
 /**
  * Tremendously increase player magic stats, executed in random action phase 
  */
-public class FindMageMaster extends BaseAction {
-	/**
-	 * Player to increase magic stats
-	 */
-	private BasePlayer p1;
-	
+public class FindMageMaster extends BaseAction {	
 	/**
 	 * Create new FindMageMaster action 
 	 * @param p1 player to increase magic stats
@@ -30,7 +25,7 @@ public class FindMageMaster extends BaseAction {
 	 * @see Utility
 	 */
 	public String executeAction() throws InvalidValueException{
-		return p1.learnMagic(2 * Utility.genMagicStats());
+		return this.getP1().learnMagic(2 * Utility.genMagicStats());
 	}
 	
 	public Color getColor() {
@@ -53,7 +48,6 @@ public class FindMageMaster extends BaseAction {
 		return String.format("Increase magic stats for %d-%d units", minStats, maxStats);
 	}
 	
-	// TODO: add comments
 	public Image getPicture() {
 		return new Image(getClass().getResource("../assets/enchantedBook.png").toExternalForm(), 1024, 720, false, true);
 	}

@@ -12,11 +12,6 @@ import utility.Utility;
  */
 public class ScrubFloor extends BaseAction {
 	/**
-	 * Player to add money
-	 */
-	private BasePlayer p1;
-	
-	/**
 	 * Create new ScrubFloor action
 	 * @param p1 player to add money
 	 */
@@ -30,7 +25,7 @@ public class ScrubFloor extends BaseAction {
 	 * @throws InvalidValueException throw error when value is invalid
 	 */
 	public String executeAction() throws InvalidValueException {
-		return p1.earnMoney(Utility.genMoney());
+		return this.getP1().earnMoney(Utility.genMoney());
 	}
 	
 	public Color getColor() {
@@ -53,7 +48,6 @@ public class ScrubFloor extends BaseAction {
 		return String.format("Increase money for %d-%d bahts", minStats, maxStats);
 	}
 	
-	// TODO: add comments
 	public Image getPicture() {
 		return new Image(getClass().getResource("../assets/money.png").toExternalForm(), 1024, 720, false, true);
 	}

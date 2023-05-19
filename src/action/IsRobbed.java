@@ -11,11 +11,6 @@ import utility.Utility;
  */
 public class IsRobbed extends BaseAction {
 	/**
-	 * Player to be robbed
-	 */
-	private BasePlayer p1;
-	
-	/**
 	 * Minimum percentage of money and stats to be robbed
 	 */
 	static final int MIN_ROB_PERCENT = 5;
@@ -43,23 +38,23 @@ public class IsRobbed extends BaseAction {
 			int rand = Utility.randomInteger(0, 2);
 			String action = this.getP1().getName();
 			if (rand == 0) {
-				int robbedMoney = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * p1.getMoney() / 100);
+				int robbedMoney = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * this.getP1().getMoney() / 100);
 				if (robbedMoney > 0) {
-					p1.setMoney(p1.getMoney() - robbedMoney);
+					this.getP1().setMoney(this.getP1().getMoney() - robbedMoney);
 					action += " has been robbed money for " + robbedMoney + " bahts";
 				}
 			}
 			else if (rand == 1) {
-				int robbedSword = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * p1.getSwordStats() / 100);
+				int robbedSword = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * this.getP1().getSwordStats() / 100);
 				if (robbedSword > 0) {
-					p1.setSwordStats(p1.getSwordStats() - robbedSword);
+					this.getP1().setSwordStats(this.getP1().getSwordStats() - robbedSword);
 					action += " has been robbed sword stat for " + robbedSword + " units";
 				}
 			}
 			else if (rand == 2) {
-				int robbedMagic = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * p1.getMagicStats() / 100);
+				int robbedMagic = Utility.calculateExtraBuff(Utility.randomInteger(MIN_ROB_PERCENT, MAX_ROB_PERCENT) * this.getP1().getMagicStats() / 100);
 				if (robbedMagic > 0) {
-					p1.setMagicStats(p1.getMagicStats() - robbedMagic);
+					this.getP1().setMagicStats(this.getP1().getMagicStats() - robbedMagic);
 					action += " has been robbed magic stat for " + robbedMagic + " units";
 				}
 			}
@@ -86,7 +81,6 @@ public class IsRobbed extends BaseAction {
 		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(MIN_ROB_PERCENT), Utility.calculateExtraBuff(MAX_ROB_PERCENT));
 	}
 	
-	// TODO: add comments
 	public Image getPicture() {
 		return new Image(getClass().getResource("../assets/robber.png").toExternalForm(), 1024, 720, false, true);
 	}
