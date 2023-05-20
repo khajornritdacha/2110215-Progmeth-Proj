@@ -40,7 +40,7 @@ public class SelectTurnPane extends BorderPane{
 			Main.changeState(GameState.WELCOME_SCENE);
 		});
 		this.setTop(backBtn);
-		Image img = new Image(ClassLoader.getSystemResource("startGameBg.png").toString(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
+		Image img = new Image(ClassLoader.getSystemResource("bgPlain.png").toString(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bg));
 
