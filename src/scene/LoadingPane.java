@@ -12,8 +12,6 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import scene.components.DecoratedText;
 import utility.GameConfig;
 import utility.GameState;
 

@@ -1,15 +1,7 @@
 package scene;
 
-import action.FightBoss;
-import action.FightMonster;
-import action.FindMageMaster;
-import action.FindSwordMaster;
-import action.IsRobbed;
-import action.WinLottery;
 import application.Main;
-import customException.InvalidValueException;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -26,18 +18,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import logic.GameLogic;
-import monster.Dragon;
-import monster.Goblin;
-import player.Farmer;
-import scene.components.ActionFrame;
 import scene.components.BackButton;
-import scene.components.Deck;
 import scene.components.DecoratedButton;
 import scene.components.DecoratedText;
 import utility.GameConfig;
 import utility.GameState;
-import utility.Utility;
 
 /**
  * How to play scene of this game
@@ -83,7 +68,7 @@ public class HowToPlayPane extends BorderPane{
 		basicDescription.setEffect(new DropShadow());
 		basicDescription.setLineSpacing(-8);
 		
-		Text mechanics = new DecoratedText("Game Mechanics", 32);
+		Text mechanicsTitle = new DecoratedText("Game Mechanics", 32);
 
 		Text mechanicsDescription = new Text("""
 				1. The amount of stats gained from actions will increase every turns.\n
@@ -101,10 +86,35 @@ public class HowToPlayPane extends BorderPane{
 		mechanicsDescription.setEffect(new DropShadow());
 		mechanicsDescription.setLineSpacing(-8);
 		
+		Text roleTitle = new DecoratedText("Player Role", 32);
+
+		Text roleDescription = new Text("""
+				1. Farmer : A normal player.\n
+				2. Sword Man : A player who is good with a sword. They can:\n
+				   - Learn sword skills twice as fast as other roles.\n
+				   - Have a higher probability of defeating monsters when they focus solely on sword stats.\n
+				3. Wizard : A player who is good with a magic. They can:\n
+				   - Learn magic skills twice as fast as other roles.\n
+				   - Have a higher probability of defeating monsters when they focus solely on magic stats.\n
+				4. The Rich : A player who is good at managing money. They can:\n
+				   - Receive or lose money twice as fast as other roles.\n
+			""");
+		roleDescription.setFont(Font.font(null, FontWeight.EXTRA_BOLD, 18));
+		roleDescription.setFill(Color.WHITE);
+		roleDescription.setEffect(new DropShadow());
+		roleDescription.setLineSpacing(-8);
+		
+		Text otherDescription = new Text("Note : Additional descriptions about actions and monsters can be found in the gameplay menu.");
+		otherDescription.setFont(Font.font(null, FontWeight.EXTRA_BOLD, 18));
+		otherDescription.setFill(Color.RED);
+		otherDescription.setEffect(new DropShadow());
+		otherDescription.setLineSpacing(-8);
+		
 		VBox container = new VBox();
-		container.getChildren().addAll(basicHowToPlay, basicDescription, mechanics, mechanicsDescription);
+		container.getChildren().addAll(basicHowToPlay, basicDescription, mechanicsTitle, mechanicsDescription, roleTitle, roleDescription, otherDescription);
 		container.setMargin(basicHowToPlay, new Insets(0, 0, 15, 0));
-		container.setMargin(mechanics, new Insets(0, 0, 15, 0));
+		container.setMargin(mechanicsTitle, new Insets(0, 0, 15, 0));
+		container.setMargin(roleTitle, new Insets(0, 0, 15, 0));
 		
 		ScrollPane scrollPane = new ScrollPane(container);
 		scrollPane.setMaxSize(900, 520);
