@@ -82,7 +82,7 @@ public class Main extends Application {
      * @param effectPath Path of the effect
      */
     public static void playEffect(String effectPath) {
-    	Media media = new Media(new File(effectPath).toURI().toString());
+    	Media media = new Media(ClassLoader.getSystemResource(effectPath).toString());
     	MediaPlayer effectPlayer = new MediaPlayer(media);
     	effectPlayer.setVolume(0.15);
     	effectPlayer.play(); 
@@ -93,7 +93,7 @@ public class Main extends Application {
      * @param musicPath Path of the music
      */
     public static void playMusic(String musicPath) {
-    	Media media = new Media(new File(musicPath).toURI().toString());
+    	Media media = new Media(ClassLoader.getSystemResource(musicPath).toString());
     	mediaPlayer = new MediaPlayer(media);
     	mediaPlayer.setVolume(0.3);
     	mediaPlayer.setOnEndOfMedia(new Runnable() {

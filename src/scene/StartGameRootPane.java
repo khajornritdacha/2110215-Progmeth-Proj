@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import scene.components.DecoratedButton;
+import utility.GameConfig;
 import utility.GameState;
 
 /**
@@ -29,7 +30,7 @@ public class StartGameRootPane extends BorderPane{
 	public StartGameRootPane() {
 		VBox container = new VBox();
 
-		Image img = new Image(getClass().getResource("../assets/startGameBg.png").toExternalForm(), 1024, 720, false, true);
+		Image img = new Image(ClassLoader.getSystemResource("startGameBg.png").toString(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		container.setBackground(new Background(bg));
 

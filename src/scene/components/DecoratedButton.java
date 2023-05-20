@@ -27,13 +27,13 @@ public class DecoratedButton extends Button{
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
 		
-		Font buttonFont = Font.loadFont(getClass().getResource("../../assets/BreatheFire.ttf").toExternalForm(), fontSize);
+		Font buttonFont = Font.loadFont(ClassLoader.getSystemResource("BreatheFire.ttf").toString(), fontSize);
 		this.setFont(buttonFont);
 		
 		this.setTextFill(Color.WHITE);
 		this.setCursor(Cursor.HAND);
 		
-		Image buttonBgImg = new Image(getClass().getResource("../../assets/buttonPlain.png").toExternalForm(), width, height, false, true);
+		Image buttonBgImg = new Image(ClassLoader.getSystemResource("buttonPlain.png").toString(), width, height, false, true);
 		BackgroundImage buttonBg = new BackgroundImage(buttonBgImg, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(buttonBg));
 	}

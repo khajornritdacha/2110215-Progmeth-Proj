@@ -43,15 +43,15 @@ public class GameConfig {
 	/**
 	 * home page music's video path
 	 */
-	public final static String HOMEPAGE_MUSIC = "./src/assets/a-song-of-wolves-and-dragons.mp3";
+	public final static String HOMEPAGE_MUSIC = "a-song-of-wolves-and-dragons.mp3";
 	
 	/**
 	 * in game music's video path
 	 */
-	public final static String INGAME_MUSIC = "./src/assets/ragnarok.mp3";
+	public final static String INGAME_MUSIC = "ragnarok.mp3";
 	
 	/**
 	 * take action's video path
 	 */
-	public final static String TAKE_ACTION = "./src/assets/dropmetalthing.mp3";
+	public final static String TAKE_ACTION = "dropmetalthing.mp3";
 }

@@ -42,6 +42,7 @@ import scene.components.MonsterFrame;
 import scene.components.PlayerFrame;
 import scene.components.TeamFrame;
 import scene.components.TextStats;
+import utility.GameConfig;
 import utility.Utility;
 
 //TODO: adjust the GUI to make it be more beautiful
@@ -62,9 +63,7 @@ public class PlayingGameRootPane extends BorderPane {
 	 * Create new gameplay scene
 	 */
 	public PlayingGameRootPane() {
-		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
-//		Image img = new Image(getClass().getResource("../../assets/bgPlain.png").toExternalForm(), 1024, 720, false, true);
-//		new File(musicPath).toURI().toString()
+		Image img = new Image(ClassLoader.getSystemResource("startGameBg.png").toString(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		
 		this.setBackground(new Background(bg));
