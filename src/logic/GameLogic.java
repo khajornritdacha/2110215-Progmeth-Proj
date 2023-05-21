@@ -132,7 +132,7 @@ public class GameLogic {
 			}
 			PlayingGameRootPane.setExplanation(String.format("%s wins!!!", winner));
 		}
-		PlayingGameRootPane.getExplanation().setFont(Font.loadFont(getClass().getResource("../assets/BreatheFire.ttf").toExternalForm(), 72));
+		PlayingGameRootPane.getExplanation().setFont(Font.loadFont(ClassLoader.getSystemResource("BreatheFire.ttf").toString(), 72));
 		PlayingGameRootPane.setActionBtn("Play again");
 	}
 	

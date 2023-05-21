@@ -23,7 +23,7 @@ public class TextStats extends Text{
 	 */
 	public TextStats(String text, int fontSize) {
 		this.setText(text);
-		this.setFont(Font.loadFont(getClass().getResource("../../assets/BreatheFire.ttf").toExternalForm(), fontSize));
+		this.setFont(Font.loadFont(ClassLoader.getSystemResource("BreatheFire.ttf").toString(), fontSize));
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class TextStats extends Text{
 	public TextStats(String text, int fontSize, boolean isSpecialFont) {
 		this.setText(text);
 		if (isSpecialFont) {
-			this.setFont(Font.loadFont(getClass().getResource("../../assets/BreatheFire.ttf").toExternalForm(), fontSize));			
+			this.setFont(Font.loadFont(ClassLoader.getSystemResource("BreatheFire.ttf").toString(), fontSize));			
 		} else {
 			this.setFont(new Font(fontSize));
 		}

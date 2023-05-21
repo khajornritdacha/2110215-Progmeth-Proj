@@ -25,7 +25,6 @@ public class LoadingPane extends BorderPane{
 	 */
 	public LoadingPane() {
 		Image img = new Image(ClassLoader.getSystemResource("startGameBg.png").toString(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
-//		Image img = new Image(getClass().getResource("../assets/bgPlain.png").toExternalForm(), GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT, false, true);
 		BackgroundImage bg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		this.setBackground(new Background(bg));
 			

@@ -49,6 +49,6 @@ public class WinLottery extends BaseAction {
 	}
 	
 	public Image getPicture() {
-		return new Image(getClass().getResource("../assets/money.png").toExternalForm(), 1024, 720, false, true);
+		return new Image(ClassLoader.getSystemResource("money.png").toString(), 1024, 720, false, true);
 	}
 }

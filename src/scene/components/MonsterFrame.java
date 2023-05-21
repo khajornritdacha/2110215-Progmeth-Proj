@@ -44,8 +44,13 @@ public class MonsterFrame extends Frame {
 		title.setTextAlignment(TextAlignment.CENTER);
 		
 		Circle pic = new Circle(48);
-		pic.setFill(new ImagePattern(monster.getPicture()));
-		pic.setEffect(new DropShadow());
+		try {
+			pic.setFill(new ImagePattern(monster.getPicture()));
+			pic.setEffect(new DropShadow());			
+		} catch (NullPointerException err) {
+			System.out.println("Failed to get picture of " + monster.getName());
+			System.out.println("Error: " + err.getMessage());
+		}
 		
 		Button selectBtn = new Button("Fight with");
 		MonsterFrame.setMargin(selectBtn, new Insets(15, 0, 0, 0));

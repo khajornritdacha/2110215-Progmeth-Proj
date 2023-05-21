@@ -49,6 +49,6 @@ public class LearnMagic extends BaseAction {
 	}
 	
 	public Image getPicture() {
-		return new Image(getClass().getResource("../assets/enchantedBook.png").toExternalForm(), 1024, 720, false, true);
+		return new Image(ClassLoader.getSystemResource("enchantedBook.png").toString(), 1024, 720, false, true);
 	}
 }

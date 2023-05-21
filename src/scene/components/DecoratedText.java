@@ -15,7 +15,7 @@ public class DecoratedText extends Text{
 	 */
 	public DecoratedText(String text, int fontSize) {
 		super(text);
-		Font font = Font.loadFont(getClass().getResource("../../assets/BreatheFire.ttf").toExternalForm(), fontSize);
+		Font font = Font.loadFont(ClassLoader.getSystemResource("BreatheFire.ttf").toString(), fontSize);
 		this.setFont(font);
 		this.setFill(Color.WHITE);
 	}

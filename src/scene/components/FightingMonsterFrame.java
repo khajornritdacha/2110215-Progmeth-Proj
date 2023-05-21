@@ -28,8 +28,13 @@ public class FightingMonsterFrame extends Frame {
 		description.setFont(new Font(12));
 		
 		Circle pic = new Circle(48);
-		pic.setFill(new ImagePattern(GameLogic.getInstance().summonGoblin().getPicture()));
-		pic.setEffect(new DropShadow());
+		try {
+			pic.setFill(new ImagePattern(GameLogic.getInstance().summonGoblin().getPicture()));
+			pic.setEffect(new DropShadow()); 			
+		} catch (NullPointerException err) {
+			System.out.println("Failed to get picture of " + GameLogic.getInstance().summonGoblin().toString());
+			System.out.println("Error: " + err.getMessage());
+		}
 		
 		Button selectBtn = new Button("Select");
 		selectBtn.setOnAction(new EventHandler<ActionEvent>() {

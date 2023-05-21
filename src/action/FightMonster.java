@@ -55,7 +55,7 @@ public class FightMonster extends BaseAction {
 	}
 	
 	public Image getPicture() {
-		return new Image(getClass().getResource("../assets/zombie.png").toExternalForm(), 1024, 720, false, true);
+		return new Image(ClassLoader.getSystemResource("zombie.png").toString(), 1024, 720, false, true);
 	}
 
 	/**

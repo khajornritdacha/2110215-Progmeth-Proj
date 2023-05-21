@@ -81,7 +81,7 @@ public class IsRobbed extends BaseAction {
 		return String.format("Decrease one of the stats for %d-%d%% units", Utility.calculateExtraBuff(MIN_ROB_PERCENT), Utility.calculateExtraBuff(MAX_ROB_PERCENT));
 	}
 	
-	public Image getPicture() {
-		return new Image(getClass().getResource("../assets/robber.png").toExternalForm(), 1024, 720, false, true);
+	public Image getPicture() {		
+		return new Image(ClassLoader.getSystemResource("robber.png").toString(), 1024, 720, false, true);
 	}
 }

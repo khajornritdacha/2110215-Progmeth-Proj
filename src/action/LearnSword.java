@@ -49,6 +49,6 @@ public class LearnSword extends BaseAction {
 	}
 	
 	public Image getPicture() {
-		return new Image(getClass().getResource("../assets/enchantedSword.png").toExternalForm(), 1024, 720, false, true);
+		return new Image(ClassLoader.getSystemResource("enchantedSword.png").toString(), 1024, 720, false, true);
 	}
 }

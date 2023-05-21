@@ -48,7 +48,7 @@ public class Dragon extends BaseMonster implements Evolutionary {
 	}
 	
 	public Image getPicture() {
-		return new Image(getClass().getResource("../assets/enderDragon.png").toExternalForm(), 1024, 720, false, true);
+		return new Image(ClassLoader.getSystemResource("enderDragon.png").toString(), 1024, 720, false, true);
 	}
 	
 	public Color getColor() {
